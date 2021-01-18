@@ -184,6 +184,36 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap\css\bootstrap-responsive.css" />
+    <Content Include="Content\bootstrap\css\bootstrap-responsive.min.css" />
+    <Content Include="Content\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\bootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Content\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\images\banner\banner-1.jpg" />
+    <Content Include="Content\images\banner\banner-2.jpg" />
+    <Content Include="Content\themes\css\bootstrappage.css" />
+    <Content Include="Content\themes\css\flexslider.css" />
+    <Content Include="Content\themes\css\jquery.fancybox.css" />
+    <Content Include="Content\themes\css\main.css" />
+    <Content Include="Content\themes\images\arrow-p.png" />
+    <Content Include="Content\themes\images\arrow-pleft.png" />
+    <Content Include="Content\themes\images\bg.png" />
+    <Content Include="Content\themes\images\feature_img_1.png" />
+    <Content Include="Content\themes\images\feature_img_2.png" />
+    <Content Include="Content\themes\images\feature_img_3.png" />
+    <Content Include="Content\themes\images\gotop.png" />
+    <Content Include="Content\themes\images\line_bar.png" />
+    <Content Include="Content\themes\images\logo.png" />
+    <Content Include="Content\themes\js\common.js" />
+    <Content Include="Content\themes\js\css\style.css" />
+    <Content Include="Content\themes\js\jquery-1.7.2.min.js" />
+    <Content Include="Content\themes\js\jquery.fancybox.js" />
+    <Content Include="Content\themes\js\jquery.flexslider-min.js" />
+    <Content Include="Content\themes\js\jquery.scrolltotop.js" />
+    <Content Include="Content\themes\js\superfish.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -238,6 +268,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\themes\js\images\" />
+    <Folder Include="Content\themes\js\js\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
