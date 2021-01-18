@@ -17,14 +17,19 @@ namespace WebShop.Core.Models
         public string Description { get; set; }
         [Range(0, 1000)]
         public decimal Price { get; set; }
-        public string Category { get; set; }
+        public Category Category { get; set; }
+        public SubCategory SubCategory { get; set; }
         public ICollection<string> Images { get; set; }
         public virtual ICollection<UserReview> UserReviews { get; set; }
-
+        public int Availability { get; set; }
+        public ICollection<String> Sizes { get; set; }
+        public ICollection<String> Color { get; set; }
         public Product()
         {
             this.UserReviews = new List<UserReview>();
             this.Images = new List<String>();
+            this.Sizes = new List<String>();
+            this.Color = new List<String>();
         }
     }
 }
