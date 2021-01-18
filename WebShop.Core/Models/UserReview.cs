@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace WebShop.Core.Models
 {
-    public class UserReviews : BaseEntity
+    public class UserReview : BaseEntity
     {
-        
         public string UserId { get; set; }
         public string Review { get; set; }
         public int Rating { get; set; }
-
     }
 }
