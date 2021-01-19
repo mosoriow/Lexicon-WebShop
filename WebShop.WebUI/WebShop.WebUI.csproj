@@ -201,6 +201,12 @@
     <Content Include="Content\bootstrap\img\glyphicons-halflings.png" />
     <Content Include="Content\bootstrap\js\bootstrap.js" />
     <Content Include="Content\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\brands\bench.png" />
+    <Content Include="Content\brands\doite.png" />
+    <Content Include="Content\brands\hi-tec.png" />
+    <Content Include="Content\brands\kathmandu.png" />
+    <Content Include="Content\brands\maui.png" />
+    <Content Include="Content\brands\mossimo.png" />
     <Content Include="Content\images\banner\banner-1.jpg" />
     <Content Include="Content\images\banner\banner-2.jpg" />
     <Content Include="Content\images\banner\pageBanner.png" />
