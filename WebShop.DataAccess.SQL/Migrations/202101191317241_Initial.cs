@@ -18,6 +18,19 @@ namespace WebShop.DataAccess.SQL.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "dbo.Images",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Path = c.String(),
+                        CreateAt = c.DateTimeOffset(nullable: false, precision: 7),
+                        Product_Id = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Products", t => t.Product_Id)
+                .Index(t => t.Product_Id);
+            
+            CreateTable(
                 "dbo.Products",
                 c => new
                     {
@@ -67,13 +80,16 @@ namespace WebShop.DataAccess.SQL.Migrations
         {
             DropForeignKey("dbo.UserReviews", "Product_Id", "dbo.Products");
             DropForeignKey("dbo.Products", "SubCategory_Id", "dbo.SubCategories");
+            DropForeignKey("dbo.Images", "Product_Id", "dbo.Products");
             DropForeignKey("dbo.Products", "Category_Id", "dbo.Categories");
             DropIndex("dbo.UserReviews", new[] { "Product_Id" });
             DropIndex("dbo.Products", new[] { "SubCategory_Id" });
             DropIndex("dbo.Products", new[] { "Category_Id" });
+            DropIndex("dbo.Images", new[] { "Product_Id" });
             DropTable("dbo.UserReviews");
             DropTable("dbo.SubCategories");
             DropTable("dbo.Products");
+            DropTable("dbo.Images");
             DropTable("dbo.Categories");
         }
     }
