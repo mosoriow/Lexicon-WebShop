@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace WebShop.Core.Models
 {
-    public class SubCategory: BaseEntity
+    public class Image : BaseEntity
     {
-        public string Name { get; set; }
-        public SubCategory(String Name)
+        public string Path { get; set; }
+        public Image() { }
+        public Image(String Path)
         {
-            this.Name = Name;
+            this.Path = Path;
         }
     }
 }
