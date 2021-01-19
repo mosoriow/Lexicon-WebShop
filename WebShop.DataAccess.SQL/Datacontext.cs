@@ -19,5 +19,6 @@ namespace WebShop.DataAccess.SQL
         public DbSet<SubCategory> SubCategories { get; set; }
         public DbSet<UserReview> UserReviews { get; set; }
         public DbSet<Image> Images { get; set; }
+        public DbSet<Manufacture> Manufactures { get; set; }
     }
 }
