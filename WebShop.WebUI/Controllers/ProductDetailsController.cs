@@ -26,7 +26,7 @@ namespace WebShop.WebUI.Controllers
             //Find the Product including images
             
             Product product = context
-                .Include(p=>p.Manufacture, p => p.Images)
+                .Include(p => p.Images)
                 .FirstOrDefault(p=>p.Id==Id);
 
                 // creating the product for testing todo : need to remove this
@@ -41,20 +41,15 @@ namespace WebShop.WebUI.Controllers
                 product.Images.Add(new Image("/Content/productImages/1/3.jpg"));
                 product.Images.Add(new Image("/Content/productImages/1/4.jpg"));
                 product.Images.Add(new Image("/Content/productImages/1/5.jpg"));
-                product.Category = new Category("Woman");
-                product.SubCategory = new SubCategory("Dresses");
-                product.Manufacture = new Manufacture("Kathmandu");
+                product.Category = "Woman";
+                product.SubCategory = "Dresses";
+                product.Manufacture = "Kathmandu";
+                product.Price = 587.50m;
                 product.Availability = 10;
                 context.Insert(product);
                 context.Commit();
             }
-                else
-            {
-                product.Price = 587.50m;
-                context.Update(product);
-                context.Commit();
-            }
-               
+              
 
                 return View(product);
         }

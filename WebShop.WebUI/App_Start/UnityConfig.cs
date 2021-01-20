@@ -46,10 +46,7 @@ namespace WebShop.WebUI
             // container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<IRepository<Product>, SQLRepository<Product>>();
             container.RegisterType<IRepository<UserReview>, SQLRepository<UserReview>>();
-            container.RegisterType<IRepository<Category>, SQLRepository<Category>>();
-            container.RegisterType<IRepository<SubCategory>, SQLRepository<SubCategory>>();
             container.RegisterType<IRepository<Image>, SQLRepository<Image>>();
-            container.RegisterType<IRepository<Manufacture>, SQLRepository<Manufacture>>();
 
         }
     }
