@@ -26,12 +26,12 @@ namespace WebShop.WebUI.Controllers
             //Find the Product including images
             
             Product product = context
-                .Include(p => p.Images)
+                .Include(p => p.Images, p => p.UserReviews)
                 .FirstOrDefault(p=>p.Id==Id);
 
                 // creating the product for testing todo : need to remove this
                 if(product==null)
-            {
+                {
                 product = new Product();
                 product.Id = "1";
                 product.Name = "Lång omlottklänning";
@@ -48,8 +48,14 @@ namespace WebShop.WebUI.Controllers
                 product.Availability = 10;
                 context.Insert(product);
                 context.Commit();
+                }
+            else
+            {
+                product.Colour = "Orange, Yellow";
+                product.Size = "Large, Medium, Small, X-Large";
+                context.Update(product);
+                context.Commit();
             }
-              
 
                 return View(product);
         }
