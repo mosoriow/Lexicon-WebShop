@@ -48,7 +48,7 @@ namespace WebShop.WebUI.Controllers
                 db.Users.Add(user);
                 db.SaveChanges();
                
-                return RedirectToAction("Index", "Home",new { name = user.UserName });
+                return RedirectToAction("Index", "Home",new { name = user.Email });
             }
             return View();
         }
