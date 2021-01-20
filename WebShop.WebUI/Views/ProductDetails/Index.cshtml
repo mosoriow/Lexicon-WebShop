@@ -53,6 +53,15 @@
                             <p>&nbsp;</p>
                             <label>Qty:</label>
                             <input type="text" class="span1" placeholder="1">
+                            <p>&nbsp;</p>
+                            <label>Size:</label>
+                            <select name="Size" id="size">
+                                @foreach (var size in @Model.product.Size.Split(','))
+                                {
+                                    <option value="@size.Trim()">@size.Trim()</option>
+                                }
+                            </select>
+                            <p>&nbsp;</p>
                             <button class="btn btn-inverse" type="submit">Add to cart</button>
                         </form>
                     </div>
