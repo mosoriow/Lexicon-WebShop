@@ -45,9 +45,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Contracts\IRepository.cs" />
     <Compile Include="Models\BaseEntity.cs" />
-    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Image.cs" />
-    <Compile Include="Models\SubCategory.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserReview.cs" />

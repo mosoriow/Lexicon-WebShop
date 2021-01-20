@@ -15,15 +15,17 @@ namespace WebShop.Core.Models
         [DisplayName("Product Name")]
         public string Name { get; set; }
         public string Description { get; set; }
-        public string Brand { get; set; }
+        public String Manufacture { get; set; }
         [Range(0, 1000)]
         public decimal Price { get; set; }
-        public Category Category { get; set; }
-        public SubCategory SubCategory { get; set; }
+        public String Category { get; set; }
+        public String SubCategory { get; set; }
         public ICollection<Image> Images { get; set; }
         public virtual ICollection<UserReview> UserReviews { get; set; }
         public int Availability { get; set; }
-      
+//        public String Size { get; set; }
+//      public String Colour { get; set; }
+
         public Product()
         {
             this.UserReviews = new List<UserReview>();
