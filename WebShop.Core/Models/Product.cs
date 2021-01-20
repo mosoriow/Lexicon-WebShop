@@ -23,8 +23,8 @@ namespace WebShop.Core.Models
         public ICollection<Image> Images { get; set; }
         public virtual ICollection<UserReview> UserReviews { get; set; }
         public int Availability { get; set; }
-//        public String Size { get; set; }
-//      public String Colour { get; set; }
+        public String Size { get; set; }
+        public String Colour { get; set; }
 
         public Product()
         {
