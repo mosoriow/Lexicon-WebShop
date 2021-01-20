@@ -1,0 +1,96 @@
+﻿
+@model WebShop.Core.Models.UserAccount
+
+@{
+    ViewBag.Title = "Create";
+}
+<section class="header_text sub">
+    <img class="pageBanner" src="~/Content/images/banner/pageBanner.png" alt="New products">
+    <h4><span>Login or Regsiter</span></h4>
+</section>
+<section class="main-content">
+    <div class="row">
+        <div class="span5">
+            <h4 class="title"><span class="text"><strong>Login</strong> Form</span></h4>
+
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+         
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label " })
+                <div class="controls">
+                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "input-xlarge" } })
+                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "input-xlarge" })
+                </div>
+            </div>
+
+
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label " })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "input-xlarge" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "input-xlarge" })
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label " })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "input-xlarge" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "input-xlarge" })
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="actions">
+                    <input type="submit" value="Sign into your account" class="btn btn-inverse large" />
+                    <hr>
+                    <p class="reset">Recover your <a tabindex="4" href="#" title="Recover your username or password">username or password</a></p>
+                </div>
+            </div>
+        </div>
+            }
+        </div>
+
+
+
+        <div class="span7">
+            <h4 class="title"><span class="text"><strong>Register</strong> Form</span></h4>
+            <form action="#" method="post" class="form-stacked">
+                <fieldset>
+                    <div class="control-group">
+                        <label class="control-label">Username</label>
+                        <div class="controls">
+                            <input type="text" placeholder="Enter your username" class="input-xlarge">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Email address:</label>
+                        <div class="controls">
+                            <input type="password" placeholder="Enter your email" class="input-xlarge">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Password:</label>
+                        <div class="controls">
+                            <input type="password" placeholder="Enter your password" class="input-xlarge">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <p>Now that we know who you are. I'm not a mistake! In a comic, you know how you can tell who the arch-villain's going to be?</p>
+                    </div>
+                    <hr>
+                    <div class="actions"><input tabindex="9" class="btn btn-inverse large" type="submit" value="Create your account"></div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</section>

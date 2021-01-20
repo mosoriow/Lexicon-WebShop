@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Azure.Documents;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -18,5 +19,6 @@ namespace WebShop.DataAccess.SQL
         public DbSet<Category> Categories { get; set; }
         public DbSet<SubCategory> SubCategories { get; set; }
         public DbSet<UserReview> UserReviews { get; set; }
+        public DbSet<UserAccount> Users { get; set; }
     }
 }

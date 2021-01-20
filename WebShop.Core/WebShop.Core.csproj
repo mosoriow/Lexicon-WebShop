@@ -43,11 +43,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Contracts\IBasketService.cs" />
+    <Compile Include="Contracts\IRepository.cs" />
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\SubCategory.cs" />
     <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserAccount.cs" />
     <Compile Include="Models\UserReview.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

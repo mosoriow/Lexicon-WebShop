@@ -180,6 +180,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101191354266_Initial.cs" />
+    <Compile Include="Migrations\202101191354266_Initial.designer.cs">
+      <DependentUpon>202101191354266_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -366,7 +371,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.js.flow" />
@@ -378,10 +382,10 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\Register.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
-
+    <Content Include="Views\User\Index2.cshtml" />
     <Content Include="Views\ProductDetails\Index.cshtml" />
-
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -405,6 +409,23 @@
       <Project>{0cd1862f-dcd4-44f2-b7e6-7949bc62537b}</Project>
       <Name>WebShop.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebShop.DataAccess.InMemory\WebShop.DataAccess.InMemory.csproj">
+      <Project>{e92a7262-398a-40ea-bfec-0f83ff79c45a}</Project>
+      <Name>WebShop.DataAccess.InMemory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebShop.DataAccess.SQL\WebShop.DataAccess.SQL.csproj">
+      <Project>{c7663f75-47bb-4d6d-8fce-1df4b90eb6f4}</Project>
+      <Name>WebShop.DataAccess.SQL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebShop.Services\WebShop.Services.csproj">
+      <Project>{0023dba6-17cf-4e06-bebd-d8d4f00b01f5}</Project>
+      <Name>WebShop.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202101191354266_Initial.resx">
+      <DependentUpon>202101191354266_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

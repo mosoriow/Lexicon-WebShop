@@ -1,4 +1,4 @@
-namespace WebShop.DataAccess.SQL.Migrations
+﻿namespace WebShop.DataAccess.SQL.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
@@ -61,6 +61,19 @@ namespace WebShop.DataAccess.SQL.Migrations
                 .ForeignKey("dbo.Products", t => t.Product_Id)
                 .Index(t => t.Product_Id);
             
+            CreateTable(
+                "dbo.UserAccounts",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        UserId = c.String(),
+                        UserName = c.String(),
+                        Password = c.String(),
+                        Email = c.String(),
+                        CreateAt = c.DateTimeOffset(nullable: false, precision: 7),
+                    })
+                .PrimaryKey(t => t.Id);
+            
         }
         
         public override void Down()
@@ -71,6 +84,7 @@ namespace WebShop.DataAccess.SQL.Migrations
             DropIndex("dbo.UserReviews", new[] { "Product_Id" });
             DropIndex("dbo.Products", new[] { "SubCategory_Id" });
             DropIndex("dbo.Products", new[] { "Category_Id" });
+            DropTable("dbo.UserAccounts");
             DropTable("dbo.UserReviews");
             DropTable("dbo.SubCategories");
             DropTable("dbo.Products");
