@@ -1,4 +1,4 @@
-﻿@model WebShop.Core.Models.Product
+﻿@model WebShop.Core.ViewModels.ProductDetailsViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -8,22 +8,22 @@
 
     <section class="header_text sub">
         <img class="pageBanner" src="~/Content/images/banner/banner-2.jpg" alt="">
-        <h4><span>@Model.Name</span></h4>
+        <h4><span>@Model.product.Name</span></h4>
     </section>
     <section class="main-content">
         <div class="row">
             <div class="span9">
                 <div class="row">
                     <div class="span4">
-                        <a href="@Model.Images.FirstOrDefault().Path" class="thumbnail" data-fancybox-group="group1" title="@Model.Name"><img src="@Model.Images.FirstOrDefault().Path" alt=""></a>
+                        <a href="@Model.product.Images.FirstOrDefault().Path" class="thumbnail" data-fancybox-group="group1" title="@Model.product.Name"><img src="@Model.product.Images.FirstOrDefault().Path" alt=""></a>
                         <ul class="thumbnails small">
-                            @foreach (var image in Model.Images)
+                            @foreach (var image in Model.product.Images)
                             {
-                                if (@image.Path != @Model.Images.FirstOrDefault().Path)
+                                if (@image.Path != @Model.product.Images.FirstOrDefault().Path)
                                 {
                                     <li class="span1">
                                         <div></div>
-                                        <a href="@image.Path" class="thumbnail" data-fancybox-group="group1" title="@Model.Name"><img src="@image.Path" alt=""></a>
+                                        <a href="@image.Path" class="thumbnail" data-fancybox-group="group1" title="@Model.product.Name"><img src="@image.Path" alt=""></a>
                                     </li>
                                 }
                             }
@@ -31,22 +31,22 @@
                     </div>
                     <div class="span5">
                         <address>
-                            @if (@Model.Manufacture != null)
+                            @if (@Model.product.Manufacture != null)
                             {
-                                <strong>Brand:</strong> <span>@Model.Manufacture</span><br>
+                                <strong>Brand:</strong> <span>@Model.product.Manufacture</span><br>
                             }
-                            <strong>Product Code:</strong> <span>@Model.Id</span><br>
-                            @if (@Model.Availability == 0)
+                            <strong>Product Code:</strong> <span>@Model.product.Id</span><br>
+                            @if (@Model.product.Availability == 0)
                             {
                                 <strong>Availability:</strong> <span>Out Of Stock</span><br>
                             }
                             else
                             {
-                                <strong>Availability:</strong> <span>@Model.Availability in Stock</span><br>
+                                <strong>Availability:</strong> <span>@Model.product.Availability in Stock</span><br>
                             }
 
                         </address>
-                        <h4><strong>Price: @Model.Price SEK</strong></h4>
+                        <h4><strong>Price: @Model.product.Price SEK</strong></h4>
                     </div>
                     <div class="span5">
                         <form class="form-inline">
@@ -64,17 +64,17 @@
                             <li class=""><a href="#profile">Additional Information</a></li>
                         </ul>
                         <div class="tab-content">
-                            <div class="tab-pane active" id="home">@Model.Description</div>
+                            <div class="tab-pane active" id="home">@Model.product.Description</div>
                             <div class="tab-pane" id="profile">
                                 <table class="table table-striped shop_attributes">
                                     <tbody>
                                         <tr class="">
                                             <th>Size</th>
-                                            <td>@Model.Size</td>
+                                            <td>@Model.product.Size</td>
                                         </tr>
                                         <tr class="alt">
                                             <th>Colour</th>
-                                            <td>@Model.Colour</td>
+                                            <td>@Model.product.Colour</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -91,66 +91,25 @@
                         </h4>
                         <div id="myCarousel-1" class="carousel slide">
                             <div class="carousel-inner">
-                                <div class="active item">
-                                    <ul class="thumbnails listing-products">
-                                        <li class="span3">
-                                            <div class="product-box">
-                                                <span class="sale_tag"></span>
-                                                <a href="product_detail.html"><img alt="" src="themes/images/ladies/6.jpg"></a><br />
-                                                <a href="product_detail.html" class="title">Wuam ultrices rutrum</a><br />
-                                                <a href="#" class="category">Suspendisse aliquet</a>
-                                                <p class="price">$341</p>
-                                            </div>
-                                        </li>
-                                        <li class="span3">
-                                            <div class="product-box">
-                                                <span class="sale_tag"></span>
-                                                <a href="product_detail.html"><img alt="" src="themes/images/ladies/5.jpg"></a><br />
-                                                <a href="product_detail.html" class="title">Fusce id molestie massa</a><br />
-                                                <a href="#" class="category">Phasellus consequat</a>
-                                                <p class="price">$341</p>
-                                            </div>
-                                        </li>
-                                        <li class="span3">
-                                            <div class="product-box">
-                                                <a href="product_detail.html"><img alt="" src="themes/images/ladies/4.jpg"></a><br />
-                                                <a href="product_detail.html" class="title">Praesent tempor sem</a><br />
-                                                <a href="#" class="category">Erat gravida</a>
-                                                <p class="price">$28</p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="item">
-                                    <ul class="thumbnails listing-products">
-                                        <li class="span3">
-                                            <div class="product-box">
-                                                <span class="sale_tag"></span>
-                                                <a href="product_detail.html"><img alt="" src="themes/images/ladies/1.jpg"></a><br />
-                                                <a href="product_detail.html" class="title">Fusce id molestie massa</a><br />
-                                                <a href="#" class="category">Phasellus consequat</a>
-                                                <p class="price">$341</p>
-                                            </div>
-                                        </li>
-                                        <li class="span3">
-                                            <div class="product-box">
-                                                <a href="product_detail.html"><img alt="" src="themes/images/ladies/2.jpg"></a><br />
-                                                <a href="product_detail.html">Praesent tempor sem</a><br />
-                                                <a href="#" class="category">Erat gravida</a>
-                                                <p class="price">$28</p>
-                                            </div>
-                                        </li>
-                                        <li class="span3">
-                                            <div class="product-box">
-                                                <span class="sale_tag"></span>
-                                                <a href="product_detail.html"><img alt="" src="themes/images/ladies/3.jpg"></a><br />
-                                                <a href="product_detail.html" class="title">Wuam ultrices rutrum</a><br />
-                                                <a href="#" class="category">Suspendisse aliquet</a>
-                                                <p class="price">$341</p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
+                                @for (int i = 0; i < @Model.relatedProducts.Count(); i += 3)
+                                {
+                                    <div class="@(i==0 ? "active item" : "item" )">
+                                        <ul class="thumbnails listing-products">
+                                            @foreach (var item in @Model.relatedProducts.Skip(i).Take(3))
+                                            {
+                                                <li class="span3">
+                                                    <div class="product-box">
+                                                        <span class="sale_tag"></span>
+                                                        <a href="/ProductDetails/index/@item.Id"><img alt="" src="@item.Images.FirstOrDefault().Path"></a><br />
+                                                        <a href="/ProductDetails/index/@item.Id" class="title">@item.Name</a><br />
+                                                        <a href="#" class="category">@item.SubCategory</a>
+                                                        <p class="price">@item.Price SEK</p>
+                                                    </div>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
