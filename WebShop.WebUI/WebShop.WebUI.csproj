@@ -382,7 +382,6 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\Register.cshtml" />
-    <Content Include="Views\User\Index2.cshtml" />
     <Content Include="Views\ProductDetails\Index.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
