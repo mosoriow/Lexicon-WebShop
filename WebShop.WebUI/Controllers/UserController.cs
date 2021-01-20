@@ -15,15 +15,20 @@ namespace WebShop.WebUI.Controllers
 
         public UserController()
         {
+
+
             db = new DataContext();
 
         }
-
+       
 
         // GET: User
         public ActionResult Index()
         {
+
+           
             return View(db.Users.ToList());
+            
         }
         protected override void Dispose(bool disposing)
         {
@@ -42,11 +47,13 @@ namespace WebShop.WebUI.Controllers
             {
                 db.Users.Add(user);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+               
+                return RedirectToAction("Index", "Home",new { name = user.UserName });
             }
             return View();
         }
 
 
+     
     }
 }
