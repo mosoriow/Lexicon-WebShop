@@ -139,7 +139,14 @@ namespace WebShop.WebUI.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            using (var db = ApplicationDbContext.Create())
+            {
+                RegisterViewModel newUser = new RegisterViewModel
+                {
+                   BirthDate = DateTime.Now
+                };
+                return View(newUser);
+            }
         }
 
         //

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace WebShop.WebUI.Models
@@ -8,6 +9,15 @@ namespace WebShop.WebUI.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        public string Phone { get; set; }
+
+        [Required]
+        [Display(Name = "Birth Date")]
+        [DataType(DataType.Date)]
+        public DateTime BirthDate { get; set; }
+        public bool? Disable { get; set; }
+
     }
 
     public class ExternalLoginListViewModel
@@ -79,6 +89,32 @@ namespace WebShop.WebUI.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public bool Disabled { get; set; }
+        
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Phone")]
+        public string Phone { get; set; }
+
+        [Required]
+        [Display(Name = "Birth Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM dd yyyy}")]
+
+        public DateTime BirthDate { get; set; }
+
+
+
+
     }
 
     public class ResetPasswordViewModel
