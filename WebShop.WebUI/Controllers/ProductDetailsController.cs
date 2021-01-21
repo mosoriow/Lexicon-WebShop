@@ -41,9 +41,7 @@ namespace WebShop.WebUI.Controllers
             }
             else
             {
-                product.UserReviews.Add(new UserReview("Nikhil", "This was nice in buy, Excelent product, Delevered on time, and Long lasting ", 5));
-                product.UserReviews.Add(new UserReview("Hitha Hareendran", "This was nice in buy, Excelent product, Delevered on time, and Long lasting ", 4));
-                product.UserReviews.Add(new UserReview("Mosorio", "This was nice in buy, Excelent product, Delevered on time, and Long lasting ", 3));
+                
                 
                 context.Update(product);
                 context.Commit();
@@ -76,7 +74,12 @@ namespace WebShop.WebUI.Controllers
             product.Availability = 10;
             product.Colour = "Orange, Yellow";
             product.Size = "Large, Medium, Small, X-Large";
-           
+
+            //add user review
+            product.UserReviews.Add(new UserReview("Nikhil", "This was nice in buy, Excelent product, Delevered on time, and Long lasting ", 5));
+            product.UserReviews.Add(new UserReview("Hitha Hareendran", "This was nice in buy, Excelent product, Delevered on time, and Long lasting ", 4));
+            product.UserReviews.Add(new UserReview("Mosorio", "This was nice in buy, Excelent product, Delevered on time, and Long lasting ", 3));
+
             context.Insert(product);
             context.Commit();
         }
@@ -110,6 +113,23 @@ namespace WebShop.WebUI.Controllers
             product.Size = "Large, Medium, Small, X-Large";
             context.Insert(product);
             context.Commit();
+        }
+
+        [HttpPost]
+        public ActionResult UpdateReview(ProductDetailsViewModel viewModel)
+        {
+            //update view model with username (since it is not in session), find the product and update review
+            viewModel.userReview.UserName = "Unknown";
+            String Id = viewModel.product.Id;
+            Product product = context
+               .Include(p => p.Images, p => p.UserReviews)
+               .FirstOrDefault(p => p.Id == Id);
+
+            product.UserReviews.Add(viewModel.userReview);
+            context.Update(product);
+            context.Commit();
+
+            return RedirectToAction("Index", new { id = Id });
         }
 
     }
