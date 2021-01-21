@@ -39,10 +39,21 @@ namespace WebShop.WebUI.Controllers
                 createProducts();
                 createMatchingProducts();
             }
+            else
+            {
+                product.UserReviews.Add(new UserReview("Nikhil", "This was nice in buy, Excelent product, Delevered on time, and Long lasting ", 5));
+                product.UserReviews.Add(new UserReview("Hitha Hareendran", "This was nice in buy, Excelent product, Delevered on time, and Long lasting ", 4));
+                product.UserReviews.Add(new UserReview("Mosorio", "This was nice in buy, Excelent product, Delevered on time, and Long lasting ", 3));
+                
+                context.Update(product);
+                context.Commit();
+            }
 
             ProductDetailsViewModel productDetailsViewModel = new ProductDetailsViewModel();
             productDetailsViewModel.product = product;
             productDetailsViewModel.relatedProducts = relatedProducts;
+
+                //  product.UserReviews.Select(r => r.Rating).Average();
 
              return View(productDetailsViewModel);
         }
@@ -65,6 +76,7 @@ namespace WebShop.WebUI.Controllers
             product.Availability = 10;
             product.Colour = "Orange, Yellow";
             product.Size = "Large, Medium, Small, X-Large";
+           
             context.Insert(product);
             context.Commit();
         }
