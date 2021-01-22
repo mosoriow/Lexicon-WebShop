@@ -19,15 +19,20 @@ namespace WebShop.WebUI.Controllers
             this.context = context;
         }
 
+        public Product GetProduct(String Id)
+        {
+            return context
+                .Include(p => p.Images, p => p.UserReviews)
+                .FirstOrDefault(p => p.Id == Id);
+        }
+
         // /ProductDetails/Index/Id
         public ActionResult Index(String Id)
         {
             if (Id == null) Id = "1";
 
             //Find the Product including images
-            Product product = context
-                .Include(p => p.Images, p => p.UserReviews)
-                .FirstOrDefault(p=>p.Id==Id);
+            Product product = GetProduct(Id);
 
             //todo: find the related image based on same category
             List<Product> relatedProducts = context.Include(p => p.Images)
@@ -41,19 +46,16 @@ namespace WebShop.WebUI.Controllers
             }
             else
             {
-                
-                
-                context.Update(product);
-                context.Commit();
+                //context.Update(product);
+                //context.Commit();
             }
 
             ProductDetailsViewModel productDetailsViewModel = new ProductDetailsViewModel();
             productDetailsViewModel.product = product;
             productDetailsViewModel.relatedProducts = relatedProducts;
-
-                //  product.UserReviews.Select(r => r.Rating).Average();
-
-             return View(productDetailsViewModel);
+            productDetailsViewModel.subCategories = context.Collection().Select(p => p.SubCategory).ToHashSet();
+            productDetailsViewModel.manufactures = context.Collection().Select(p => p.Manufacture).ToHashSet();
+            return View(productDetailsViewModel);
         }
 
         private void createProducts()
@@ -121,16 +123,15 @@ namespace WebShop.WebUI.Controllers
             //update view model with username (since it is not in session), find the product and update review
             viewModel.userReview.UserName = "Unknown";
             String Id = viewModel.product.Id;
-            Product product = context
-               .Include(p => p.Images, p => p.UserReviews)
-               .FirstOrDefault(p => p.Id == Id);
-
+            Product product = GetProduct(Id);
             product.UserReviews.Add(viewModel.userReview);
             context.Update(product);
             context.Commit();
 
             return RedirectToAction("Index", new { id = Id });
         }
+
+        
 
     }
 }

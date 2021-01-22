@@ -12,5 +12,7 @@ namespace WebShop.Core.ViewModels
         public Product product { get; set; }
         public IEnumerable<Product> relatedProducts { get; set; }
         public UserReview userReview { get; set; }
+        public IEnumerable<String> subCategories { get; set; }
+        public IEnumerable<String> manufactures { get; set; }
     }
 }
