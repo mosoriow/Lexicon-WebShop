@@ -13,7 +13,7 @@ namespace WebShop.WebUI.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202101211304162_AddFieldsToMembershipTable"; }
+            get { return "202101221348272_AddFieldsToMembershipTable"; }
         }
         
         string IMigrationMetadata.Source

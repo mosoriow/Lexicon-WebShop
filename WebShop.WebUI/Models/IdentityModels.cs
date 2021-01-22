@@ -13,6 +13,12 @@ namespace WebShop.WebUI.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Phone { get; set; }
+        public string fax { get; set; }
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string PostCode { get; set; }
+        public string Country { get; set; }
+        public string RegionState { get; set; }
         public DateTime BirthDate { get; set; }
         public bool Disable { get; set; }
         public int MembershipTypeId { get; set; }
