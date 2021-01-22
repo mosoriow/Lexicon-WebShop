@@ -53,8 +53,8 @@ namespace WebShop.WebUI.Controllers
             ProductDetailsViewModel productDetailsViewModel = new ProductDetailsViewModel();
             productDetailsViewModel.product = product;
             productDetailsViewModel.relatedProducts = relatedProducts;
-            productDetailsViewModel.subCategories = context.Collection().Select(p => p.SubCategory).ToHashSet();
-            productDetailsViewModel.manufactures = context.Collection().Select(p => p.Manufacture).ToHashSet();
+            productDetailsViewModel.subCategories = context.Collection().Select(p => p.SubCategory).Distinct();
+            productDetailsViewModel.manufactures = context.Collection().Select(p => p.Manufacture).Distinct();
             return View(productDetailsViewModel);
         }
 

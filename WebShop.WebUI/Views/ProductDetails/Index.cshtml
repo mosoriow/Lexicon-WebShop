@@ -50,7 +50,7 @@
                         </address>
                         <h4><strong>Price: @Model.product.Price SEK</strong></h4>
                     </div>
-                    @*form to order the product*@
+                    @*Add to cart the product*@
                     <div class="span5">
                         <form class="form-inline">
                             <p>&nbsp;</p>
@@ -65,8 +65,8 @@
                                 }
                             </select>
                             <p>&nbsp;</p>
-                            <button class="btn btn-inverse" type="submit">Add to cart</button>
-                        </form>
+                            <a href="@Url.Action("AddToBasket","Basket", new { Id=@Model.product.Id})" class="btn btn-inverse">Add to cart</a>
+</form>
                     </div>
                 </div>
 

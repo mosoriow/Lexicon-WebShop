@@ -17,5 +17,7 @@ namespace WebShop.DataAccess.SQL
         public DbSet<Product> Products { get; set; }
         public DbSet<UserReview> UserReviews { get; set; }
         public DbSet<Image> Images { get; set; }
+        public DbSet<BasketItem> BasketItems { get; set; }
+        public DbSet<Basket> Baskets { get; set; }
     }
 }
