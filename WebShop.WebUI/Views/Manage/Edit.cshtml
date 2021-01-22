@@ -1,6 +1,5 @@
 ﻿@model WebShop.WebUI.Models.IndexViewModel
-@{ ViewBag.Title = "Manage"; }
-
+@{ ViewBag.Title = "Edit"; }
 
 <section class="header_text sub">
     <img class="pageBanner" src="~/Content/images/banner/pageBanner.png" alt="New products">
@@ -8,78 +7,66 @@
 </section>
 
 
-<h3>Profile Details</h3>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-<div>
-    <hr />
-    <div class="form-stacked">
-        <div class="form-border">
-            <div class="form-group">
-                <div class="col-md-2"></div>
-                <div class="col-md-10">
+    <div>
+        <h3>Change your account settings</h3>
+        <hr />
 
-                    @if (Model.HasPassword)
-                    {
-                        <a type="button" class="btn btn-sm btn-primary" href="@Url.Action("ChangePassword")">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                            <span>Change Password</span>
-                        </a> }
-                    else
-                    {
-                        <a type="button" class="btn btn-sm btn-primary" href="@Url.Action("SetPassword")">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                            <span>Create Password</span>
-                        </a>}
-                    &nbsp;&nbsp;
+        @Html.ValidationSummary(true, "", new { @style = "color: red" })
+        @Html.HiddenFor(m => m.Id)
 
-                    <a type="button" class="btn btn-sm btn-primary" href="@Url.Action("ManageLogins")">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                        <span>Manage External Logins</span>
-                    </a>
-                </div>
-            </div>
+        <div class="form-stacked">
+            <div class="form-border">
 
 
-
-
-            <fieldset disabled>
-                <div class="control-group">
+                <div class="form-group">
                     @Html.LabelFor(m => m.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(m => m.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <div class="control-group">
+                <div class="form-group">
                     @Html.LabelFor(m => m.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(m => m.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <div class="control-group">
+                <div class="form-group">
                     @Html.LabelFor(m => m.Email, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <div class="control-group">
+                <div class="form-group">
                     @Html.LabelFor(m => m.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(m => m.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <div class="control-group">
+                <div class="form-group">
                     @Html.LabelFor(m => m.BirthDate, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(m => m.BirthDate, "{0:MM/dd/yyyy}", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.BirthDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
-              
-            </fieldset>
-            <br />
-            <div class="col-md-offset-2">
-                @Html.ActionLink("Edit", "Edit", "Manage", null, new { @class = "btn btn-sm btn-success" })
+
+                <br />
+                <div class="col-md-offset-2">
+                    <a type="button" class="btn btn-sm btn-primary" href="@Url.Action("Index")">
+                        <span class="glyphicon glyphicon-list"></span>
+                        <span>Back To Profile</span>
+                    </a>
+
+                    <input type="submit" value="Update Details" class="btn btn-sm btn-success" />
+                </div>
             </div>
         </div>
-    </div>
-</div>
-
+    </div>}
