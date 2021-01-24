@@ -70,25 +70,28 @@ namespace WebShop.Services
             return basket;
         }
 
-        public void AddToBasket(HttpContextBase httpContext, string productId)
+        public void AddToBasket(HttpContextBase httpContext, string productId, int qty)
         {
             Basket basket = GetBasket(httpContext, true);
             BasketItem item = basket.BasketItems.FirstOrDefault(i => i.ProductId == productId);
-
-            if (item == null)
+            if (qty <= 0 || qty > 5)
             {
-                item = new BasketItem()
-                {
-                    BasketId = basket.Id,
-                    ProductId = productId,
-                    Quantity = 1
+                qty = 1;
+            }
+                if (item == null)
+            {
+                    item = new BasketItem()
+                    {
+                        BasketId = basket.Id,
+                        ProductId = productId,
+                        Quantity =  qty
                 };
 
                 basket.BasketItems.Add(item);
             }
             else
             {
-                item.Quantity = item.Quantity + 1;
+                item.Quantity = item.Quantity + qty;
             }
 
             basketContext.Commit();
@@ -106,30 +109,100 @@ namespace WebShop.Services
             }
         }
 
-        public List<BasketItemViewModel> GetBasketItems(HttpContextBase httpContext)
+        public void ReduceQuantity(HttpContextBase httpContext, string itemId)
+        {
+            Basket basket = GetBasket(httpContext, true);
+            BasketItem item = basket.BasketItems.FirstOrDefault(i => i.Id == itemId);
+
+            if (item != null)
+            {
+                if(item.Quantity <= 1)
+                    basket.BasketItems.Remove(item);
+                else
+                    item.Quantity = item.Quantity - 1;
+                basketContext.Commit();
+            }
+        }
+
+        public void IncreaseQuantity(HttpContextBase httpContext, string itemId)
+        {
+            Basket basket = GetBasket(httpContext, true);
+            BasketItem item = basket.BasketItems.FirstOrDefault(i => i.Id == itemId);
+
+            if (item != null)
+            {
+                    item.Quantity = item.Quantity + 1;
+                basketContext.Commit();
+            }
+        }
+
+        public void AddCoupon(HttpContextBase httpContext, string coupon)
+        {
+            Basket basket = GetBasket(httpContext, true);
+            if (coupon == "FREE100" || coupon == "FREE200")
+            {
+                basket.CouponName = coupon;
+            }
+            else
+            {
+                basket.CouponName = null;
+            }
+            basketContext.Update(basket);
+            basketContext.Commit();
+        }
+
+        public void SetDelivery(HttpContextBase httpContext, string Delivery)
+        {
+                Basket basket = GetBasket(httpContext, true);
+                basket.Delivery = Delivery;
+            basketContext.Update(basket);
+            basketContext.Commit();
+        }
+        
+
+
+        public BasketItemViewModel GetBasketItems(HttpContextBase httpContext)
         {
             Basket basket = GetBasket(httpContext, false);
+            BasketItemViewModel basketItemViewModel = new BasketItemViewModel();
 
             if (basket != null)
             {
                 var results = (from b in basket.BasketItems
                                join p in productContext.Include(p=>p.Images) on b.ProductId equals p.Id
-                               select new BasketItemViewModel()
+                               select new BasketItemDetail()
                                {
                                    Id = b.Id,
                                    Quantity = b.Quantity,
                                    ProdctName = p.Name,
+                                   ProdctId = p.Id,
                                    Image = p.Images.FirstOrDefault().Path,
                                    Price = p.Price
                                }
                               ).ToList();
 
-                return results;
+                basketItemViewModel.BasketItemDetail = results;
+
+                if(basket.CouponName != null)
+                {
+                    basketItemViewModel.DiscountItem = new DiscountItem();
+                    basketItemViewModel.DiscountItem.CouponName = basket.CouponName;
+                    basketItemViewModel.DiscountItem.Price = basket.CouponName=="FREE100"? 100: 200;
+                }
+
+                basketItemViewModel.DeliveryMethod = new DeliveryMethod();
+                basketItemViewModel.DeliveryMethod.Delivery = basket.Delivery;
+
+                if (basket.Delivery == "Home")
+                {
+                    basketItemViewModel.DeliveryMethod.Price += 30;
+                }
+                else if (basket.Delivery == "Express")
+                {
+                    basketItemViewModel.DeliveryMethod.Price += 50;
+                }
             }
-            else
-            {
-                return new List<BasketItemViewModel>();
-            }
+            return basketItemViewModel;
         }
 
         public BasketSummaryViewModel GetBasketSummary(HttpContextBase httpContext)
@@ -148,7 +221,15 @@ namespace WebShop.Services
                 model.BasketCount = basketCount ?? 0;
                 model.BasketTotal = basketTotal ?? decimal.Zero;
 
-                return model;
+                if ( basket.CouponName != null)
+                {
+                    model.BasketTotal -=  basket.CouponName == "FREE100" ? 100 : 200;
+                }
+
+                if (basket.Delivery == "Home") model.BasketTotal += 30;
+                else if (basket.Delivery == "Express") model.BasketTotal += 50;
+                
+                    return model;
             }
             else
             {

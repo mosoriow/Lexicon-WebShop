@@ -439,6 +439,9 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\ProductDetails\Index.cshtml" />
     <Content Include="Views\Basket\Index.cshtml" />
+    <Content Include="Views\Basket\BasketSummary.cshtml" />
+    <Content Include="Views\ProductDetails\ProductFilter.cshtml" />
+    <Content Include="Views\Basket\BasketItemTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

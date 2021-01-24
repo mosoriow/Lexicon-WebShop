@@ -9,10 +9,13 @@ namespace WebShop.Core.Models
     public class Basket : BaseEntity
     {
         public virtual ICollection<BasketItem> BasketItems { get; set; }
+        public virtual String CouponName { get; set; }
+        public virtual String Delivery { get; set; }
 
         public Basket()
         {
             this.BasketItems = new List<BasketItem>();
+            this.Delivery = "Store";
         }
     }
 }

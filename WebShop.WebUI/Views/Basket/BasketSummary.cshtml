@@ -1,0 +1,17 @@
+﻿@model WebShop.Core.ViewModels.BasketSummaryViewModel
+
+@if (@Model.BasketCount > 0)
+{
+    <li class="dropdown">
+        <a data-toggle="dropdown" class="dropdown-toggle fa fa-shopping-cart" href="/Basket/Index">@Model.BasketCount (@String.Format("{0:#.00}", Model.BasketTotal) Kr) <span class="caret"></span> </a>
+
+        <ul class="dropdown-menu" style="left: -400px">
+            <div class="container-fluid">
+                @{
+                    Html.RenderAction("BasketItemTable", "Basket");
+                }
+            </div>
+    </li>
+}
+
+

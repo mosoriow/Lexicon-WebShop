@@ -21,9 +21,10 @@ namespace WebShop.WebUI.Controllers
             return View(model);
         }
 
-        public ActionResult AddToBasket(string Id)
+        [HttpPost]
+        public ActionResult AddToBasket(string productid, int qty)
         {
-            basketService.AddToBasket(this.HttpContext, Id);
+            basketService.AddToBasket(this.HttpContext, productid, qty);
 
             return RedirectToAction("Index");
         }
@@ -35,11 +36,46 @@ namespace WebShop.WebUI.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult ReduceQuantity(string Id)
+        {
+            basketService.ReduceQuantity(this.HttpContext, Id);
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult IncreaseQuantity(string Id)
+        {
+            basketService.IncreaseQuantity(this.HttpContext, Id);
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult AddCoupon(string coupon)
+        {
+            basketService.AddCoupon(this.HttpContext, coupon);
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult SetDelivery(string Delivery)
+        {
+            basketService.SetDelivery(this.HttpContext, Delivery);
+
+            return RedirectToAction("Index");
+        }
+        
         public PartialViewResult BasketSummary()
         {
             var basketSummary = basketService.GetBasketSummary(this.HttpContext);
 
             return PartialView(basketSummary);
         }
+
+        public PartialViewResult BasketItemTable()
+        {
+            var model = basketService.GetBasketItems(this.HttpContext);
+            return PartialView(model);
+        }
+
     }
 }
