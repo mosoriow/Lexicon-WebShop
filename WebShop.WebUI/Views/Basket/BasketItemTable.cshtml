@@ -33,8 +33,6 @@
                     <td>-@Model.DiscountItem.Price Kr</td>
                 </tr>
             }
-            @if (Model.DeliveryMethod != null && Model.DeliveryMethod.Price!=0)
-            {
                 <tr>
                     <td>&nbsp;</td>
                     <td>@Model.DeliveryMethod.Delivery Shipping</td>
@@ -42,6 +40,5 @@
                     <td>&nbsp;</td>
                     <td>@Model.DeliveryMethod.Price Kr</td>
                 </tr>
-            }
         </tbody>
     </table>

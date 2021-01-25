@@ -196,6 +196,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CheckOutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\BasketController.cs" />
@@ -454,6 +455,7 @@
     <Content Include="Views\Basket\BasketSummary.cshtml" />
     <Content Include="Views\ProductDetails\ProductFilter.cshtml" />
     <Content Include="Views\Basket\BasketItemTable.cshtml" />
+    <Content Include="Views\CheckOut\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
