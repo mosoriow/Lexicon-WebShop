@@ -71,107 +71,87 @@
                 </div>
 
                 @*Customer Rating here*@
-                <div class="span9">
-                    <div class="row">
-                        <div class="span4">
-                            <div class="rating-block">
-                                <h4>Average user rating</h4>
-                                <h2 class="bold padding-bottom-7">4.3 <small>/ 5</small></h2>
-                                <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                                    <span class="fas fa-star" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                                    <span class="fas fa-star" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                                    <span class="fas fa-star" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-                                    <span class="fas fa-star" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-                                    <span class="fas fa-star" aria-hidden="true"></span>
-                                </button>
+                @{
+                    var ReviewCount = @Model.product.UserReviews.Count();
+                    var ReviewAvg = @Model.product.UserReviews.Any() ? @Model.product.UserReviews.Select(r => r.Rating).Average() : 0;
+                    var ReviewGroup = @Model.product.UserReviews.GroupBy(r => r.Rating).OrderBy(x => x.Key);
+                }
+                @if (ReviewCount != 0)
+                {
+                    <div class="span9">
+                        <div class="row">
+                            <div class="span4">
+                                <div class="rating-block">
+                                    <h4>Average user rating</h4>
+                                    <h2 class="bold padding-bottom-7">@ReviewAvg.ToString("0.0")<small>/ @ReviewCount</small></h2>
+                                    @for (int i = 0; i < 5; i++)
+                                    {
+                                        if (i < ReviewAvg)
+                                        {
+                                            <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+                                                <span class="fas fa-star" aria-hidden="true"></span>
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+                                                <span class="fas fa-star" aria-hidden="true"></span>
+                                            </button>
+                                        }
+                                    }
+                                </div>
                             </div>
-                        </div>
-                        <div class="span4">
-                            <div>
-                                <h4>Rating breakdown</h4>
-                                <div class="pull-left">
-                                    <div class="pull-left" style="width:35px; line-height:1;">
-                                        <div style="height:9px; margin:5px 0;">5 <span class="far fa-star"></span></div>
-                                    </div>
-                                    <div class="pull-left" style="width:180px;">
-                                        <div class="progress" style="height:9px; margin:8px 0;">
-                                            <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="background-color:#4CAF50; width: 100%">
-                                                &nbsp;
+                            <div class="span4">
+                                <div>
+                                    <h4>Rating breakdown</h4>
+                                    @foreach (var grp in ReviewGroup)
+                                    {
+                                        var total = grp.Count();
+                                        var number = grp.Key;
+                                        String progressBarStyle = "";
+                                        var width = ((total * 100) / ReviewCount);
+
+                                        if (number == 5)
+                                        {
+                                            progressBarStyle = "background-color:#4CAF50;width:" + @width.ToString() + "%";
+                                        }
+                                        else if (number == 4)
+                                        {
+                                            progressBarStyle = "background-color:#2196F3;width:" + @width.ToString() + "%";
+                                        }
+                                        else if (number == 3)
+                                        {
+                                            progressBarStyle = "background-color:#00bcd4;width:" + @width.ToString() + "%";
+                                        }
+                                        else if (number == 2)
+                                        {
+                                            progressBarStyle = "background-color:#ff9800;width:" + @width.ToString() + "%";
+                                        }
+                                        else if (number == 1)
+                                        {
+                                            progressBarStyle = "background-color:#f44336; width:" + @width.ToString() + "%";
+                                        }
+                                        <div class="pull-left">
+                                            <div class="pull-left" style="width:35px; line-height:1;">
+                                                <div style="height:9px; margin:5px 0;">@number <span class="far fa-star"></span></div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="pull-right" style="margin-left:10px;">1</div>
-                                </div>
-                                <div class="pull-left">
-                                    <div class="pull-left" style="width:35px; line-height:1;">
-                                        <div style="height:9px; margin:5px 0;">4 <span class="far fa-star"></span></div>
-                                    </div>
-                                    <div class="pull-left" style="width:180px;">
-                                        <div class="progress" style="height:9px; margin:8px 0;">
-                                            <div class="progress-bar" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" style="background-color: #2196F3;  width: 80%">
-                                                &nbsp;
+                                            <div class="pull-left" style="width:180px;">
+                                                <div class="progress" style="height:9px; margin:8px 0;">
+                                                    <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style=@progressBarStyle>
+                                                        &nbsp;
+                                                    </div>
+                                                </div>
                                             </div>
+                                            <div class="pull-right" style="margin-left:10px;">@total</div>
                                         </div>
-                                    </div>
-                                    <div class="pull-right" style="margin-left:10px;">1</div>
-                                </div>
-                                <div class="pull-left">
-                                    <div class="pull-left" style="width:35px; line-height:1;">
-                                        <div style="height:9px; margin:5px 0;">3 <span class="far fa-star"></span></div>
-                                    </div>
-                                    <div class="pull-left" style="width:180px;">
-                                        <div class="progress" style="height:9px; margin:8px 0;">
-                                            <div class="progress-bar" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="        background-color: #00bcd4;
-        width: 60%">
-                                                &nbsp;
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="pull-right" style="margin-left:10px;">0</div>
-                                </div>
-                                <div class="pull-left">
-                                    <div class="pull-left" style="width:35px; line-height:1;">
-                                        <div style="height:9px; margin:5px 0;">2 <span class="far fa-star"></span></div>
-                                    </div>
-                                    <div class="pull-left" style="width:180px;">
-                                        <div class="progress" style="height:9px; margin:8px 0;">
-                                            <div class="progress-bar" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" style="background-color: #ff9800;
-        width: 40%
-    ">
-                                                &nbsp;
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="pull-right" style="margin-left:10px;">0</div>
-                                </div>
-                                <div class="pull-left">
-                                    <div class="pull-left" style="width:35px; line-height:1;">
-                                        <div style="height:9px; margin:5px 0;">1 <span class="far fa-star"></span></div>
-                                    </div>
-                                    <div class="pull-left" style="width:180px;">
-                                        <div class="progress" style="height:9px; margin:8px 0;">
-                                            <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="background-color: #f44336;
-        width: 20%
-    ">
-                                                &nbsp;
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="pull-right" style="margin-left:10px;">0</div>
+                                    }
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                }
+
                 @*tab starts here description,  additional info and Review*@
                 <div class="row">
                     <div class="span9">
@@ -198,7 +178,7 @@
                             </div>
                             @*Customer Review Starts here*@
                             <div class="tab-pane" id="review">
-                                <div class="span9">
+                                <div class="span8">
                                     <div class="row">
                                         <div class="span8">
                                             <div class="well well-sm">
@@ -206,125 +186,86 @@
                                                     <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Leave a Review</a>
                                                 </div>
 
-                                                <div class="row" id="post-review-box" style="display:none;">
-                                                    <div class="span7">
-                                                        <form accept-charset="UTF-8" action="" method="post">
-                                                            <input id="ratings-hidden" name="rating" type="hidden">
-                                                            <textarea class="form-control animated" cols="100" id="new-review" name="comment" placeholder="Enter your review here..." rows="5" style="width:100%"></textarea>
-
-                                                            <div class="text-right">
-                                                                <div class="stars starrr" data-rating="0"></div>
-                                                                <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
-                                                                    <span class="glyphicon glyphicon-remove"></span>Cancel
-                                                                </a>
-                                                                <button class="btn btn-success btn-lg" type="submit">Save</button>
-                                                            </div>
-                                                        </form>
+                                                @*posting review  usingorm*@
+                                                @using (Html.BeginForm("UpdateReview", "ProductDetails", FormMethod.Post))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    <div class="row" id="post-review-box" style="display:none;">
+                                                        <div class="span7">
+                                                            <form accept-charset="UTF-8" action="" method="post">
+                                                                @*Todo :  find the username from session and add to userReview*@
+                                                                @Html.HiddenFor(model => model.product.Id)
+                                                                @Html.EditorFor(model => model.userReview.Review, new { htmlAttributes = new { placeholder = "Enter your review here...", rows = "5", style = "width:100%" } })
+                                                                @Html.TextBoxFor(model => model.userReview.Rating, new { style = "display:none", id = "ratings-hidden", name = "rating", type = "hidden" })
+                                                                <div class="text-right">
+                                                                    <div class="stars starrr" data-rating="0"></div>
+                                                                    <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
+                                                                        Cancel
+                                                                    </a>
+                                                                    <button class="btn btn-success btn-lg" type="submit">Save</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
                                                     </div>
-                                                </div>
+
+                                                }
+
+
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="span8">
-                                    <div class="review-block">
-                                        <div class="row">
-                                            <div class="span2">
-                                                <div class="review-block-name"><a href="#">nktailor</a></div>
-                                                <div class="review-block-date">January 29, 2016<br />1 day ago</div>
-                                            </div>
-                                            <div class="span5">
-                                                <div class="review-block-rate">
-                                                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                                        <span class="far fa-star" aria-hidden="true"></span>
-                                                    </button>
-                                                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                                        <span class="far fa-star" aria-hidden="true"></span>
-                                                    </button>
-                                                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                                        <span class="far fa-star" aria-hidden="true"></span>
-                                                    </button>
-                                                    <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                                                        <span class="far fa-star" aria-hidden="true"></span>
-                                                    </button>
-                                                    <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                                                        <span class="far fa-star" aria-hidden="true"></span>
-                                                    </button>
+                                @foreach (var review in Model.product.UserReviews.OrderByDescending(r => r.CreateAt).Take(3))
+                                {
+                                    <div class="span8">
+                                        <div class="review-block">
+                                            <div class="row">
+                                                <div class="span2">
+                                                    <div class="review-block-name"><a href="#">@review.UserName</a></div>
+                                                    <div class="review-block-date">@review.CreateAt</div>
                                                 </div>
-                                                <div class="review-block-title">this was nice in buy</div>
-                                                <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
+                                                <div class="span5">
+                                                    <div class="review-block-rate">
+                                                        @for (int i = 0; i < 5; i++)
+                                                        {
+                                                            if (i < @review.Rating)
+                                                            {
+                                                                <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                                                    <span class="far fa-star" aria-hidden="true"></span>
+                                                                </button>
+                                                            }
+                                                            else
+                                                            {
+                                                                <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+                                                                    <span class="far fa-star" aria-hidden="true"></span>
+                                                                </button>
+                                                            }
+                                                        }
+                                                    </div>
+                                                    @if (@review.Rating == 5)
+                                                    {
+                                                        <div class="review-block-title">Excellent!!</div>
+                                                    }
+                                                    else if (@review.Rating == 4)
+                                                    {
+                                                        <div class="review-block-title">this was nice in buy</div>
+                                                    }
+                                                    else if (@review.Rating == 3)
+                                                    {
+                                                        <div class="review-block-title">Very good</div>
+                                                    }
+                                                    else if (@review.Rating == 2)
+                                                    {
+                                                        <div class="review-block-title">Good</div>
+                                                    }
+                                                    <div class="review-block-description">@review.Review</div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <p>&nbsp;</p>
-                                <div class="span8">
-                                    <div class="review-block">
-                                        <div class="row">
-                                            <div class="span2">
-                                                <div class="review-block-name"><a href="#">nktailor</a></div>
-                                                <div class="review-block-date">January 29, 2016<br />1 day ago</div>
-                                            </div>
-                                            <div class="span5">
-                                                <div class="review-block-rate">
-                                                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                                        <span class="far fa-star" aria-hidden="true"></span>
-                                                    </button>
-                                                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                                        <span class="far fa-star" aria-hidden="true"></span>
-                                                    </button>
-                                                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                                        <span class="far fa-star" aria-hidden="true"></span>
-                                                    </button>
-                                                    <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                                                        <span class="far fa-star" aria-hidden="true"></span>
-                                                    </button>
-                                                    <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                                                        <span class="far fa-star" aria-hidden="true"></span>
-                                                    </button>
-                                                </div>
-                                                <div class="review-block-title">this was nice in buy</div>
-                                                <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p>&nbsp;</p>
-                                <div class="span8">
-                                    <div class="review-block">
-                                        <div class="row">
-                                            <div class="span2">
-                                                <div class="review-block-name"><a href="#">nktailor</a></div>
-                                                <div class="review-block-date">January 29, 2016<br />1 day ago</div>
-                                            </div>
-                                            <div class="span5">
-                                                <div class="review-block-rate">
-                                                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                                        <span class="far fa-star" aria-hidden="true"></span>
-                                                    </button>
-                                                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                                        <span class="far fa-star" aria-hidden="true"></span>
-                                                    </button>
-                                                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                                        <span class="far fa-star" aria-hidden="true"></span>
-                                                    </button>
-                                                    <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                                                        <span class="far fa-star" aria-hidden="true"></span>
-                                                    </button>
-                                                    <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                                                        <span class="far fa-star" aria-hidden="true"></span>
-                                                    </button>
-                                                </div>
-                                                <div class="review-block-title">this was nice in buy</div>
-                                                <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p>&nbsp;</p>
-
-
+                                    <p>&nbsp;</p>
+                                }
                             </div>
                         </div>
                     </div>
@@ -336,6 +277,7 @@
                                 <a class="left button" href="#myCarousel-1" data-slide="prev"></a><a class="right button" href="#myCarousel-1" data-slide="next"></a>
                             </span>
                         </h4>
+                        @*related product image carousel code*@
                         <div id="myCarousel-1" class="carousel slide">
                             <div class="carousel-inner">
                                 @for (int i = 0; i < @Model.relatedProducts.Count(); i += 3)
@@ -366,20 +308,20 @@
                 <div class="block">
                     <ul class="nav nav-list">
                         <li class="nav-header">SUB CATEGORIES</li>
-                        <li><a href="products.html">Nullam semper elementum</a></li>
-                        <li class="active"><a href="products.html">Phasellus ultricies</a></li>
-                        <li><a href="products.html">Donec laoreet dui</a></li>
-                        <li><a href="products.html">Nullam semper elementum</a></li>
-                        <li><a href="products.html">Phasellus ultricies</a></li>
-                        <li><a href="products.html">Donec laoreet dui</a></li>
+                        @*Todo: need to fix the href link*@
+                        @foreach (var item in Model.subCategories)
+                        {
+                            <li class="@(item==Model.product.SubCategory ? "active" : null )"><a href="/Home/Index">@item</a></li>
+                        }
                     </ul>
                     <br />
                     <ul class="nav nav-list below">
                         <li class="nav-header">MANUFACTURES</li>
-                        <li><a href="products.html">Adidas</a></li>
-                        <li><a href="products.html">Nike</a></li>
-                        <li><a href="products.html">Dunlop</a></li>
-                        <li><a href="products.html">Yamaha</a></li>
+                        @*Todo: need to fix the href link*@
+                        @foreach (var item in Model.manufactures)
+                        {
+                            <li><a href="/Home/Index">@item</a></li>
+                        }
                     </ul>
                 </div>
                 <div class="block">
@@ -391,55 +333,40 @@
                     </h4>
                     <div id="myCarousel" class="carousel slide">
                         <div class="carousel-inner">
-                            <div class="active item">
-                                <ul class="thumbnails listing-products">
-                                    <li class="span3">
-                                        <div class="product-box">
-                                            <span class="sale_tag"></span>
-                                            <a href="product_detail.html"><img alt="" src="themes/images/ladies/7.jpg"></a><br />
-                                            <a href="product_detail.html" class="title">Fusce id molestie massa</a><br />
-                                            <a href="#" class="category">Suspendisse aliquet</a>
-                                            <p class="price">$261</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="item">
-                                <ul class="thumbnails listing-products">
-                                    <li class="span3">
-                                        <div class="product-box">
-                                            <a href="product_detail.html"><img alt="" src="themes/images/ladies/8.jpg"></a><br />
-                                            <a href="product_detail.html" class="title">Tempor sem sodales</a><br />
-                                            <a href="#" class="category">Urna nec lectus mollis</a>
-                                            <p class="price">$134</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+                            @foreach (var item in @Model.relatedProducts)
+                            {
+                                var firstItem = Model.relatedProducts.ElementAtOrDefault(new Random().Next(Model.relatedProducts.Count()));
+
+                                <div class="@(item == firstItem ? "active item" : "item" )">
+                                    <ul class="thumbnails listing-products">
+                                        <li class="span3">
+                                            <div class="product-box">
+                                                <span class="sale_tag"></span>
+                                                <a href="/ProductDetails/index/@item.Id"><img alt="" src="@item.Images.FirstOrDefault().Path"></a><br />
+                                                <a href="/ProductDetails/index/@item.Id" class="title">@item.Name</a><br />
+                                                <a href="#" class="category">@item.SubCategory</a>
+                                                <p class="price">@item.Price SEK</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
+                @*bestseller is sorted by number of user reviews*@
                 <div class="block">
                     <h4 class="title"><strong>Best</strong> Seller</h4>
                     <ul class="small-product">
-                        <li>
-                            <a href="#" title="Praesent tempor sem sodales">
-                                <img src="themes/images/ladies/1.jpg" alt="Praesent tempor sem sodales">
-                            </a>
-                            <a href="#">Praesent tempor sem</a>
-                        </li>
-                        <li>
-                            <a href="#" title="Luctus quam ultrices rutrum">
-                                <img src="themes/images/ladies/2.jpg" alt="Luctus quam ultrices rutrum">
-                            </a>
-                            <a href="#">Luctus quam ultrices rutrum</a>
-                        </li>
-                        <li>
-                            <a href="#" title="Fusce id molestie massa">
-                                <img src="themes/images/ladies/3.jpg" alt="Fusce id molestie massa">
-                            </a>
-                            <a href="#">Fusce id molestie massa</a>
-                        </li>
+                        @foreach (var item in @Model.relatedProducts.OrderByDescending(p => p.UserReviews.Count()).Take(3))
+                        {
+                            <li>
+                                <a href="#" title="@item.Name">
+                                    <img src="@item.Images.FirstOrDefault().Path" alt="@item.Description">
+                                </a>
+                                <a href="#">@item.Name</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
