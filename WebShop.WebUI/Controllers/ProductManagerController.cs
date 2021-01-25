@@ -14,6 +14,7 @@ namespace WebShop.WebUI.Controllers
     public class ProductManagerController : Controller
     {
         IRepository<Product> context;
+        IRepository<Image> productImages;
 
         public ProductManagerController(IRepository<Product> productContext)
         {
@@ -28,6 +29,11 @@ namespace WebShop.WebUI.Controllers
 
         public ActionResult Create()
         {
+            ProductManagerViewModel viewModel = new ProductManagerViewModel();
+            viewModel.Product = new Product();
+
+
+
             Product product = new Product();
             return View(product);
         }

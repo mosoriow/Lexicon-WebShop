@@ -10,5 +10,6 @@ namespace WebShop.Core.ViewModels
     public class ProductManagerViewModel
     {
         public Product Product { get; set; }
+        public IEnumerable<Image> Images { get; set; }
     }
 }
