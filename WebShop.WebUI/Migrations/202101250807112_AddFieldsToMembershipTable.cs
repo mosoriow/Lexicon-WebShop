@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class AddFieldsToMembershipTable : DbMigration
     {
         public override void Up()
         {
@@ -35,6 +35,18 @@
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
+                        FirstName = c.String(),
+                        LastName = c.String(),
+                        Phone = c.String(),
+                        fax = c.String(),
+                        Address = c.String(),
+                        City = c.String(),
+                        PostCode = c.String(),
+                        Country = c.String(),
+                        RegionState = c.String(),
+                        BirthDate = c.DateTime(nullable: false),
+                        Disable = c.Boolean(nullable: false),
+                        MembershipTypeId = c.Int(nullable: false),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),

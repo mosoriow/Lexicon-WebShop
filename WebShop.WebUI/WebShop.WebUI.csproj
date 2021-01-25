@@ -180,13 +180,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202101191354266_Initial.cs" />
-    <Compile Include="Migrations\202101191354266_Initial.designer.cs">
-      <DependentUpon>202101191354266_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101221348272_AddFieldsToMembershipTable.cs" />
-    <Compile Include="Migrations\202101221348272_AddFieldsToMembershipTable.designer.cs">
-      <DependentUpon>202101221348272_AddFieldsToMembershipTable.cs</DependentUpon>
+    <Compile Include="Migrations\202101250807112_AddFieldsToMembershipTable.cs" />
+    <Compile Include="Migrations\202101250807112_AddFieldsToMembershipTable.designer.cs">
+      <DependentUpon>202101250807112_AddFieldsToMembershipTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -427,11 +423,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202101191354266_Initial.resx">
-      <DependentUpon>202101191354266_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101221348272_AddFieldsToMembershipTable.resx">
-      <DependentUpon>202101221348272_AddFieldsToMembershipTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202101250807112_AddFieldsToMembershipTable.resx">
+      <DependentUpon>202101250807112_AddFieldsToMembershipTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
