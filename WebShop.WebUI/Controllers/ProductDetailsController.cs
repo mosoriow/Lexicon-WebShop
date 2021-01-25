@@ -53,8 +53,6 @@ namespace WebShop.WebUI.Controllers
             ProductDetailsViewModel productDetailsViewModel = new ProductDetailsViewModel();
             productDetailsViewModel.product = product;
             productDetailsViewModel.relatedProducts = relatedProducts;
-            productDetailsViewModel.subCategories = context.Collection().Select(p => p.SubCategory).ToHashSet();
-            productDetailsViewModel.manufactures = context.Collection().Select(p => p.Manufacture).ToHashSet();
             return View(productDetailsViewModel);
         }
 
@@ -121,7 +119,7 @@ namespace WebShop.WebUI.Controllers
         public ActionResult UpdateReview(ProductDetailsViewModel viewModel)
         {
             //update view model with username (since it is not in session), find the product and update review
-            viewModel.userReview.UserName = "Unknown";
+            viewModel.userReview.UserName = "Anonymous";
             String Id = viewModel.product.Id;
             Product product = GetProduct(Id);
             product.UserReviews.Add(viewModel.userReview);
@@ -131,7 +129,21 @@ namespace WebShop.WebUI.Controllers
             return RedirectToAction("Index", new { id = Id });
         }
 
-        
+        //partial view for side filter,  product is not mandatory, if given selected value heighlights
+        public PartialViewResult ProductFilter(Product product)
+        {
+            ProductFilterViewModel model = new ProductFilterViewModel();
+            if (product != null)
+                model.SelectedProduct = product;
+            model.subCategories = context.Collection().Select(p => p.SubCategory).Distinct();
+            model.manufactures = context.Collection().Select(p => p.Manufacture).Distinct();
+            List<Product> products = context.Include(p => p.Images)
+               .ToList();
+            model.products = products;
+            return PartialView(model);
+        }
+
+
 
     }
 }

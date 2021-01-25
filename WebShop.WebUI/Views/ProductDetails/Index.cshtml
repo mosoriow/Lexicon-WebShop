@@ -50,25 +50,33 @@
                         </address>
                         <h4><strong>Price: @Model.product.Price SEK</strong></h4>
                     </div>
-                    @*form to order the product*@
-                    <div class="span5">
-                        <form class="form-inline">
-                            <p>&nbsp;</p>
-                            <label>Qty:</label>
-                            <input type="text" class="span1" placeholder="1">
-                            <p>&nbsp;</p>
-                            <label>Size:</label>
-                            <select name="Size" id="size">
-                                @foreach (var size in @Model.product.Size.Split(','))
-                                {
-                                    <option value="@size.Trim()">@size.Trim()</option>
-                                }
-                            </select>
-                            <p>&nbsp;</p>
-                            <button class="btn btn-inverse" type="submit">Add to cart</button>
-                        </form>
-                    </div>
+                    @*Add to cart the product*@
+                    @using (Html.BeginForm("AddToBasket", "Basket", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.Hidden("productid", Model.product.Id)
+                        <div class="span5">
+                            <form class="form-inline">
+                                <p>&nbsp;</p>
+                                <label>Qty:</label>
+                                @Html.TextBox("qty",null, new { type = "number", min = "1", max = "5", step = "1", @class = "span1", @Value = "1" })
+                                @Html.ValidationMessage( "", new { @class = "text-danger" })
+                                <p>&nbsp;</p>
+                                <label>Size:</label>
+                                <select name="Size" id="size" class="span2">
+                                    @foreach (var size in @Model.product.Size.Split(','))
+                                    {
+                                        <option value="@size.Trim()">@size.Trim()</option>
+                                    }
+                                </select>
+                                <p>&nbsp;</p>
+                                <button class="btn btn-inverse" type="submit">Add to cart</button>
+                            </form>
+                        </div>
+                    }
                 </div>
+
 
                 @*Customer Rating here*@
                 @{
@@ -304,72 +312,9 @@
                     </div>
                 </div>
             </div>
-            <div class="span3 col">
-                <div class="block">
-                    <ul class="nav nav-list">
-                        <li class="nav-header">SUB CATEGORIES</li>
-                        @*Todo: need to fix the href link*@
-                        @foreach (var item in Model.subCategories)
-                        {
-                            <li class="@(item==Model.product.SubCategory ? "active" : null )"><a href="/Home/Index">@item</a></li>
-                        }
-                    </ul>
-                    <br />
-                    <ul class="nav nav-list below">
-                        <li class="nav-header">MANUFACTURES</li>
-                        @*Todo: need to fix the href link*@
-                        @foreach (var item in Model.manufactures)
-                        {
-                            <li><a href="/Home/Index">@item</a></li>
-                        }
-                    </ul>
-                </div>
-                <div class="block">
-                    <h4 class="title">
-                        <span class="pull-left"><span class="text">Randomize</span></span>
-                        <span class="pull-right">
-                            <a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
-                        </span>
-                    </h4>
-                    <div id="myCarousel" class="carousel slide">
-                        <div class="carousel-inner">
-                            @foreach (var item in @Model.relatedProducts)
-                            {
-                                var firstItem = Model.relatedProducts.ElementAtOrDefault(new Random().Next(Model.relatedProducts.Count()));
-
-                                <div class="@(item == firstItem ? "active item" : "item" )">
-                                    <ul class="thumbnails listing-products">
-                                        <li class="span3">
-                                            <div class="product-box">
-                                                <span class="sale_tag"></span>
-                                                <a href="/ProductDetails/index/@item.Id"><img alt="" src="@item.Images.FirstOrDefault().Path"></a><br />
-                                                <a href="/ProductDetails/index/@item.Id" class="title">@item.Name</a><br />
-                                                <a href="#" class="category">@item.SubCategory</a>
-                                                <p class="price">@item.Price SEK</p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            }
-                        </div>
-                    </div>
-                </div>
-                @*bestseller is sorted by number of user reviews*@
-                <div class="block">
-                    <h4 class="title"><strong>Best</strong> Seller</h4>
-                    <ul class="small-product">
-                        @foreach (var item in @Model.relatedProducts.OrderByDescending(p => p.UserReviews.Count()).Take(3))
-                        {
-                            <li>
-                                <a href="#" title="@item.Name">
-                                    <img src="@item.Images.FirstOrDefault().Path" alt="@item.Description">
-                                </a>
-                                <a href="#">@item.Name</a>
-                            </li>
-                        }
-                    </ul>
-                </div>
-            </div>
+            @{
+                Html.RenderAction("ProductFilter", "ProductDetails", new { product = Model.product });
+            }
         </div>
     </section>
 
