@@ -30,7 +30,8 @@ namespace WebShop.WebUI.ViewModel
         public string LastName { get; set; }
 
         public ICollection<MembershipType> MembershipTypes { get; set; }
-
+        [Required]
+        public int MembershipTypeId { get; set; }
         [Required]
         public string Phone { get; set; }
 
