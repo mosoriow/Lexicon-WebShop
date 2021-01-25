@@ -11,6 +11,7 @@
     <div class="row">
         <div class="span12">
             <div class="accordion" id="accordion2">
+                @*checkout option*@
                 <div class="accordion-group">
                     <div class="accordion-heading">
                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">Checkout Options</a>
@@ -59,6 +60,20 @@
                         </div>
                     </div>
                 </div>
+                @*Order Summary*@
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#orderSummary">Order Summary</a>
+                    </div>
+                    <div id="orderSummary" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            @{
+                                Html.RenderAction("BasketItemTable", "Basket");
+                            }
+                        </div>
+                    </div>
+                </div>
+                @*Billing address*@
                 <div class="accordion-group">
                     <div class="accordion-heading">
                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">Account &amp; Billing Details</a>
@@ -168,6 +183,7 @@
                         </div>
                     </div>
                 </div>
+               @*confirm order*@
                 <div class="accordion-group">
                     <div class="accordion-heading">
                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">Confirm Order</a>
