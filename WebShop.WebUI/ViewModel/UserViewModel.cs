@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using WebShop.WebUI.Models;
 
 namespace WebShop.WebUI.ViewModel
 {
@@ -27,6 +28,8 @@ namespace WebShop.WebUI.ViewModel
 
         [Required]
         public string LastName { get; set; }
+
+        public ICollection<MembershipType> MembershipTypes { get; set; }
 
         [Required]
         public string Phone { get; set; }

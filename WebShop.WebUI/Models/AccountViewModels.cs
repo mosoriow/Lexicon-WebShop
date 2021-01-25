@@ -91,6 +91,13 @@ namespace WebShop.WebUI.Models
         public string ConfirmPassword { get; set; }
 
         public bool Disabled { get; set; }
+
+
+
+        public ICollection<MembershipType> MembershipTypes { get; set; }
+
+        [Required]
+        public int MembershipTypeId { get; set; }
         
 
         [Required]

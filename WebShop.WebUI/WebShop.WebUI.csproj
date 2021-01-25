@@ -180,16 +180,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202101250807112_AddFieldsToMembershipTable.cs" />
-    <Compile Include="Migrations\202101250807112_AddFieldsToMembershipTable.designer.cs">
-      <DependentUpon>202101250807112_AddFieldsToMembershipTable.cs</DependentUpon>
+    <Compile Include="Migrations\202101251051220_AddMembershipTypeToDatabase.cs" />
+    <Compile Include="Migrations\202101251051220_AddMembershipTypeToDatabase.designer.cs">
+      <DependentUpon>202101251051220_AddMembershipTypeToDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101251052103_SeedMembershipTypeDatabase.cs" />
+    <Compile Include="Migrations\202101251052103_SeedMembershipTypeDatabase.designer.cs">
+      <DependentUpon>202101251052103_SeedMembershipTypeDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utility\SD.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -233,6 +239,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\AdminMenu.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -386,6 +393,7 @@
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Manage\Edit.cshtml" />
+    <Content Include="Views\Shared\_AdminMenuPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -423,8 +431,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202101250807112_AddFieldsToMembershipTable.resx">
-      <DependentUpon>202101250807112_AddFieldsToMembershipTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202101251051220_AddMembershipTypeToDatabase.resx">
+      <DependentUpon>202101251051220_AddMembershipTypeToDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101251052103_SeedMembershipTypeDatabase.resx">
+      <DependentUpon>202101251052103_SeedMembershipTypeDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

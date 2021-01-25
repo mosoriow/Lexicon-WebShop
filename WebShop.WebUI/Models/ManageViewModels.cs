@@ -15,6 +15,7 @@ namespace WebShop.WebUI.Models
         public bool BrowserRemembered { get; set; }
 
         public int MembershipTypeId { get; set; }
+        public ICollection<MembershipType> MembershipTypes { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Phone { get; set; }

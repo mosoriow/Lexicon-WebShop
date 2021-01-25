@@ -44,17 +44,37 @@
 					<input type="text" class="input-block-level search-query" Placeholder="eg. T-sirt">
 				</form>
 			</div>
-			<div class="span8">
-				<div class="account pull-right">
+            <div class="span8">
+                <div class="account pull-right">
                     <ul class="user-menu">
                         <li><a href="#">My Account</a></li>
                         <li><a href="cart.html">My Basket</a></li>
                         <li><a href="checkout.html">Checkout</a></li>
-
                         <li> @Html.Partial("_LoginPartial")</li>
-                 </ul>
-				</div>
-			</div>
+                        
+                          
+                             
+                                <nav id="menu" class="pull-right">
+                                    <ul>
+                                        <li>
+                                            <a href="#">Admin</a>
+                                            <ul>
+                                                <li><a href="./products.html">Membership</a></li>
+                                                <li><a href="./products.html">Product</a></li>
+                                                <li><a href="./products.html">Customer</a></li>
+                                            </ul>
+                                        </li>
+                                      
+                                    </ul>
+                                </nav>
+                           
+                      
+                    </ul>
+
+                </div>
+
+              
+            </div>
 		</div>
 	</div>
     <div id="wrapper" class="container">
@@ -98,6 +118,7 @@
                         <li>@Html.ActionLink("Homepage", "Index", "Home")</li>
                         <li><a href="./about.html">About Us</a></li>
                         <li>@Html.ActionLink("Contact Us", "Contact", "Home")</li>
+                        <li>@Html.Partial("_AdminMenuPartial")</li>
                         <li><a href="./cart.html">Your Cart</a></li>
 
                     </ul>
@@ -123,10 +144,7 @@
                 </div>
             </div>
         </section>
-        <section id="copyright">
-            <span>Copyright 2013 bootstrappage template  All right reserved.</span>
-        </section>
-    </div>
+            </div>
 
 
  
@@ -186,6 +204,9 @@
         
     </script>
   
+
+
+
 
 @{ /*
     @Scripts.Render("~/bundles/jquery")
