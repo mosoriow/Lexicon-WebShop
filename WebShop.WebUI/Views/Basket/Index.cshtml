@@ -107,11 +107,7 @@
             }
             @using (Html.BeginForm("SetDelivery", "Basket", FormMethod.Post))
             {
-                var delivery = "Store";
-                if (Model.DeliveryMethod != null)
-                {
-                    delivery = Model.DeliveryMethod.Delivery;
-                }
+                var delivery = Model.DeliveryMethod.Delivery;
                 @Html.AntiForgeryToken()
                 <label class="radio"> @Html.RadioButton("Delivery", "Store", delivery == "Store") Deliver to store(0 Kr) </label>
                 <label class="radio"> @Html.RadioButton("Delivery", "Postnord", delivery == "Postnord") Deliver by Postnord(0 Kr) </label>
