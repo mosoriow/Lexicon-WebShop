@@ -1,4 +1,6 @@
-﻿@{
+﻿@model WebShop.Core.ViewModels.HomeProductListViewModel
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -38,7 +40,7 @@
 						<div class="carousel-inner">
 							<div class="active item">
 								<ul class="thumbnails">
-@{ /* Suggested Products (4 products) * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ }
+@{ /* Suggested Products (4 products) * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 									<li class="span3">
 										<div class="product-box">
 											<span class="sale_tag"></span>
@@ -48,12 +50,36 @@
 											<p class="price">$17.25</p>
 										</div>
 									</li>
-@{ /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ }
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ }
+									@for(int i = 0; i < 4; i++)
+                                    {
+										<li class="span3">
+                                            <div class="product-box">
+                                                <span class="sale_tag"></span>
+                                                <p><a href="#"><img src="~/Content/productImages/@Model.SuggestedProducts.ElementAt(i).Id" alt="" /></a></p>
+                                                <a href="#" class="title">@Model.SuggestedProducts.ElementAt(i).Name</a><br />
+                                                <a href="#" class="category">@Model.SuggestedProducts.ElementAt(i).Manufacture</a>
+                                                <p class="price">$ @Model.SuggestedProducts.ElementAt(i).Price</p>
+                                            </div>
+										</li>
+                                    }
 								</ul>
 							</div>
 							<div class="item">
 								<ul class="thumbnails">
 @{ /* Suggested Products (4 products) * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ }
+									@for(int i = 4; i < 8; i++)
+                                    {
+										<li class="span3">
+                                            <div class="product-box">
+                                                <span class="sale_tag"></span>
+                                                <p><a href="#"><img src="~/Content/productImages/@Model.SuggestedProducts.ElementAt(i).Id" alt="" /></a></p>
+                                                <a href="#" class="title">@Model.SuggestedProducts.ElementAt(i).Name</a><br />
+                                                <a href="#" class="category">@Model.SuggestedProducts.ElementAt(i).Manufacture</a>
+                                                <p class="price">$ @Model.SuggestedProducts.ElementAt(i).Price</p>
+                                            </div>
+										</li>
+                                    }
 								</ul>
 							</div>
 						</div>
@@ -74,21 +100,35 @@
 							<div class="active item">
 								<ul class="thumbnails">
 @{ /* Latest Products (4 products) * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ }
-									<li class="span3">
-										<div class="product-box">
-											<span class="sale_tag"></span>
-											<p><a href="product_detail.html"><img src="themes/images/cloth/bootstrap-women-ware2.jpg" alt="" /></a></p>
-											<a href="product_detail.html" class="title">Ut wisi enim ad</a><br/>
-											<a href="products.html" class="category">Commodo consequat</a>
-											<p class="price">$25.50</p>
-										</div>
-									</li>
-@{ /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ }
+									@for(int i = 0; i < 4; i++)
+                                    {
+										<li class="span3">
+                                            <div class="product-box">
+                                                <span class="sale_tag"></span>
+                                                <p><a href="#"><img src="~/Content/productImages/@Model.LatestProducts.ElementAt(i).Id" alt="" /></a></p>
+                                                <a href="#" class="title">@Model.LatestProducts.ElementAt(i).Name</a><br />
+                                                <a href="#" class="category">@Model.LatestProducts.ElementAt(i).Manufacture</a>
+                                                <p class="price">$ @Model.LatestProducts.ElementAt(i).Price</p>
+                                            </div>
+										</li>
+                                    }
 								</ul>
 							</div>
 							<div class="item">
 								<ul class="thumbnails">
 @{ /* Latest Products (4 products) * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ }
+									@for(int i = 4; i < 8; i++)
+                                    {
+										<li class="span3">
+                                            <div class="product-box">
+                                                <span class="sale_tag"></span>
+                                                <p><a href="#"><img src="~/Content/productImages/@Model.LatestProducts.ElementAt(i).Id" alt="" /></a></p>
+                                                <a href="#" class="title">@Model.LatestProducts.ElementAt(i).Name</a><br />
+                                                <a href="#" class="category">@Model.LatestProducts.ElementAt(i).Manufacture</a>
+                                                <p class="price">$ @Model.LatestProducts.ElementAt(i).Price</p>
+                                            </div>
+										</li>
+                                    }
 								</ul>
 							</div>
 						</div>
