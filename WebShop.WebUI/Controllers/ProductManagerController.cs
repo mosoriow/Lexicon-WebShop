@@ -38,6 +38,7 @@ namespace WebShop.WebUI.Controllers
             return View(product);
         }
 
+        /*
         [HttpPost]
         public ActionResult Create(Product product)
         {
@@ -47,6 +48,50 @@ namespace WebShop.WebUI.Controllers
             }
             else
             {
+                context.Insert(product);
+                context.Commit();
+                return RedirectToAction("Index");
+            }
+        }
+        */
+
+        [HttpPost]
+        public ActionResult Create(
+                                Product product,
+                                HttpPostedFile file/*, 
+                                HttpPostedFile file2, 
+                                HttpPostedFile file3, 
+                                HttpPostedFile file4*/
+                            )
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(product);
+            }
+            else
+            {
+                if(file != null)
+                {
+                    //product.Images = product.Id + Path.GetExtension(file.FileName);
+                    file.SaveAs(Server.MapPath("//Content//productImages//") + product.Id + Path.GetExtension(file.FileName));
+                }
+                /*
+                if (file2 != null)
+                {
+                    //product.Images = product.Id + Path.GetExtension(file.FileName);
+                    file2.SaveAs(Server.MapPath("//Content//productImages//") + product.Id + "_2" + Path.GetExtension(file2.FileName));
+                }
+                if (file3 != null)
+                {
+                    //product.Images = product.Id + Path.GetExtension(file.FileName);
+                    file3.SaveAs(Server.MapPath("//Content//productImages//") + product.Id + "_3" + Path.GetExtension(file3.FileName));
+                }
+                if (file4 != null)
+                {
+                    //product.Images = product.Id + Path.GetExtension(file.FileName);
+                    file4.SaveAs(Server.MapPath("//Content//productImages//") + product.Id + "_4" + Path.GetExtension(file4.FileName));
+                }
+                */
                 context.Insert(product);
                 context.Commit();
                 return RedirectToAction("Index");
@@ -67,7 +112,14 @@ namespace WebShop.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Product product, string Id)
+        public ActionResult Edit(
+                                Product product, 
+                                string Id,
+                                HttpPostedFile file/*,
+                                HttpPostedFile file2,
+                                HttpPostedFile file3,
+                                HttpPostedFile file4*/
+                           )
         {
             Product productToEdit = context.Find(Id);
             if (productToEdit == null)
@@ -80,6 +132,29 @@ namespace WebShop.WebUI.Controllers
                 {
                     return View(product);
                 }
+                if (file != null)
+                {
+                    //product.Images = product.Id + Path.GetExtension(file.FileName);
+                    file.SaveAs(Server.MapPath("//Content//productImages//") + product.Id + Path.GetExtension(file.FileName));
+                }
+                /*
+                if (file2 != null)
+                {
+                    //product.Images = product.Id + Path.GetExtension(file.FileName);
+                    file2.SaveAs(Server.MapPath("//Content//productImages//") + product.Id + "_2" + Path.GetExtension(file2.FileName));
+                }
+                if (file3 != null)
+                {
+                    //product.Images = product.Id + Path.GetExtension(file.FileName);
+                    file3.SaveAs(Server.MapPath("//Content//productImages//") + product.Id + "_3" + Path.GetExtension(file3.FileName));
+                }
+                if (file4 != null)
+                {
+                    //product.Images = product.Id + Path.GetExtension(file.FileName);
+                    file4.SaveAs(Server.MapPath("//Content//productImages//") + product.Id + "_4" + Path.GetExtension(file4.FileName));
+                }
+                */
+
                 productToEdit.Name = product.Name;
                 productToEdit.Description = product.Description;
                 productToEdit.Manufacture = product.Manufacture;
