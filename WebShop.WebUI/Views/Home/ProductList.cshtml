@@ -33,7 +33,10 @@
 					<li class="span3">
                         <div class="product-box">
                             <span class="sale_tag">
-                                <img src="~/Content/images/discounts/75off.png" />
+                                @if (Model.ListOfProducts.ElementAt(i).Discount != 0)
+                                {
+                                    <img src="~/Content/images/discounts/@String.Concat(Model.ListOfProducts.ElementAt(i).Discount,"off.png")" />
+                                }
                             </span>
                             <p><a href="#"><img src="~/Content/productImages/@Model.ListOfProducts.ElementAt(i).Id" alt="" /></a></p>
                             <a href="#" class="title">@Model.ListOfProducts.ElementAt(i).Name</a><br />

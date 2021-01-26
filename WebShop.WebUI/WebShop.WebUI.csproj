@@ -457,6 +457,11 @@
     <Content Include="Views\ProductDetails\ProductFilter.cshtml" />
     <Content Include="Views\Basket\BasketItemTable.cshtml" />
     <Content Include="Views\CheckOut\Index.cshtml" />
+    <Content Include="Views\Home\ProductList.cshtml" />
+    <Content Include="Views\ProductManager\Create.cshtml" />
+    <Content Include="Views\ProductManager\Delete.cshtml" />
+    <Content Include="Views\ProductManager\Edit.cshtml" />
+    <Content Include="Views\ProductManager\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -25,6 +25,7 @@ namespace WebShop.Core.Models
         public int Availability { get; set; }
         public String Size { get; set; }
         public String Colour { get; set; }
+        public int Discount { get; set; }
 
         public Product()
         {

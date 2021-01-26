@@ -84,6 +84,7 @@ namespace WebShop.WebUI.Controllers
                 productToEdit.Description = product.Description;
                 productToEdit.Manufacture = product.Manufacture;
                 productToEdit.Price = product.Price;
+                productToEdit.Discount = product.Discount;
                 productToEdit.Category = product.Category;
                 productToEdit.SubCategory = product.SubCategory;
                 productToEdit.Images = product.Images;
