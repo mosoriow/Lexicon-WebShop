@@ -196,9 +196,10 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CheckOutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ProductCartController.cs" />
+    <Compile Include="Controllers\BasketController.cs" />
     <Compile Include="Controllers\ProductDetailsController.cs" />
     <Compile Include="Controllers\ProductManagerController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -451,12 +452,11 @@
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\ProductDetails\Index.cshtml" />
-    <Content Include="Views\ProductCart\Index.cshtml" />
-    <Content Include="Views\Home\ProductList.cshtml" />
-    <Content Include="Views\ProductManager\Create.cshtml" />
-    <Content Include="Views\ProductManager\Delete.cshtml" />
-    <Content Include="Views\ProductManager\Edit.cshtml" />
-    <Content Include="Views\ProductManager\Index.cshtml" />
+    <Content Include="Views\Basket\Index.cshtml" />
+    <Content Include="Views\Basket\BasketSummary.cshtml" />
+    <Content Include="Views\ProductDetails\ProductFilter.cshtml" />
+    <Content Include="Views\Basket\BasketItemTable.cshtml" />
+    <Content Include="Views\CheckOut\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -476,10 +476,6 @@
     <ProjectReference Include="..\WebShop.Core\WebShop.Core.csproj">
       <Project>{0cd1862f-dcd4-44f2-b7e6-7949bc62537b}</Project>
       <Name>WebShop.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WebShop.DataAccess.InMemory\WebShop.DataAccess.InMemory.csproj">
-      <Project>{e92a7262-398a-40ea-bfec-0f83ff79c45a}</Project>
-      <Name>WebShop.DataAccess.InMemory</Name>
     </ProjectReference>
     <ProjectReference Include="..\WebShop.DataAccess.SQL\WebShop.DataAccess.SQL.csproj">
       <Project>{c7663f75-47bb-4d6d-8fce-1df4b90eb6f4}</Project>

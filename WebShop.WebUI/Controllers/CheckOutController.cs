@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace WebShop.WebUI.Controllers
 {
-    public class ProductCartController : Controller
+    public class CheckOutController : Controller
     {
-        // GET: ProductCart
+        // GET: CheckOut
         public ActionResult Index()
         {
             return View();

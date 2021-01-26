@@ -60,6 +60,26 @@
     <Compile Include="Migrations\202101201022019_Initial1.designer.cs">
       <DependentUpon>202101201022019_Initial1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101211822452_Initial3.cs" />
+    <Compile Include="Migrations\202101211822452_Initial3.designer.cs">
+      <DependentUpon>202101211822452_Initial3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101221148162_Basket.cs" />
+    <Compile Include="Migrations\202101221148162_Basket.designer.cs">
+      <DependentUpon>202101221148162_Basket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101241251510_discount.cs" />
+    <Compile Include="Migrations\202101241251510_discount.designer.cs">
+      <DependentUpon>202101241251510_discount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101241314101_discount1.cs" />
+    <Compile Include="Migrations\202101241314101_discount1.designer.cs">
+      <DependentUpon>202101241314101_discount1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101242136303_Shipping.cs" />
+    <Compile Include="Migrations\202101242136303_Shipping.designer.cs">
+      <DependentUpon>202101242136303_Shipping.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLRepository.cs" />
@@ -80,6 +100,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202101201022019_Initial1.resx">
       <DependentUpon>202101201022019_Initial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101211822452_Initial3.resx">
+      <DependentUpon>202101211822452_Initial3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101221148162_Basket.resx">
+      <DependentUpon>202101221148162_Basket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101241251510_discount.resx">
+      <DependentUpon>202101241251510_discount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101241314101_discount1.resx">
+      <DependentUpon>202101241314101_discount1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101242136303_Shipping.resx">
+      <DependentUpon>202101242136303_Shipping.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

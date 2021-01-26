@@ -19,15 +19,20 @@ namespace WebShop.WebUI.Controllers
             this.context = context;
         }
 
+        public Product GetProduct(String Id)
+        {
+            return context
+                .Include(p => p.Images, p => p.UserReviews)
+                .FirstOrDefault(p => p.Id == Id);
+        }
+
         // /ProductDetails/Index/Id
         public ActionResult Index(String Id)
         {
             if (Id == null) Id = "1";
 
             //Find the Product including images
-            Product product = context
-                .Include(p => p.Images, p => p.UserReviews)
-                .FirstOrDefault(p=>p.Id==Id);
+            Product product = GetProduct(Id);
 
             //todo: find the related image based on same category
             List<Product> relatedProducts = context.Include(p => p.Images)
@@ -39,12 +44,16 @@ namespace WebShop.WebUI.Controllers
                 createProducts();
                 createMatchingProducts();
             }
+            else
+            {
+                //context.Update(product);
+                //context.Commit();
+            }
 
             ProductDetailsViewModel productDetailsViewModel = new ProductDetailsViewModel();
             productDetailsViewModel.product = product;
             productDetailsViewModel.relatedProducts = relatedProducts;
-
-             return View(productDetailsViewModel);
+            return View(productDetailsViewModel);
         }
 
         private void createProducts()
@@ -65,6 +74,12 @@ namespace WebShop.WebUI.Controllers
             product.Availability = 10;
             product.Colour = "Orange, Yellow";
             product.Size = "Large, Medium, Small, X-Large";
+
+            //add user review
+            product.UserReviews.Add(new UserReview("Nikhil", "This was nice in buy, Excelent product, Delevered on time, and Long lasting ", 5));
+            product.UserReviews.Add(new UserReview("Hitha Hareendran", "This was nice in buy, Excelent product, Delevered on time, and Long lasting ", 4));
+            product.UserReviews.Add(new UserReview("Mosorio", "This was nice in buy, Excelent product, Delevered on time, and Long lasting ", 3));
+
             context.Insert(product);
             context.Commit();
         }
@@ -99,6 +114,36 @@ namespace WebShop.WebUI.Controllers
             context.Insert(product);
             context.Commit();
         }
+
+        [HttpPost]
+        public ActionResult UpdateReview(ProductDetailsViewModel viewModel)
+        {
+            //update view model with username (since it is not in session), find the product and update review
+            viewModel.userReview.UserName = "Anonymous";
+            String Id = viewModel.product.Id;
+            Product product = GetProduct(Id);
+            product.UserReviews.Add(viewModel.userReview);
+            context.Update(product);
+            context.Commit();
+
+            return RedirectToAction("Index", new { id = Id });
+        }
+
+        //partial view for side filter,  product is not mandatory, if given selected value heighlights
+        public PartialViewResult ProductFilter(Product product)
+        {
+            ProductFilterViewModel model = new ProductFilterViewModel();
+            if (product != null)
+                model.SelectedProduct = product;
+            model.subCategories = context.Collection().Select(p => p.SubCategory).Distinct();
+            model.manufactures = context.Collection().Select(p => p.Manufacture).Distinct();
+            List<Product> products = context.Include(p => p.Images)
+               .ToList();
+            model.products = products;
+            return PartialView(model);
+        }
+
+
 
     }
 }

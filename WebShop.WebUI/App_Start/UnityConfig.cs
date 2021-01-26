@@ -2,6 +2,7 @@ using System;
 using WebShop.Core.Contracts;
 using WebShop.Core.Models;
 using WebShop.DataAccess.SQL;
+using WebShop.Services;
 using Unity;
 
 namespace WebShop.WebUI
@@ -45,8 +46,12 @@ namespace WebShop.WebUI
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<IRepository<Product>, SQLRepository<Product>>();
+            container.RegisterType<IRepository<Basket>, SQLRepository<Basket>>();
+            container.RegisterType<IRepository<BasketItem>, SQLRepository<BasketItem>>();
             container.RegisterType<IRepository<UserReview>, SQLRepository<UserReview>>();
             container.RegisterType<IRepository<Image>, SQLRepository<Image>>();
+            container.RegisterType<IBasketService, BasketService>();
+
         }
     }
 }
