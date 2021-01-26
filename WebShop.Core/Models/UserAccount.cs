@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebShop.Core.Models
 {
-    class User:BaseEntity
+    public class UserAccount : BaseEntity
     {
         public string UserId { get; set; }
         public string UserName { get; set; }
