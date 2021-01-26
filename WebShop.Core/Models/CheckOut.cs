@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace WebShop.Core.Models
 {
-    public class SubCategory: BaseEntity
+   public class CheckOut
     {
-        public string Name { get; set; }
+        public String ProuctId { get; set; }
+        public int Quantity { get; set; }
+        public int Price { get; set; }
     }
 }
