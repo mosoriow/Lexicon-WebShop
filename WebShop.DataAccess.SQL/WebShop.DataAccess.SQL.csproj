@@ -241,21 +241,9 @@
     <Compile Include="Migrations\202101261826025_Merged.designer.cs">
       <DependentUpon>202101261826025_Merged.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202101261833412_InsertInitialData.cs" />
-    <Compile Include="Migrations\202101261833412_InsertInitialData.designer.cs">
-      <DependentUpon>202101261833412_InsertInitialData.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101251833203_Order.cs" />
-    <Compile Include="Migrations\202101251833203_Order.designer.cs">
-      <DependentUpon>202101251833203_Order.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101251950515_Order1.cs" />
-    <Compile Include="Migrations\202101251950515_Order1.designer.cs">
-      <DependentUpon>202101251950515_Order1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101252045506_Order2.cs" />
-    <Compile Include="Migrations\202101252045506_Order2.designer.cs">
-      <DependentUpon>202101252045506_Order2.cs</DependentUpon>
+    <Compile Include="Migrations\202101262113125_Orders.cs" />
+    <Compile Include="Migrations\202101262113125_Orders.designer.cs">
+      <DependentUpon>202101262113125_Orders.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -278,17 +266,8 @@
     <EmbeddedResource Include="Migrations\202101261826025_Merged.resx">
       <DependentUpon>202101261826025_Merged.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101261833412_InsertInitialData.resx">
-      <DependentUpon>202101261833412_InsertInitialData.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101251833203_Order.resx">
-      <DependentUpon>202101251833203_Order.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101251950515_Order1.resx">
-      <DependentUpon>202101251950515_Order1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101252045506_Order2.resx">
-      <DependentUpon>202101252045506_Order2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202101262113125_Orders.resx">
+      <DependentUpon>202101262113125_Orders.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
