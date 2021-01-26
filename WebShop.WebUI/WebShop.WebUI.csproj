@@ -452,6 +452,7 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\ProductDetails\Index.cshtml" />
     <Content Include="Views\ProductCart\Index.cshtml" />
+    <Content Include="Views\Home\ProductList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
