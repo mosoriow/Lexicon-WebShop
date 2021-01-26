@@ -44,32 +44,37 @@
 <body>
 	<div id="top-bar" class="container">
 		<div class="row">
-			<div class="span4">
+			<div class="span2">
 				<form method="POST" class="search_form">
 					<input type="text" class="input-block-level search-query" Placeholder="eg. T-sirt">
 				</form>
 			</div>
-			<div class="span8">
+			<div class="span10">
                 <div class="account pull-right">
                     <ul class="user-menu">
                         <li><a href="#">My Account</a></li>
                         <li><a href="/Basket/Index">My Basket</a></li>
                         <li><a href="/Checkout/Index">Checkout</a></li>
-                        <li>@Html.ActionLink("Login", "Index", "User")</li>
+                        <li> @Html.Partial("_LoginPartial")</li>
                         @{
                             Html.RenderAction("BasketSummary", "Basket");
                         }
-                        <li>
-                                            <a href="#">Admin</a>
-                                            <ul>
-                                                <li><a href="./products.html">Membership</a></li>
-                                                <li><a href="./products.html">Product</a></li>
-                                                <li>@Html.ActionLink("Customer", "index", "User")</li>
 
-                                            </ul>
-                                        </li>
                     </ul>
-                   
+                    <nav id="menu" class="pull-right">
+                        <ul>
+                            
+                            <li>
+                                <a href="#">Admin</a>
+                                <ul>
+                                    <li><a href="/ProductManager">Product</a></li>
+                                    <li>@Html.ActionLink("Customer", "index", "User")</li>
+
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </nav>
                 </div>
 			</div>
 		</div>
