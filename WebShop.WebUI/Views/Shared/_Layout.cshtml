@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+    @RenderSection("scripts", required: false)
     <meta charset="utf-8" />
     <title>@ViewBag.Title - WebShop eCommerce</title>
 
@@ -43,23 +44,37 @@
 <body>
 	<div id="top-bar" class="container">
 		<div class="row">
-			<div class="span4">
+			<div class="span2">
 				<form method="POST" class="search_form">
 					<input type="text" class="input-block-level search-query" Placeholder="eg. T-sirt">
 				</form>
 			</div>
-			<div class="span8">
+			<div class="span10">
                 <div class="account pull-right">
                     <ul class="user-menu">
                         <li><a href="#">My Account</a></li>
                         <li><a href="/Basket/Index">My Basket</a></li>
                         <li><a href="/Checkout/Index">Checkout</a></li>
-                        <li>@Html.ActionLink("Login", "Index", "User")</li>
+                        <li> @Html.Partial("_LoginPartial")</li>
                         @{
                             Html.RenderAction("BasketSummary", "Basket");
                         }
+
                     </ul>
-                   
+                    <nav id="menu" class="pull-right">
+                        <ul>
+                            
+                            <li>
+                                <a href="#">Admin</a>
+                                <ul>
+                                    <li><a href="/ProductManager">Product</a></li>
+                                    <li>@Html.ActionLink("Customer", "index", "User")</li>
+
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </nav>
                 </div>
 			</div>
 		</div>
@@ -107,6 +122,7 @@
                         <li>@Html.ActionLink("Homepage", "Index", "Home")</li>
                         <li><a href="./about.html">About Us</a></li>
                         <li>@Html.ActionLink("Contact Us", "Contact", "Home")</li>
+                        <li>@Html.Partial("_AdminMenuPartial")</li>
                         <li><a href="./cart.html">Your Cart</a></li>
                         <li><a href="./register.html">Login</a></li>
                     </ul>
@@ -173,6 +189,10 @@
 
     <script src="/Content/themes/js/common.js"></script>
     <script src="/Content/themes/js/jquery.flexslider-min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
     <script type="text/javascript">
         $(function () {
             $(document).ready(function () {
@@ -186,7 +206,14 @@
                 });
             });
         });
+
+
+
+        
     </script>
+  
+
+
 
 
 @{ 

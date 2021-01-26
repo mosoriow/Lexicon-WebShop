@@ -1,67 +1,84 @@
-﻿
+﻿@model IEnumerable<WebShop.WebUI.ViewModel.UserViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
 <section class="header_text sub">
     <img class="pageBanner" src="~/Content/images/banner/pageBanner.png" alt="New products">
-    <h4><span>Login or Regsiter</span></h4>
-</section>
-<section class="main-content">
-    <div class="row">
-        <div class="span5">
-            <h4 class="title"><span class="text"><strong>Login</strong> Form</span></h4>
-            <form action="#" method="post">
-                <input type="hidden" name="next" value="/">
-                <fieldset>
-                    <div class="control-group">
-                        <label class="control-label">Username</label>
-                        <div class="controls">
-                            <input type="text" placeholder="Enter your username" id="username" class="input-xlarge">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">Username</label>
-                        <div class="controls">
-                            <input type="password" placeholder="Enter your password" id="password" class="input-xlarge">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <input tabindex="3" class="btn btn-inverse large" type="submit" value="Sign into your account">
-                        <hr>
-                        <p class="reset">Recover your <a tabindex="4" href="#" title="Recover your username or password">username or password</a></p>
-                    </div>
-                </fieldset>
-            </form>
-        </div>
-        <div class="span7">
-            <h4 class="title"><span class="text"><strong>Register</strong> Form</span></h4>
-            <form action="#" method="post" class="form-stacked">
-                <fieldset>
-                    <div class="control-group">
-                        <label class="control-label">Username</label>
-                        <div class="controls">
-                            <input type="text" placeholder="Enter your username" class="input-xlarge">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">Email address:</label>
-                        <div class="controls">
-                            <input type="password" placeholder="Enter your email" class="input-xlarge">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">Password:</label>
-                        <div class="controls">
-                            <input type="password" placeholder="Enter your password" class="input-xlarge">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <p>Now that we know who you are. I'm not a mistake! In a comic, you know how you can tell who the arch-villain's going to be?</p>
-                    </div>
-                    <hr>
-                    <div class="actions"><input tabindex="9" class="btn btn-inverse large" type="submit" value="Create your account"></div>
-                </fieldset>
-            </form>
-        </div>
-    </div>
+
 </section>
 
 
 
+
+    
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Disabled)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BirthDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Disabled , new { @disabled = "disabled" })
+        </td>
+        <td>
+
+            <a type="button" class="btn btn-info btn-lg" href="@Url.Action("Edit", new { id = item.Id })">
+                <span class="glyphicon glyphicon-pencil"></span>
+                <span>Edit</span>
+            </a>
+
+            <a type="button" class="btn btn-success" href="@Url.Action("Details", new { id = item.Id })">
+                <span class="glyphicon glyphicon-list"></span>
+                <span>Details</span>
+            </a>
+
+            <a type="button" class="btn btn-danger btn-lg" href="@Url.Action("Delete", new { id = item.Id })">
+                <span class="glyphicon glyphicon-trash"></span>
+                <span>Delete</span>
+            </a>
+
+            
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,4 +1,4 @@
-namespace WebShop.WebUI.Migrations
+﻿namespace WebShop.WebUI.Migrations
 {
     using System;
     using System.Data.Entity;

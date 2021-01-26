@@ -27,7 +27,9 @@ namespace WebShop.Services
         {
             HttpCookie cookie = httpContext.Request.Cookies.Get(BasketSessionName);
 
-            Basket basket = new Basket();
+           // HttpCookie cookie = null;
+
+           Basket basket = new Basket();
 
             if (cookie != null)
             {

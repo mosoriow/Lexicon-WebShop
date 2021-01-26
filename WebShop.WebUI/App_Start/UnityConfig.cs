@@ -4,6 +4,10 @@ using WebShop.Core.Models;
 using WebShop.DataAccess.SQL;
 using WebShop.Services;
 using Unity;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using WebShop.WebUI.Controllers;
+using Unity.Injection;
 
 namespace WebShop.WebUI
 {
@@ -53,6 +57,9 @@ namespace WebShop.WebUI
             container.RegisterType<IRepository<Order>, SQLRepository<Order>>();
             container.RegisterType<IBasketService, BasketService>();
 
+            //Identity
+            container.RegisterType<AccountController>(new InjectionConstructor());
+            container.RegisterType<ManageController>(new InjectionConstructor());
         }
     }
 }

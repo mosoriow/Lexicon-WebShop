@@ -11,7 +11,7 @@ namespace WebShop.Core.Contracts
 {
     public interface IBasketService
     {
-        void AddToBasket(HttpContextBase httpContext, string productId,int qty);
+        void AddToBasket(HttpContextBase httpContext, string productId, int qty);
         void RemoveFromBasket(HttpContextBase httpContext, string itemId);
         void ReduceQuantity(HttpContextBase httpContext, string itemId);
         void IncreaseQuantity(HttpContextBase httpContext, string itemId);

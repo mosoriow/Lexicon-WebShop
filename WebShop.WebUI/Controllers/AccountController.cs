@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebShop.WebUI.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using WebShop.WebUI.Utility;
 
 namespace WebShop.WebUI.Controllers
 {
@@ -139,7 +141,15 @@ namespace WebShop.WebUI.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            using (var db = ApplicationDbContext.Create())
+            {
+                RegisterViewModel newUser = new RegisterViewModel
+                {
+                    MembershipTypes = db.MembershipTypes.ToList(),
+                    BirthDate = DateTime.Now
+                };
+                return View(newUser);
+            }
         }
 
         //
@@ -151,12 +161,42 @@ namespace WebShop.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    BirthDate = model.BirthDate,
+                    LastName = model.LastName,
+                    FirstName = model.FirstName,
+                    Phone = model.Phone,
+                    MembershipTypeId = model.MembershipTypeId,
+                    Disable = false
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    using (var db = ApplicationDbContext.Create())
+                    {
+                        model.MembershipTypes = db.MembershipTypes.ToList();
+                        var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                        var roleManager = new RoleManager<IdentityRole>(roleStore);
+                        var memebership = model.MembershipTypes.SingleOrDefault(m => m.Id == model.MembershipTypeId).Name.ToString();
+
+                        if (memebership.ToLower().Contains("admin"))
+                        {
+                            //For Super Admin
+                            await roleManager.CreateAsync(new IdentityRole(SD.AdminUserRole));
+                            await UserManager.AddToRoleAsync(user.Id, SD.AdminUserRole);
+                        }
+                        else
+                        {
+                            //For Customer
+                            await roleManager.CreateAsync(new IdentityRole(SD.EndUserRole));
+                            await UserManager.AddToRoleAsync(user.Id, SD.EndUserRole);
+                        }
+                    }
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -167,7 +207,10 @@ namespace WebShop.WebUI.Controllers
                 }
                 AddErrors(result);
             }
-
+            using (var db = ApplicationDbContext.Create())
+            {
+                model.MembershipTypes = db.MembershipTypes.ToList();
+            }
             // If we got this far, something failed, redisplay form
             return View(model);
         }
@@ -343,7 +386,19 @@ namespace WebShop.WebUI.Controllers
                     // If the user does not have an account, then prompt the user to create an account
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+                    using (var db = ApplicationDbContext.Create())
+                    {
+                        return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel
+                        {
+                            Email = loginInfo.Email,
+                            BirthDate = DateTime.Now,
+                            MembershipTypes = db.MembershipTypes.Where(m => !m.Name.ToLower().Equals(SD.AdminUserRole.ToLower())).ToList()
+
+
+
+
+                        });
+                    }
             }
         }
 
@@ -367,7 +422,14 @@ namespace WebShop.WebUI.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { 
+                    UserName = model.Email,
+                    Email = model.Email,
+                    BirthDate = model.BirthDate,
+                    Phone = model.Phone,
+                    MembershipTypeId = model.MembershipTypeId,
+                    Disable = false
+                };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

@@ -13,11 +13,13 @@ namespace WebShop.WebUI.Controllers
     {
         IRepository<Product> suggestedProducts;
         IRepository<Product> latestProducts;
+        IRepository<Product> listOfProducts;
 
-        public HomeController(IRepository<Product> suggestedProductsContext, IRepository<Product> latestProductsContext)
+        public HomeController(IRepository<Product> suggestedProductsContext, IRepository<Product> latestProductsContext, IRepository<Product> listOfProductsContext)
         {
             suggestedProducts = suggestedProductsContext;
             latestProducts = latestProductsContext;
+            listOfProducts = listOfProductsContext;
         }
 
         public ActionResult Index()
@@ -29,6 +31,16 @@ namespace WebShop.WebUI.Controllers
 
             model.SuggestedProducts = suggestedList;
             model.LatestProducts = latestList;
+
+            return View(model);
+        }
+
+        public ActionResult ProductList()
+        {
+            HomeProductListViewModel model = new HomeProductListViewModel();
+            List<Product> productList = listOfProducts.Collection().ToList();
+
+            model.ListOfProducts = productList;
 
             return View(model);
         }
