@@ -9,7 +9,6 @@ namespace WebShop.WebUI.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
-
         public string Phone { get; set; }
 
         [Required]
@@ -18,6 +17,10 @@ namespace WebShop.WebUI.Models
         public DateTime BirthDate { get; set; }
         public bool? Disable { get; set; }
 
+        public ICollection<MembershipType> MembershipTypes { get; set; }
+
+        [Required]
+        public int MembershipTypeId { get; set; }
     }
 
     public class ExternalLoginListViewModel

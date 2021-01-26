@@ -386,7 +386,19 @@ namespace WebShop.WebUI.Controllers
                     // If the user does not have an account, then prompt the user to create an account
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+                    using (var db = ApplicationDbContext.Create())
+                    {
+                        return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel
+                        {
+                            Email = loginInfo.Email,
+                            BirthDate = DateTime.Now,
+                            MembershipTypes = db.MembershipTypes.Where(m => !m.Name.ToLower().Equals(SD.AdminUserRole.ToLower())).ToList()
+
+
+
+
+                        });
+                    }
             }
         }
 
@@ -410,7 +422,14 @@ namespace WebShop.WebUI.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { 
+                    UserName = model.Email,
+                    Email = model.Email,
+                    BirthDate = model.BirthDate,
+                    Phone = model.Phone,
+                    MembershipTypeId = model.MembershipTypeId,
+                    Disable = false
+                };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
