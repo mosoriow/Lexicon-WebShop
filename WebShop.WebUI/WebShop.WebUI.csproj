@@ -199,18 +199,19 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MembershipTypeController.cs" />
     <Compile Include="Controllers\ProductDetailsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202101251051220_AddMembershipTypeToDatabase.cs" />
-    <Compile Include="Migrations\202101251051220_AddMembershipTypeToDatabase.designer.cs">
-      <DependentUpon>202101251051220_AddMembershipTypeToDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\202101261754377_initial.cs" />
+    <Compile Include="Migrations\202101261754377_initial.designer.cs">
+      <DependentUpon>202101261754377_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202101251052103_SeedMembershipTypeDatabase.cs" />
-    <Compile Include="Migrations\202101251052103_SeedMembershipTypeDatabase.designer.cs">
-      <DependentUpon>202101251052103_SeedMembershipTypeDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\202101261756077_SeedMembershipTypeDatabase.cs" />
+    <Compile Include="Migrations\202101261756077_SeedMembershipTypeDatabase.designer.cs">
+      <DependentUpon>202101261756077_SeedMembershipTypeDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -426,6 +427,7 @@
     <Content Include="Views\Shared\_BackToListButtonPartial.cshtml" />
     <Content Include="Views\Shared\_EditButtonPartial.cshtml" />
     <Content Include="Views\Shared\_IndividualButtonPartial.cshtml" />
+    <Content Include="Views\MembershipType\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -463,11 +465,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202101251051220_AddMembershipTypeToDatabase.resx">
-      <DependentUpon>202101251051220_AddMembershipTypeToDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202101261754377_initial.resx">
+      <DependentUpon>202101261754377_initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101251052103_SeedMembershipTypeDatabase.resx">
-      <DependentUpon>202101251052103_SeedMembershipTypeDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202101261756077_SeedMembershipTypeDatabase.resx">
+      <DependentUpon>202101261756077_SeedMembershipTypeDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

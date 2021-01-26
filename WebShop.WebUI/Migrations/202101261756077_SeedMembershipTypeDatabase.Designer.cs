@@ -13,7 +13,7 @@ namespace WebShop.WebUI.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202101251052103_SeedMembershipTypeDatabase"; }
+            get { return "202101261756077_SeedMembershipTypeDatabase"; }
         }
         
         string IMigrationMetadata.Source
