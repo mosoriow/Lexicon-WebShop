@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebShop.Core.ViewModels;
+using WebShop.Core.Models;
 using System.Web;
 
 namespace WebShop.Core.Contracts
@@ -16,6 +17,8 @@ namespace WebShop.Core.Contracts
         void IncreaseQuantity(HttpContextBase httpContext, string itemId);
         void AddCoupon(HttpContextBase httpContext, string coupon);
         void SetDelivery(HttpContextBase httpContext, string Delivery);
+        void clearCookie(HttpContextBase httpContext);
+        Basket GetBasket(HttpContextBase httpContext, bool createIfNull);
         BasketItemViewModel GetBasketItems(HttpContextBase httpContext);
         BasketSummaryViewModel GetBasketSummary(HttpContextBase httpContext);
     }

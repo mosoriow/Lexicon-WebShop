@@ -48,10 +48,9 @@
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\Basket.cs" />
     <Compile Include="Models\BasketItem.cs" />
-    <Compile Include="Models\CheckOut.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\ProductCart.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserReview.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -23,7 +23,7 @@ namespace WebShop.Services
             this.productContext = ProductContext;
         }
 
-        private Basket GetBasket(HttpContextBase httpContext, bool createIfNull)
+        public Basket GetBasket(HttpContextBase httpContext, bool createIfNull)
         {
             HttpCookie cookie = httpContext.Request.Cookies.Get(BasketSessionName);
 
@@ -54,6 +54,11 @@ namespace WebShop.Services
 
             return basket;
 
+        }
+
+        public void clearCookie(HttpContextBase httpContext)
+        {
+            httpContext.Response.Cookies.Set(new HttpCookie(BasketSessionName) { Value = string.Empty });
         }
 
         private Basket CreateNewBasket(HttpContextBase httpContext)
