@@ -46,7 +46,7 @@ namespace WebShop.WebUI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name")] MembershipType membershipType)
+        public ActionResult Create(MembershipType membershipType)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace WebShop.WebUI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name")] MembershipType membershipType)
+        public ActionResult Edit(MembershipType membershipType)
         {
             if (ModelState.IsValid)
             {
