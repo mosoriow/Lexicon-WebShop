@@ -453,6 +453,10 @@
     <Content Include="Views\ProductDetails\Index.cshtml" />
     <Content Include="Views\ProductCart\Index.cshtml" />
     <Content Include="Views\Home\ProductList.cshtml" />
+    <Content Include="Views\ProductManager\Create.cshtml" />
+    <Content Include="Views\ProductManager\Delete.cshtml" />
+    <Content Include="Views\ProductManager\Edit.cshtml" />
+    <Content Include="Views\ProductManager\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
