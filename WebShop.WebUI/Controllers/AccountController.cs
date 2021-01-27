@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
+
 using Microsoft.Owin.Security;
 using WebShop.WebUI.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using WebShop.WebUI.Utility;
+using WebShop.Core.Models;
+using WebShop.Core.Contracts;
 
 namespace WebShop.WebUI.Controllers
 {
@@ -19,9 +21,17 @@ namespace WebShop.WebUI.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private IRepository<Customer> customerRepository;
         public AccountController()
+
         {
+            //9.Allow this to inject customer repository
+        }
+        public AccountController(IRepository<Customer> customerRepository)
+
+        
+        {
+            this.customerRepository = customerRepository;
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -32,15 +42,23 @@ namespace WebShop.WebUI.Controllers
 
         public ApplicationSignInManager SignInManager
         {
+
             get
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
             private set
             {
+
+
+
                 _signInManager = value;
             }
         }
+
+
+
+
 
         public ApplicationUserManager UserManager
         {
@@ -50,6 +68,7 @@ namespace WebShop.WebUI.Controllers
             }
             private set
             {
+             
                 _userManager = value;
             }
         }
