@@ -40,11 +40,11 @@ namespace WebShop.WebUI.Controllers
     
 
 
-        public static void SendEmail()
+        public static void SendEmail(string name,string email,string telephon,string usermessage)
         {
-            string to = "janalizade@gmail.com";
+            string to = email;
             string subject = "subject1";
-            string message = "message1";
+            string message = usermessage;
             string from = "noreply@ahoora.se";
             string username = "noreply@ahoora.se";
             string password = "AwSeDr@!220";
@@ -72,12 +72,8 @@ namespace WebShop.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-
-
-
-
-                //prepare email
-                SendEmail();
+                 //prepare email
+                SendEmail(e.Name,e.Email,e.Telephone,e.Message);
             }
             return View();
         }
