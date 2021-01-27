@@ -81,7 +81,7 @@
                     @using (Html.BeginForm("AddToWishList", "WishList", new { productId = Model.product.Id}, FormMethod.Post))
                     {
                         @Html.AntiForgeryToken()
-                        <button type="submit" data-toggle="tooltip" title="Add to wishlist"><i class="fas fa-heart" style="font-size:30px;color:red;"></i></button>
+                        <button type="submit" data-toggle="tooltip" title="Add to wishlist"><i class="far fa-heart" style="font-size:30px;color:red;"></i></button>
                     }
                     </div>
 
@@ -350,6 +350,17 @@
             $('#myCarousel-2').carousel({
                 interval: 2500
             });
+        });
+        $(document).ready(function () {
+            $('.fa-heart').hover(function () {
+                $(this).addClass('fas');
+                $(this).removeClass('far');
+            }, function () {
+                $(this).addClass('far');
+                $(this).removeClass('fas');
+            });
+
+
         });
     </script>
 </div>

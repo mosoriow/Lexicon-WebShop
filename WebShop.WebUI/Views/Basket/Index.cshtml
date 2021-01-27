@@ -57,14 +57,21 @@
                             <td>-@Model.DiscountItem.Price Kr</td>
                         </tr>
                     }
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>@Model.DeliveryMethod.Delivery Shipping</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>@Model.DeliveryMethod.Price Kr</td>
-                        </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>@Model.DeliveryMethod.Delivery Shipping</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        @if (Model.DeliveryMethod.Price == 0)
+                        {
+                            <td>Free</td>
+                        }
+                        else
+                        {
+                            <td> @Model.DeliveryMethod.Price Kr </td>
+                        }
+                    </tr>
                     @{
                         var total = (from p in Model.BasketItemDetail select p.Price * p.Quantity).Sum();
                         if (Model.DiscountItem != null)
@@ -106,25 +113,25 @@
             {
                 var delivery = Model.DeliveryMethod.Delivery;
                 @Html.AntiForgeryToken()
-                <label class="radio"> @Html.RadioButton("Delivery", "Store", delivery == "Store") Deliver to store(0 Kr) </label>
-                <label class="radio"> @Html.RadioButton("Delivery", "Postnord", delivery == "Postnord") Deliver by Postnord(0 Kr) </label>
+                <label class="radio"> @Html.RadioButton("Delivery", "Store", delivery == "Store") Deliver to store (FREE) </label>
+                <label class="radio"> @Html.RadioButton("Delivery", "Postnord", delivery == "Postnord") Deliver by Postnord (FREE) </label>
                 <label class="radio"> @Html.RadioButton("Delivery", "Home", delivery == "Home") Deliver by post to Home (30 Kr) </label>
                 <label class="radio"> @Html.RadioButton("Delivery", "Express", delivery == "Express") Express delivery (50 Kr) </label>
-                    <button class="btn" type="submit">Change Delivery method</button>
-                    }
+                <button class="btn" type="submit">Change Delivery method</button>
+            }
 
-                    <p class="cart-total right">
-                        <strong>Eco Tax (-2.00):</strong> @String.Format("{0:#.00}", (total * 2) / 100) Kr<br>
-                        <strong>VAT (17%):</strong> @String.Format("{0:#.00}", (total * 17) / 100) Kr<br>
-                        <strong>Total:</strong> @String.Format("{0:#.00}", total) Kr<br>
-                    </p>
-                    <hr />
-                    <p class="buttons center">
-                        @*<button class="btn" type="button">Update</button>*@
-                        <a href="/Product/Index" class="btn" type="button">Continue shopping</a>
-                        <a href="/Checkout/Index" class="btn btn-inverse" type="submit" id="checkout">Checkout</a>
-                    </p>
-            </div>
+            <p class="cart-total right">
+                <strong>Eco Tax (-2.00):</strong> @String.Format("{0:#.00}", (total * 2) / 100) Kr<br>
+                <strong>VAT (17%):</strong> @String.Format("{0:#.00}", (total * 17) / 100) Kr<br>
+                <strong>Total:</strong> @String.Format("{0:#.00}", total) Kr<br>
+            </p>
+            <hr />
+            <p class="buttons center">
+                @*<button class="btn" type="button">Update</button>*@
+                <a href="/Product/Index" class="btn" type="button">Continue shopping</a>
+                <a href="/Checkout/Index" class="btn btn-inverse" type="submit" id="checkout">Checkout</a>
+            </p>
+        </div>
         @{
             Html.RenderAction("ProductFilter", "ProductDetails");
         }
