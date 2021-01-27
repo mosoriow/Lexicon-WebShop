@@ -304,6 +304,7 @@
     <Content Include="Content\themes\css\jquery.fancybox.css" />
     <Content Include="Content\themes\css\main.css" />
     <Content Include="Content\themes\css\review.css" />
+    <Content Include="Content\themes\css\Zoom.css" />
     <Content Include="Content\themes\fontawesome-5\css\all.css" />
     <Content Include="Content\themes\fontawesome-5\css\all.min.css" />
     <Content Include="Content\themes\fontawesome-5\webfonts\fa-brands-400.svg" />
@@ -321,11 +322,13 @@
     <Content Include="Content\themes\js\common.js" />
     <Content Include="Content\themes\js\css\style.css" />
     <Content Include="Content\themes\js\jquery-1.7.2.min.js" />
+    <Content Include="Content\themes\js\jquery-3.5.1.min.js" />
     <Content Include="Content\themes\js\jquery.fancybox.js" />
     <Content Include="Content\themes\js\jquery.flexslider-min.js" />
     <Content Include="Content\themes\js\jquery.scrolltotop.js" />
     <Content Include="Content\themes\js\review.js" />
     <Content Include="Content\themes\js\superfish.js" />
+    <Content Include="Content\themes\js\Zoom.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -491,7 +494,6 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\ProductDetails\Index.cshtml" />
     <Content Include="Views\Manage\Edit.cshtml" />
     <Content Include="Views\Shared\_AdminMenuPartial.cshtml" />
     <Content Include="Views\Shared\_TableButtonPartial.cshtml" />

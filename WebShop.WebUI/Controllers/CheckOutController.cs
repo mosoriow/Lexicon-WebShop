@@ -10,7 +10,7 @@ using WebShop.Core.Contracts;
 namespace WebShop.WebUI.Controllers
 {
     //todo redirect to login when not logged in automatically by identity
-    //[Authorize]
+    [Authorize]
     public class CheckoutController : Controller
     {
         IRepository<Order> context;
@@ -27,8 +27,6 @@ namespace WebShop.WebUI.Controllers
             /* fill the data from previous order if any */
             String userName = User.Identity.Name;
 
-            //todo below line should be removed after auhtentication
-            userName = "Anonymous";
             var previousOrder = context.Collection()
                 .Where(o => o.Username == userName)
                 .FirstOrDefault();

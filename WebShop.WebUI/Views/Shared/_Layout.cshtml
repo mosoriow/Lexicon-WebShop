@@ -20,6 +20,7 @@
 	<link href="/Content/themes/css/main.css" rel="stylesheet"/>
 	<link href="~/Content/themes/fontawesome-5/css/all.min.css" rel="stylesheet"/>
 	<link href="~/Content/themes/css/review.css" rel="stylesheet"/>
+	<link href="~/Content/themes/css/zoom.css" rel="stylesheet"/>
 
 	<!-- scripts -->
 	<script src="/Content/themes/js/jquery-1.7.2.min.js"></script>
@@ -28,6 +29,8 @@
 	<script src="/Content/themes/js/jquery.scrolltotop.js"></script>
     <script src="/Content/themes/js/jquery.fancybox.js"></script>
     <script src="~/Content/themes/js/review.js"></script>
+    <script src="~/Content/themes/js/zoom.js"></script>
+
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<script src="js/respond.min.js"></script>
@@ -217,8 +220,8 @@
 
 
 @{ 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @*@Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)
  } 
 
