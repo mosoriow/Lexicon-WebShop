@@ -225,6 +225,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\BasketController.cs" />
     <Compile Include="Controllers\MembershipTypeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductDetailsController.cs" />
     <Compile Include="Controllers\ProductManagerController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -517,6 +518,7 @@
     <Content Include="Views\Shared\_EditButtonPartial.cshtml" />
     <Content Include="Views\Shared\_IndividualButtonPartial.cshtml" />
     <Content Include="Views\MembershipType\Index.cshtml" />
+    <Content Include="Views\Order\MyOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

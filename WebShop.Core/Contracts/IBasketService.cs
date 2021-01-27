@@ -20,6 +20,7 @@ namespace WebShop.Core.Contracts
         void clearCookie(HttpContextBase httpContext);
         Basket GetBasket(HttpContextBase httpContext, bool createIfNull);
         BasketItemViewModel GetBasketItems(HttpContextBase httpContext);
+        BasketItemViewModel GetBasketItems(String BasketId);
         BasketSummaryViewModel GetBasketSummary(HttpContextBase httpContext);
     }
 }
