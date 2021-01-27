@@ -26,7 +26,46 @@ namespace WebShop.WebUI.Controllers
             return View();
         }
 
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "Your application description page.";
 
+            return View();
+        }
+
+
+
+      
+        
+    
+
+
+        public static void SendEmail()
+        {
+            string to = "janalizade@gmail.com";
+            string subject = "subject1";
+            string message = "message1";
+            string from = "noreply@ahoora.se";
+            string username = "noreply@ahoora.se";
+            string password = "AwSeDr@!220";
+            string host = "send.one.com";
+            int port = 587;
+        
+            var loginInfo = new NetworkCredential(username, password);
+            var msg = new MailMessage();
+            var smtpClient = new SmtpClient(host, port);
+
+            msg.From = new MailAddress(from);
+            msg.To.Add(new MailAddress(to));
+            msg.Subject = subject;
+            msg.Body = message;
+            msg.IsBodyHtml = true;
+
+            smtpClient.EnableSsl = true;
+            smtpClient.UseDefaultCredentials = false;
+            smtpClient.Credentials = loginInfo;
+            smtpClient.Send(msg);
+        }
 
         [HttpPost]
         public ActionResult Contact(MailModels e)
@@ -34,31 +73,11 @@ namespace WebShop.WebUI.Controllers
             if (ModelState.IsValid)
             {
 
-                StringBuilder message = new StringBuilder();
-                MailAddress from = new MailAddress(e.Email.ToString());
-                message.Append("Name: " + e.Name + "\n");
-                message.Append("Email: " + e.Email + "\n");
-                message.Append("Telephone: " + e.Telephone + "\n\n");
-                message.Append(e.Message);
 
-                MailMessage mail = new MailMessage();
 
-                SmtpClient smtp = new SmtpClient();
 
-                smtp.Host = "smtp.mail.yahoo.com";
-                smtp.Port = 465;
-
-                System.Net.NetworkCredential credentials = new System.Net.NetworkCredential("yahooaccount", "yahoopassword");
-
-                smtp.Credentials = credentials;
-                smtp.EnableSsl = true;
-
-                mail.From = from;
-                mail.To.Add("yahooemailaddress");
-                mail.Subject = "Test enquiry from " + e.Name;
-                mail.Body = message.ToString();
-
-                smtp.Send(mail);
+                //prepare email
+                SendEmail();
             }
             return View();
         }
