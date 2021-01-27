@@ -11,26 +11,6 @@
     <div class="row">
         <div class="span12">
             <div class="accordion" id="accordion2">
-                @*checkout option //Todo if Not already login,  add the partial view from login page here with a redirect to checkout*@
-                @*@if (!Request.IsAuthenticated)*@
-                @if (false)
-                {
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">Checkout Options</a>
-                        </div>
-                        <div id="collapseOne" class="accordion-body in collapse">
-                            <div class="accordion-inner">
-                                <div class="row-fluid">
-                                    <h4>Customer Login</h4>
-                                    <p>By creating an account you will be able to shop faster, be up to date on an order's status, and keep track of the orders you have previously made.</p>
-                                    <a class="btn btn-inverse" href="/User">Login</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
-
                 @*Order Summary*@
                 <div class="accordion-group">
                     <div class="accordion-heading">
@@ -41,7 +21,6 @@
                             @{
                                 Html.RenderAction("BasketItemTable", "Basket");
                             }
-                            <a class="btn btn-inverse" href="/Basket/Index">Edit Basket</a>
                         </div>
                     </div>
                 </div>
@@ -122,6 +101,107 @@
                     @*confirm order*@
                     <div class="accordion-group">
                         <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#payment">Payment</a>
+                        </div>
+                        <div id="payment" class="accordion-body  collapse">
+                            <div class="accordion-inner">
+                                <div class="row-fluid">
+                                    <ul class="nav nav-pills">
+                                        <li class="active"><a data-toggle="pill" href="#card"><i class="fas fa-credit-card mr-2"></i> Credit Card </a></li>
+                                        <li><a data-toggle="pill" href="#swish"><i class="fas fa-mobile-alt"></i> Swish</a></li>
+                                        <li><a data-toggle="pill" href="#net"><i class="fas fa-money-check"></i> Net Banking </a></li>
+                                    </ul>
+
+                                    <div class="tab-content">
+                                        <div id="card" class="tab-pane fade in active">
+                                            <div class="span12" style="margin:0">
+                                                <div class="span2">
+                                                    <label for="username">
+                                                        <h6>Card Owner <span class="required">*</span></h6>
+                                                    </label>
+                                                </div>
+                                                <div class="span4"><input type="text" name="username" placeholder="Card Owner Name" required class="form-control "></div>
+                                                <div class="span6"> <img src="https://img.icons8.com/color/48/000000/visa.png" /> <img src="https://img.icons8.com/color/48/000000/mastercard-logo.png" /> <img src="https://img.icons8.com/color/48/000000/maestro.png" /> </div>
+                                            </div>
+
+                                            <div class="span12" style="margin:0">
+                                                <div class="span2">
+                                                    <label for="cardNumber">
+                                                        <h6>Card number <span class="required">*</span></h6>
+                                                    </label>
+                                                </div>
+                                                <div class="span4"> <input type="text" name="cardNumber" placeholder="Valid card number" class="form-control " required></div>
+                                                <div class="span6"> </div>
+                                            </div>
+
+                                            <div class="span12" style="margin:0">
+                                                <div class="span2">
+                                                    <label>
+                                                        <h6>Expiration Date <span class="required">*</span></h6>
+                                                    </label>
+                                                </div>
+                                                <div class="span4">
+                                                    <div class="span1">
+                                                        <input type="number" placeholder="MM" name="" class="form-control" required style="width:70px">
+                                                    </div>
+                                                    <div class="span5"> </div>
+                                                    <div class="span1">
+                                                        <input type="number" placeholder="YY" name="" class="form-control" required style="width:70px">
+                                                    </div>
+                                                    <div class="span5"> </div>
+                                                </div>
+                                                <div class="span1">
+                                                    <label data-toggle="tooltip" title="Three digit CV code on the back of your card">
+                                                        <h6>CVV<span class="required">*</span> <i class="fa fa-question-circle d-inline"></i></h6>
+                                                    </label>
+                                                </div>
+                                                <div class="span5"> <input type="text" required class="form-control"> </div>
+                                            </div>
+
+                                        </div>
+                                        <div id="swish" class="tab-pane fade">
+                                            <div class="span12" style="margin:0">
+                                                <div class="span2">
+                                                    <label for="phone">
+                                                        <h6>Phone Number</h6>
+                                                    </label>
+                                                </div>
+                                                <div class="span4"><input type="text" name="phone" placeholder="07XXXXXXXX" required class="form-control "></div>
+                                                <div class="span6">  </div>
+                                            </div>
+                                        </div>
+                                        <div id="net" class="tab-pane fade">
+                                            <label for="Select Your Bank">
+                                                <h6>Select your Bank</h6>
+                                            </label> <select class="form-control" id="ccmonth">
+                                                <option value="" selected disabled>--Please select your Bank--</option>
+                                                <option>Bank 1</option>
+                                                <option>Bank 2</option>
+                                                <option>Bank 3</option>
+                                                <option>Bank 4</option>
+                                                <option>Bank 5</option>
+                                                <option>Bank 6</option>
+                                                <option>Bank 7</option>
+                                                <option>Bank 8</option>
+                                                <option>Bank 9</option>
+                                                <option>Bank 10</option>
+                                            </select>
+
+                                            <div class="form-group">
+                                                <p> <button type="button" class="btn btn-primary "><i class="fas fa-mobile-alt mr-2"></i> Proceed Pyment</button> </p>
+                                            </div>
+                                            <p class="text-muted">Note: After clicking on the button, you will be directed to a secure gateway for payment. After completing the payment process, you will be redirected back to the website to view details of your order. </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    @*confirm order*@
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">Confirm Order</a>
                         </div>
                         <div id="collapseThree" class="accordion-body collapse">
@@ -146,6 +226,7 @@
 </section>
 
 @section Scripts {
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
 }
 
