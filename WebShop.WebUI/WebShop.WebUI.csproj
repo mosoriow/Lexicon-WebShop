@@ -204,13 +204,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202101251051220_AddMembershipTypeToDatabase.cs" />
-    <Compile Include="Migrations\202101251051220_AddMembershipTypeToDatabase.designer.cs">
-      <DependentUpon>202101251051220_AddMembershipTypeToDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\202101271105233_AddMembershipTypeToDatabase.cs" />
+    <Compile Include="Migrations\202101271105233_AddMembershipTypeToDatabase.designer.cs">
+      <DependentUpon>202101271105233_AddMembershipTypeToDatabase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202101251052103_SeedMembershipTypeDatabase.cs" />
-    <Compile Include="Migrations\202101251052103_SeedMembershipTypeDatabase.designer.cs">
-      <DependentUpon>202101251052103_SeedMembershipTypeDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\202101271106498_SeedMembershipTypeToDatabase.cs" />
+    <Compile Include="Migrations\202101271106498_SeedMembershipTypeToDatabase.designer.cs">
+      <DependentUpon>202101271106498_SeedMembershipTypeToDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -463,11 +463,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202101251051220_AddMembershipTypeToDatabase.resx">
-      <DependentUpon>202101251051220_AddMembershipTypeToDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202101271105233_AddMembershipTypeToDatabase.resx">
+      <DependentUpon>202101271105233_AddMembershipTypeToDatabase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101251052103_SeedMembershipTypeDatabase.resx">
-      <DependentUpon>202101251052103_SeedMembershipTypeDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202101271106498_SeedMembershipTypeToDatabase.resx">
+      <DependentUpon>202101271106498_SeedMembershipTypeToDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

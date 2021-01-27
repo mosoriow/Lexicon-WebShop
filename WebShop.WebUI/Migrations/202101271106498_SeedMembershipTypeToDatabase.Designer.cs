@@ -7,13 +7,13 @@ namespace WebShop.WebUI.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddMembershipTypeToDatabase : IMigrationMetadata
+    public sealed partial class SeedMembershipTypeToDatabase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddMembershipTypeToDatabase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(SeedMembershipTypeToDatabase));
         
         string IMigrationMetadata.Id
         {
-            get { return "202101251051220_AddMembershipTypeToDatabase"; }
+            get { return "202101271106498_SeedMembershipTypeToDatabase"; }
         }
         
         string IMigrationMetadata.Source
