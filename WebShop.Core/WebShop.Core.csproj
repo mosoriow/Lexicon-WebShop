@@ -62,9 +62,11 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\UserAccount.cs" />
     <Compile Include="Models\UserReview.cs" />
+    <Compile Include="Models\WishList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BasketItemViewModel.cs" />
     <Compile Include="ViewModels\BasketSummaryViewModel.cs" />
+    <Compile Include="ViewModels\CheckoutSuccessViewModel.cs" />
     <Compile Include="ViewModels\HomeProductListViewModel.cs" />
     <Compile Include="ViewModels\ProductDetailsViewModel.cs" />
     <Compile Include="ViewModels\ProductManagerViewModel.cs" />

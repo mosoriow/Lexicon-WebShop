@@ -241,9 +241,13 @@
     <Compile Include="Migrations\202101261826025_Merged.designer.cs">
       <DependentUpon>202101261826025_Merged.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202101262113125_Orders.cs" />
-    <Compile Include="Migrations\202101262113125_Orders.designer.cs">
-      <DependentUpon>202101262113125_Orders.cs</DependentUpon>
+    <Compile Include="Migrations\202101272012311_wishlist.cs" />
+    <Compile Include="Migrations\202101272012311_wishlist.designer.cs">
+      <DependentUpon>202101272012311_wishlist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101272023358_wishlist1.cs" />
+    <Compile Include="Migrations\202101272023358_wishlist1.designer.cs">
+      <DependentUpon>202101272023358_wishlist1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -266,8 +270,11 @@
     <EmbeddedResource Include="Migrations\202101261826025_Merged.resx">
       <DependentUpon>202101261826025_Merged.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101262113125_Orders.resx">
-      <DependentUpon>202101262113125_Orders.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202101272012311_wishlist.resx">
+      <DependentUpon>202101272012311_wishlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101272023358_wishlist1.resx">
+      <DependentUpon>202101272023358_wishlist1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

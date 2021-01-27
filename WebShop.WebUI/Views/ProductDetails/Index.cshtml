@@ -18,7 +18,7 @@
                     <div class="span4">
                         <div class="img-magnifier-container">
                             <a href="@Model.product.Images.FirstOrDefault().Path" class="thumbnail" data-fancybox-group="group1" title="@Model.product.Name"> <img id="myimage" src="@Model.product.Images.FirstOrDefault().Path"> </a>
-</div>
+                        </div>
                         <ul class="thumbnails small">
                             @foreach (var image in Model.product.Images)
                             {
@@ -53,33 +53,39 @@
                         <h4><strong>Price: @Model.product.Price SEK</strong></h4>
                     </div>
                     @*Add to cart the product*@
+
+                <div class="span5">
                     @using (Html.BeginForm("AddToBasket", "Basket", FormMethod.Post))
                     {
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         @Html.Hidden("productid", Model.product.Id)
-                        <div class="span5">
-                            <form class="form-inline">
-                                <p>&nbsp;</p>
-                                <label>Qty:</label>
-                                @Html.TextBox("qty", null, new { type = "number", min = "1", max = "5", step = "1", @class = "span1", @Value = "1" })
-                                @Html.ValidationMessage("", new { @class = "text-danger" })
-                                <p>&nbsp;</p>
-                                <label>Size:</label>
-                                <select name="Size" id="size" class="span2">
-                                    @foreach (var size in @Model.product.Size.Split(','))
-                                    {
-                                        <option value="@size.Trim()">@size.Trim()</option>
-                                    }
-                                </select>
-                                <p>&nbsp;</p>
-                                <button class="btn btn-inverse" type="submit">Add to cart</button>
-                            </form>
-                        </div>
+                        <form class="form-inline">
+                            <p>&nbsp;</p>
+                            <label>Qty:</label>
+                            @Html.TextBox("qty", null, new { type = "number", min = "1", max = "5", step = "1", @class = "span1", @Value = "1" })
+                            @Html.ValidationMessage("", new { @class = "text-danger" })
+                            <p>&nbsp;</p>
+                            <label>Size:</label>
+                            <select name="Size" id="size" class="span2">
+                                @foreach (var size in @Model.product.Size.Split(','))
+                                {
+                                    <option value="@size.Trim()">@size.Trim()</option>
+                                }
+                            </select>
+                            <p>&nbsp;</p>
+                            <button class="btn btn-inverse" type="submit">Add to cart</button>
+                        </form>
                     }
+
+                    @using (Html.BeginForm("AddToWishList", "WishList", new { productId = Model.product.Id}, FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button type="submit" data-toggle="tooltip" title="Add to wishlist"><i class="fas fa-heart" style="font-size:30px;color:red;"></i></button>
+                    }
+                    </div>
+
                 </div>
-
-
                 @*Customer Rating here*@
                 @{
                     var ReviewCount = @Model.product.UserReviews.Count();

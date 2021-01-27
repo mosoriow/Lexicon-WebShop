@@ -229,6 +229,7 @@
     <Compile Include="Controllers\ProductDetailsController.cs" />
     <Compile Include="Controllers\ProductManagerController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\WishListController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -519,6 +520,10 @@
     <Content Include="Views\Shared\_IndividualButtonPartial.cshtml" />
     <Content Include="Views\MembershipType\Index.cshtml" />
     <Content Include="Views\Order\MyOrders.cshtml" />
+    <Content Include="Views\CheckOut\Complete_old.cshtml" />
+    <Content Include="Views\CheckOut\Error.cshtml" />
+    <Content Include="Views\CheckOut\Complete.cshtml" />
+    <Content Include="Views\WishList\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

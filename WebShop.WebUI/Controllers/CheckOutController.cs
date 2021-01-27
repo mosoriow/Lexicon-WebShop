@@ -50,19 +50,46 @@ namespace WebShop.WebUI.Controllers
         [HttpPost]
         public ActionResult CheckoutForUser(Order order)
         {
-            var Basket = basketService.GetBasket(this.HttpContext, false);
-            if(Basket!=null)
+            try
             {
-                order.Username = String.IsNullOrEmpty(User.Identity.Name)?"Anonymous": User.Identity.Name;
-                order.OrderDate = DateTime.Now;
-                order.BasketId = Basket.Id;
-                context.Insert(order);
-                context.Commit();
+                var Basket = basketService.GetBasket(this.HttpContext, false);
+                if (Basket != null)
+                {
+                    order.Username = String.IsNullOrEmpty(User.Identity.Name) ? "Anonymous" : User.Identity.Name;
+                    order.OrderDate = DateTime.Now;
+                    order.BasketId = Basket.Id;
+                    context.Insert(order);
+                    context.Commit();
+                }
+                //todo need to route to my pages
+                basketService.clearCookie(this.HttpContext);
+                return RedirectToAction("Complete", new { id = order.Id });
             }
-            //todo need to route to my pages
-            basketService.clearCookie(this.HttpContext);
-            return RedirectToAction("Index", "Checkout");
+            catch
+            {
+                //Invalid - redisplay with errors
+                return View(order);
+            }
 
         }
+
+        // GET: /Checkout/Complete
+        public ActionResult Complete(String id)
+        {
+            // Validate customer owns this order
+            bool isValid = context.Collection().Any(
+                o => o.Id == id &&
+                o.Username == User.Identity.Name);
+
+            if (isValid)
+            {
+                return View(new CheckoutSuccessViewModel(id));
+            }
+            else
+            {
+                return View("Error");
+            }
+        }
+
     }
 }

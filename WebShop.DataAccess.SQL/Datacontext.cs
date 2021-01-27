@@ -22,5 +22,6 @@ namespace WebShop.DataAccess.SQL
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<UserAccount> Users { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<WishList> WishList { get; set; }
     }
 }
