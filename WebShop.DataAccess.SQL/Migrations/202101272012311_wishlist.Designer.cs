@@ -7,13 +7,13 @@ namespace WebShop.DataAccess.SQL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class InsertInitialData : IMigrationMetadata
+    public sealed partial class wishlist : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InsertInitialData));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(wishlist));
         
         string IMigrationMetadata.Id
         {
-            get { return "202101261833412_InsertInitialData"; }
+            get { return "202101272012311_wishlist"; }
         }
         
         string IMigrationMetadata.Source

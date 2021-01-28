@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace WebShop.Core.Models
 {
-    public class ProductCart
+    public class WishList : BaseEntity
     {
+        public  String productId { get; set; }
+        public  String UserName { get; set; }
+
     }
 }
