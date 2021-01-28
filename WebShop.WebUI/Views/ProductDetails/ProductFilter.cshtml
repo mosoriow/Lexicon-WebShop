@@ -7,7 +7,7 @@
             @*Todo: need to fix the href link*@
             @foreach (var item in Model.subCategories)
             {
-                <li class="@(Model.SelectedProduct!=null && item==Model.SelectedProduct.SubCategory ? "active" : null )"><a href="/Product/Index?SubCategory=@item">@item</a></li>
+                <li class="@(Model.SelectedProduct!=null && item==Model.SelectedProduct.SubCategory ? "active" : null )"><a href="/Home/ProductList">@item</a></li>
             }
         </ul>
         <br />
@@ -16,7 +16,7 @@
             @*Todo: need to fix the href link*@
             @foreach (var item in Model.manufactures)
             {
-        <li class="@(Model.SelectedProduct!=null && item==Model.SelectedProduct.Manufacture ? "active" : null )"><a href="/Product/Index?Manufacture=@item">@item</a></li>
+        <li class="@(Model.SelectedProduct!=null && item==Model.SelectedProduct.Manufacture ? "active" : null )"><a href="/Home/ProductList">@item</a></li>
             }
         </ul>
     </div>
@@ -39,9 +39,9 @@
                             <li class="span3">
                                 <div class="product-box">
                                     <span class="sale_tag"></span>
-                                    <a href="/ProductDetails/index/@item.Id"><img alt="" src="@item.Images.FirstOrDefault().Path" style="max-height:270px;max-width:270px"></a><br />
-                                    <a href="/ProductDetails/index/@item.Id" class="title">@item.Name</a><br />
-                                    <a href="#" class="category">@item.SubCategory</a>
+                                    <a href="/Home/ProductList"><img alt="" src="@item.Images.FirstOrDefault().Path" style="max-height:270px;max-width:270px"></a><br />
+                                    <a href="/Home/ProductList" class="title">@item.Name</a><br />
+                                    <a href="/Home/ProductList" class="category">@item.SubCategory</a>
                                     <p class="price">@item.Price SEK</p>
                                 </div>
                             </li>
@@ -58,10 +58,10 @@
             @foreach (var item in @Model.products.OrderByDescending(p => p.UserReviews.Count()).Take(3))
             {
                 <li>
-                    <a href="#" title="@item.Name">
+                    <a href="/Home/ProductList" title="@item.Name">
                         <img src="@item.Images.FirstOrDefault().Path" alt="@item.Description">
                     </a>
-                    <a href="#">@item.Name</a>
+                    <a href="/Home/ProductList">@item.Name</a>
                 </li>
             }
         </ul>

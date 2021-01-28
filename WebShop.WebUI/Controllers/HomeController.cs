@@ -143,7 +143,7 @@ namespace WebShop.WebUI.Controllers
             product.Availability = 10;
             product.Colour = "Orange, Yellow";
             product.Size = "Large, Medium, Small, X-Large";
-            product.Discount = 0;
+            product.Discount = 10;
 
             //add user review
             product.UserReviews.Add(new UserReview("Nikhil", "This was nice in buy, Excelent product, Delevered on time, and Long lasting ", 5));
