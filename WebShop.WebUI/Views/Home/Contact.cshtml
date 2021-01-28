@@ -1,62 +1,96 @@
-﻿      
+﻿@model WebShop.WebUI.Models.MailModels
 <section class="google_map">
     <iframe width="100%" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=stockholm%20city&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
-</section>       
+</section>
 
-        <section class="header_text sub">
-            <img class="pageBanner" src="~/Content/images/banner/pageBanner.png" alt="New products">
-            <h4><span>Contact Us</span></h4>
-        </section>
-        <section class="main-content">
-            <div class="row">
-                <div class="span5">
-                    <div>
-                        <h5>ADDITIONAL INFORMATION</h5>
-                        <p>
-                            <strong>Phone:</strong>&nbsp;(123) 456-7890<br>
-                            <strong>Fax:</strong>&nbsp;+07 (123) 456-7890<br>
-                            <strong>Email:</strong>&nbsp;<a href="#">webShop@yahoo.com</a>
-                        </p>
-                        <br />
-                        <h5>SECONDARY OFFICE IN VIETNAM</h5>
-                        <p>
-                            <strong>Phone:</strong>&nbsp;(113) 023-1125<br>
-                            <strong>Fax:</strong>&nbsp;+04 (113) 023-1145<br>
-                            <strong>Email:</strong>&nbsp;<a href="#">webShop@yahoo.com</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="span7">
-                    <p></p>
-                    <form method="post" action="#">
-                        <fieldset>
-                            <div class="clearfix">
-                                <label for="name"><span>Name:</span></label>
-                                <div class="input">
-                                    <input tabindex="1" size="18" id="name" name="name" type="text" value="" class="input-xlarge" placeholder="Name">
-                                </div>
-                            </div>
 
-                            <div class="clearfix">
-                                <label for="email"><span>Email:</span></label>
-                                <div class="input">
-                                    <input tabindex="2" size="25" id="email" name="email" type="text" value="" class="input-xlarge" placeholder="Email Address">
-                                </div>
-                            </div>
 
-                            <div class="clearfix">
-                                <label for="message"><span>Message:</span></label>
-                                <div class="input">
-                                    <textarea tabindex="3" class="input-xlarge" id="message" name="body" rows="7" placeholder="Message"></textarea>
-                                </div>
-                            </div>
+<section class="header_text sub">
+    <img class="pageBanner" src="~/Content/images/banner/pageBanner.png" alt="New products">
+    <h4><span>Contact Us</span></h4>
+</section>
 
-                            <div class="actions">
-                                <button tabindex="3" type="submit" class="btn btn-inverse">Send message</button>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
+
+
+
+
+
+<section class="main-content">
+    <div class="row">
+        <div class="span5">
+            <div>
+                <h5>ADDITIONAL INFORMATION</h5>
+                <p>
+                    <strong>Phone:</strong>&nbsp;(123) 456-7890<br>
+                    <strong>Fax:</strong>&nbsp;+07 (123) 456-7890<br>
+                    <strong>Email:</strong>&nbsp;<a href="#">webShop@yahoo.com</a>
+                </p>
+                <br />
+                <h5>SECONDARY OFFICE IN VIETNAM</h5>
+                <p>
+                    <strong>Phone:</strong>&nbsp;(113) 023-1125<br>
+                    <strong>Fax:</strong>&nbsp;+04 (113) 023-1145<br>
+                    <strong>Email:</strong>&nbsp;<a href="#">webShop@yahoo.com</a>
+                </p>
             </div>
-        </section>
-       
+        </div>
+
+
+        @using (Html.BeginForm("Contact", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @id = "contact-form", role = "form" }))
+        {
+            @Html.ValidationSummary()
+            <fieldset>
+                <div class="form-div-1">
+                    <label class="name">
+                        @Html.TextBoxFor(m => m.Name, new { @placeholder = "Name *", @type = "text" })
+                    </label>
+                </div>
+
+                <div class="form-div-2">
+                    <label class="email">
+                        @Html.TextBoxFor(m => m.Email, new { @placeholder = "Email Address *", @type = "email" })
+                    </label>
+                </div>
+                <div class="form-div-3">
+                    <label class="phone notRequired">
+                        @Html.TextBoxFor(m => m.Telephone, new { @placeholder = "Telephone Number", @type = "text" })
+                    </label>
+                </div>
+                <div>
+                    <label class="message">
+                        @Html.TextAreaFor(m => m.Message, new { @placeholder = "Message *" })
+                    </label>
+                </div>
+                <div class="actions">
+                    <button tabindex="3" type="submit" class="btn btn-inverse" id="SentMail">Send message</button>
+                </div>
+
+            </fieldset>
+        }
+
+
+    </div>
+</section>
+
+<script type="text/javascript">
+
+
+    $('#SentMail').on('click', function (e) {
+        e.preventDefault();
+        var form = $(this).parents('form');
+        swal({
+            title: "Your message has been sent.",
+            text: "",
+            type: "success",
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "",
+            closeOnConfirm: false
+        }, function (isConfirm) {
+            if (isConfirm) form.submit();
+        });
+    });
+
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

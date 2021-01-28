@@ -9,6 +9,7 @@ using WebShop.Core.Models;
 using WebShop.DataAccess.InMemory;
 using WebShop.DataAccess.SQL;
 using WebShop.WebUI.Models;
+using WebShop.WebUI.Utility;
 using WebShop.WebUI.ViewModel;
 
 namespace WebShop.WebUI.Controllers
@@ -24,6 +25,7 @@ namespace WebShop.WebUI.Controllers
         }
 
         // GET: User
+        [Authorize(Roles =SD.AdminUserRole)]
         public ActionResult Index()
         {
             var user = from u in db.Users
@@ -52,6 +54,7 @@ namespace WebShop.WebUI.Controllers
         }
 
         //GET Edit
+        [Authorize(Roles = SD.AdminUserRole)]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -119,7 +122,7 @@ namespace WebShop.WebUI.Controllers
             return RedirectToAction("Index", "User");
         }
 
-
+        [Authorize(Roles = SD.AdminUserRole)]
         public ActionResult Details(string id)
         {
             if (id == null || id.Length == 0)
@@ -141,7 +144,7 @@ namespace WebShop.WebUI.Controllers
             };
             return View(model);
         }
-
+        [Authorize(Roles = SD.AdminUserRole)]
         //DELETE Get Method
         public ActionResult Delete(string id)
         {
