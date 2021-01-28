@@ -23,11 +23,9 @@ namespace WebShop.Core.Models
         public ICollection<Image> Images { get; set; }
 
         public string filePath1 { get; set; }
-        /*
         public string filePath2 { get; set; }
         public string filePath3 { get; set; }
         public string filePath4 { get; set; }
-        */
 
         public virtual ICollection<UserReview> UserReviews { get; set; }
         public int Availability { get; set; }

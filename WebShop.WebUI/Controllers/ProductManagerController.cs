@@ -32,6 +32,7 @@ namespace WebShop.WebUI.Controllers
         {
             ProductManagerViewModel viewModel = new ProductManagerViewModel();
             viewModel.Product = new Product();
+            viewModel.Images= productImages.Collection();
 
             return View(viewModel);
         }
@@ -39,10 +40,10 @@ namespace WebShop.WebUI.Controllers
         [HttpPost]
         public ActionResult Create(
                                 Product product,
-                                HttpPostedFile file/*, 
-                                HttpPostedFile file2, 
-                                HttpPostedFile file3, 
-                                HttpPostedFile file4*/
+                                HttpPostedFileBase file,
+                                HttpPostedFileBase file2, 
+                                HttpPostedFileBase file3, 
+                                HttpPostedFileBase file4
                             )
         {
             if (!ModelState.IsValid)
@@ -51,32 +52,28 @@ namespace WebShop.WebUI.Controllers
             }
             else
             {
-                /*
-                 * for each file in httppostedfiles
-                 */
-
                 if(file != null)
                 {
                     product.filePath1 = product.Id + Path.GetExtension(file.FileName);
                     file.SaveAs(Server.MapPath("//Content//productImages//") + product.Id + Path.GetExtension(file.FileName));
                 }
-                /*
                 if (file2 != null)
                 {
-                    //product.Images = product.Id + Path.GetExtension(file.FileName);
-                    file2.SaveAs(Server.MapPath("//Content//productImages//") + product.Id + "_2" + Path.GetExtension(file2.FileName));
+                    product.filePath2 = product.Id + Path.GetExtension(file2.FileName);
+                    file2.SaveAs(Server.MapPath("//Content//productImages//") + product.Id +"_2"+ Path.GetExtension(file2.FileName));
                 }
                 if (file3 != null)
                 {
-                    //product.Images = product.Id + Path.GetExtension(file.FileName);
+                    product.filePath3 = product.Id + Path.GetExtension(file3.FileName);
                     file3.SaveAs(Server.MapPath("//Content//productImages//") + product.Id + "_3" + Path.GetExtension(file3.FileName));
                 }
                 if (file4 != null)
                 {
-                    //product.Images = product.Id + Path.GetExtension(file.FileName);
+                    product.filePath4 = product.Id + Path.GetExtension(file4.FileName);
                     file4.SaveAs(Server.MapPath("//Content//productImages//") + product.Id + "_4" + Path.GetExtension(file4.FileName));
                 }
-                */
+
+
                 context.Insert(product);
                 context.Commit();
                 return RedirectToAction("Index");
@@ -94,7 +91,7 @@ namespace WebShop.WebUI.Controllers
             {
                 ProductManagerViewModel viewModel = new ProductManagerViewModel();
                 viewModel.Product = new Product();
-                //viewModel.Images = productImages.Collection();
+                viewModel.Images = productImages.Collection();
 
                 return View(viewModel);
             }
@@ -104,7 +101,7 @@ namespace WebShop.WebUI.Controllers
         public ActionResult Edit(
                                 Product product, 
                                 string Id,
-                                HttpPostedFile file/*,
+                                HttpPostedFileBase file/*,
                                 HttpPostedFile file2,
                                 HttpPostedFile file3,
                                 HttpPostedFile file4*/
