@@ -16,9 +16,10 @@ namespace WebShop.WebUI.Controllers
         IRepository<Product> context;
         IRepository<Image> productImages;
 
-        public ProductManagerController(IRepository<Product> productContext)
+        public ProductManagerController(IRepository<Product> productContext,IRepository<Image> prodImages)
         {
             context = productContext;
+            productImages = prodImages;
         }
 
         public ActionResult Index()
@@ -32,28 +33,8 @@ namespace WebShop.WebUI.Controllers
             ProductManagerViewModel viewModel = new ProductManagerViewModel();
             viewModel.Product = new Product();
 
-
-
-            Product product = new Product();
-            return View(product);
+            return View(viewModel);
         }
-
-        /*
-        [HttpPost]
-        public ActionResult Create(Product product)
-        {
-            if(!ModelState.IsValid)
-            {
-                return View(product);
-            }
-            else
-            {
-                context.Insert(product);
-                context.Commit();
-                return RedirectToAction("Index");
-            }
-        }
-        */
 
         [HttpPost]
         public ActionResult Create(
@@ -70,9 +51,13 @@ namespace WebShop.WebUI.Controllers
             }
             else
             {
+                /*
+                 * for each file in httppostedfiles
+                 */
+
                 if(file != null)
                 {
-                    //product.Images = product.Id + Path.GetExtension(file.FileName);
+                    product.filePath1 = product.Id + Path.GetExtension(file.FileName);
                     file.SaveAs(Server.MapPath("//Content//productImages//") + product.Id + Path.GetExtension(file.FileName));
                 }
                 /*
@@ -107,7 +92,11 @@ namespace WebShop.WebUI.Controllers
             }
             else
             {
-                return View(product);
+                ProductManagerViewModel viewModel = new ProductManagerViewModel();
+                viewModel.Product = new Product();
+                //viewModel.Images = productImages.Collection();
+
+                return View(viewModel);
             }
         }
 

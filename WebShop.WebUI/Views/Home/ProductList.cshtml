@@ -41,7 +41,14 @@
                             <p><a href="#"><img src="~/Content/productImages/@Model.ListOfProducts.ElementAt(i).Id" alt="" /></a></p>
                             <a href="#" class="title">@Model.ListOfProducts.ElementAt(i).Name</a><br />
                             <a href="#" class="category">@Model.ListOfProducts.ElementAt(i).Manufacture</a>
-                            <p class="price">$ @Model.ListOfProducts.ElementAt(i).Price</p>
+                            @if (Model.ListOfProducts.ElementAt(i).Discount != 0)
+                            {
+                                <p class="price"><s>$ @Model.ListOfProducts.ElementAt(i).Price</s> $ @( float.Parse(Model.ListOfProducts.ElementAt(i).Price.ToString()) * (1- float.Parse(Model.ListOfProducts.ElementAt(i).Discount.ToString())/100.0 ) ) </p>
+                            }
+                            else
+                            {
+                                <p class="price">$ @Model.ListOfProducts.ElementAt(i).Price</p>
+                            }
                         </div>
 					</li>
                 }

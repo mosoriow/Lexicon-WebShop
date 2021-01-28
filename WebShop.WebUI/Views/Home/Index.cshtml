@@ -54,22 +54,27 @@
 									@for(int i = 1; i <= 4; i++)
                                     {
 										<li class="span3">
-                                            <div class="product-box">
-                                                <span class="sale_tag"></span>
-                                                <p><a href="#"><img src="~/Content/productImages/@Model.SuggestedProducts.ElementAt(i).Id" alt="" /></a></p>
-                                                <a href="#" class="title">@Model.SuggestedProducts.ElementAt(i).Name</a><br />
-                                                <a href="#" class="category">@Model.SuggestedProducts.ElementAt(i).Manufacture</a>
-                                                <p class="price">$ @Model.SuggestedProducts.ElementAt(i).Price</p>
-                                            </div>
+											<div class="product-box">
+												<span class="sale_tag">
+													@if (Model.SuggestedProducts.ElementAt(i).Discount != 0)
+													{
+														<img src="~/Content/images/discounts/@String.Concat(Model.SuggestedProducts.ElementAt(i).Discount,"off.png")" />
+													}
+												</span>
+												<p><a href="#"><img src="~/Content/productImages/@Model.SuggestedProducts.ElementAt(i).Id" alt="" /></a></p>
+												<a href="#" class="title">@Model.SuggestedProducts.ElementAt(i).Name</a><br />
+												<a href="#" class="category">@Model.SuggestedProducts.ElementAt(i).Manufacture</a>
+												@if (Model.SuggestedProducts.ElementAt(i).Discount != 0)
+												{
+													<p class="price"><s>$ @Model.SuggestedProducts.ElementAt(i).Price</s> $ @( float.Parse(Model.SuggestedProducts.ElementAt(i).Price.ToString()) * (1- float.Parse(Model.SuggestedProducts.ElementAt(i).Discount.ToString())/100.0 ) ) </p>
+												}
+												else
+												{
+													<p class="price">$ @Model.SuggestedProducts.ElementAt(i).Price</p>
+												}
+											</div>
 										</li>
-                                    }
-								</ul>
-							</div>
-							<div class="item">
-								<ul class="thumbnails">
-@{ /* Suggested Products (4 products) * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ }
-									@for(int i = 5; i <= 8; i++)
-                                    {
+										@*
 										<li class="span3">
                                             <div class="product-box">
                                                 <span class="sale_tag"></span>
@@ -79,6 +84,48 @@
                                                 <p class="price">$ @Model.SuggestedProducts.ElementAt(i).Price</p>
                                             </div>
 										</li>
+										*@
+                                    }
+								</ul>
+							</div>
+							<div class="item">
+								<ul class="thumbnails">
+@{ /* Suggested Products (4 products) * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ }
+									@for(int i = 5; i <= 8; i++)
+                                    {
+										<li class="span3">
+											<div class="product-box">
+												<span class="sale_tag">
+													@if (Model.SuggestedProducts.ElementAt(i).Discount != 0)
+													{
+														<img src="~/Content/images/discounts/@String.Concat(Model.SuggestedProducts.ElementAt(i).Discount,"off.png")" />
+													}
+												</span>
+												<p><a href="#"><img src="~/Content/productImages/@Model.SuggestedProducts.ElementAt(i).Id" alt="" /></a></p>
+												<a href="#" class="title">@Model.SuggestedProducts.ElementAt(i).Name</a><br />
+												<a href="#" class="category">@Model.SuggestedProducts.ElementAt(i).Manufacture</a>
+												@if (Model.SuggestedProducts.ElementAt(i).Discount != 0)
+												{
+													<p class="price"><s>$ @Model.SuggestedProducts.ElementAt(i).Price</s> $ @( float.Parse(Model.SuggestedProducts.ElementAt(i).Price.ToString()) * (1- float.Parse(Model.SuggestedProducts.ElementAt(i).Discount.ToString())/100.0 ) ) </p>
+												}
+												else
+												{
+													<p class="price">$ @Model.SuggestedProducts.ElementAt(i).Price</p>
+												}
+											</div>
+										</li>
+
+										@*
+										<li class="span3">
+                                            <div class="product-box">
+                                                <span class="sale_tag"></span>
+                                                <p><a href="#"><img src="~/Content/productImages/@Model.SuggestedProducts.ElementAt(i).Id" alt="" /></a></p>
+                                                <a href="#" class="title">@Model.SuggestedProducts.ElementAt(i).Name</a><br />
+                                                <a href="#" class="category">@Model.SuggestedProducts.ElementAt(i).Manufacture</a>
+                                                <p class="price">$ @Model.SuggestedProducts.ElementAt(i).Price</p>
+                                            </div>
+										</li>
+										*@
                                     }
 								</ul>
 							</div>
@@ -103,22 +150,28 @@
 									@for(int i = 0; i < 4; i++)
                                     {
 										<li class="span3">
-                                            <div class="product-box">
-                                                <span class="sale_tag"></span>
-                                                <p><a href="#"><img src="~/Content/productImages/@Model.LatestProducts.ElementAt(i).Id" alt="" /></a></p>
-                                                <a href="#" class="title">@Model.LatestProducts.ElementAt(i).Name</a><br />
-                                                <a href="#" class="category">@Model.LatestProducts.ElementAt(i).Manufacture</a>
-                                                <p class="price">$ @Model.LatestProducts.ElementAt(i).Price</p>
-                                            </div>
+											<div class="product-box">
+												<span class="sale_tag">
+													@if (Model.LatestProducts.ElementAt(i).Discount != 0)
+													{
+														<img src="~/Content/images/discounts/@String.Concat(Model.LatestProducts.ElementAt(i).Discount,"off.png")" />
+													}
+												</span>
+												<p><a href="#"><img src="~/Content/productImages/@Model.LatestProducts.ElementAt(i).Id" alt="" /></a></p>
+												<a href="#" class="title">@Model.LatestProducts.ElementAt(i).Name</a><br />
+												<a href="#" class="category">@Model.LatestProducts.ElementAt(i).Manufacture</a>
+												@if (Model.LatestProducts.ElementAt(i).Discount != 0)
+												{
+													<p class="price"><s>$ @Model.LatestProducts.ElementAt(i).Price</s> $ @( float.Parse(Model.LatestProducts.ElementAt(i).Price.ToString()) * (1- float.Parse(Model.LatestProducts.ElementAt(i).Discount.ToString())/100.0 ) ) </p>
+												}
+												else
+												{
+													<p class="price">$ @Model.LatestProducts.ElementAt(i).Price</p>
+												}
+											</div>
 										</li>
-                                    }
-								</ul>
-							</div>
-							<div class="item">
-								<ul class="thumbnails">
-@{ /* Latest Products (4 products) * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ }
-									@for(int i = 4; i < 8; i++)
-                                    {
+
+										@*
 										<li class="span3">
                                             <div class="product-box">
                                                 <span class="sale_tag"></span>
@@ -128,6 +181,48 @@
                                                 <p class="price">$ @Model.LatestProducts.ElementAt(i).Price</p>
                                             </div>
 										</li>
+										*@
+                                    }
+								</ul>
+							</div>
+							<div class="item">
+								<ul class="thumbnails">
+@{ /* Latest Products (4 products) * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ }
+									@for(int i = 4; i < 8; i++)
+                                    {
+										<li class="span3">
+											<div class="product-box">
+												<span class="sale_tag">
+													@if (Model.LatestProducts.ElementAt(i).Discount != 0)
+													{
+														<img src="~/Content/images/discounts/@String.Concat(Model.LatestProducts.ElementAt(i).Discount,"off.png")" />
+													}
+												</span>
+												<p><a href="#"><img src="~/Content/productImages/@Model.LatestProducts.ElementAt(i).Id" alt="" /></a></p>
+												<a href="#" class="title">@Model.LatestProducts.ElementAt(i).Name</a><br />
+												<a href="#" class="category">@Model.LatestProducts.ElementAt(i).Manufacture</a>
+												@if (Model.LatestProducts.ElementAt(i).Discount != 0)
+												{
+													<p class="price"><s>$ @Model.LatestProducts.ElementAt(i).Price</s> $ @( float.Parse(Model.LatestProducts.ElementAt(i).Price.ToString()) * (1- float.Parse(Model.LatestProducts.ElementAt(i).Discount.ToString())/100.0 ) ) </p>
+												}
+												else
+												{
+													<p class="price">$ @Model.LatestProducts.ElementAt(i).Price</p>
+												}
+											</div>
+										</li>
+
+										@*
+										<li class="span3">
+                                            <div class="product-box">
+                                                <span class="sale_tag"></span>
+                                                <p><a href="#"><img src="~/Content/productImages/@Model.LatestProducts.ElementAt(i).Id" alt="" /></a></p>
+                                                <a href="#" class="title">@Model.LatestProducts.ElementAt(i).Name</a><br />
+                                                <a href="#" class="category">@Model.LatestProducts.ElementAt(i).Manufacture</a>
+                                                <p class="price">$ @Model.LatestProducts.ElementAt(i).Price</p>
+                                            </div>
+										</li>
+										*@
                                     }
 								</ul>
 							</div>

@@ -206,6 +206,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101270942434_Fils.cs" />
+    <Compile Include="Migrations\202101270942434_Fils.designer.cs">
+      <DependentUpon>202101270942434_Fils.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101281007351_FilePathAdded.cs" />
+    <Compile Include="Migrations\202101281007351_FilePathAdded.designer.cs">
+      <DependentUpon>202101281007351_FilePathAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101281306383_FilePathAdded1.cs" />
+    <Compile Include="Migrations\202101281306383_FilePathAdded1.designer.cs">
+      <DependentUpon>202101281306383_FilePathAdded1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -490,6 +502,17 @@
       <Project>{0023dba6-17cf-4e06-bebd-d8d4f00b01f5}</Project>
       <Name>WebShop.Services</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202101270942434_Fils.resx">
+      <DependentUpon>202101270942434_Fils.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101281007351_FilePathAdded.resx">
+      <DependentUpon>202101281007351_FilePathAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101281306383_FilePathAdded1.resx">
+      <DependentUpon>202101281306383_FilePathAdded1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

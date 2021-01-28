@@ -11,9 +11,11 @@ namespace WebShop.Core.ViewModels
     {
         public Product Product { get; set; }
         public IEnumerable<Image> Images { get; set; }
+        /*
         public Image file { get; set; }
         public Image file2 { get; set; }
         public Image file3 { get; set; }
         public Image file4 { get; set; }
+        */
     }
 }
