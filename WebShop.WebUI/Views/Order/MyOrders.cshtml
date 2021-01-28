@@ -4,6 +4,7 @@
     ViewBag.Title = "MyOrders";
 }
 
+@*shows the list of orders*@
 <style>
   
 
@@ -96,6 +97,7 @@
             </td>
         </tr>
     </table>
+    //PartialCachingAttribute view for cart
     <div class="container-fluid">
         @{
             Html.RenderAction("BasketItemTable", "Basket", orderView.BasketItemViewModel);

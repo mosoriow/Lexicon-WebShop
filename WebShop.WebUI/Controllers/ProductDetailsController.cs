@@ -19,6 +19,7 @@ namespace WebShop.WebUI.Controllers
             this.context = context;
         }
 
+        //get product from database include image and user reviews
         public Product GetProduct(String Id)
         {
             return context
@@ -45,7 +46,7 @@ namespace WebShop.WebUI.Controllers
             return View(productDetailsViewModel);
         }
 
-        [HttpPost]
+        [HttpPost] //add user review to db
         public ActionResult UpdateReview(ProductDetailsViewModel viewModel)
         {
             //update view model with username (since it is not in session), find the product and update review
@@ -72,8 +73,6 @@ namespace WebShop.WebUI.Controllers
             model.products = products;
             return PartialView(model);
         }
-
-
 
     }
 }

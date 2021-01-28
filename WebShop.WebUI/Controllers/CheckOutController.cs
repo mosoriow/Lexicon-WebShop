@@ -9,7 +9,7 @@ using WebShop.Core.Contracts;
 
 namespace WebShop.WebUI.Controllers
 {
-    //todo redirect to login when not logged in automatically by identity
+    //redirect to login when not logged in automatically by identity
     [Authorize]
     public class CheckoutController : Controller
     {
@@ -46,7 +46,7 @@ namespace WebShop.WebUI.Controllers
             return View(Order);
         }
 
-
+        //checkout confirmation button pressed
         [HttpPost]
         public ActionResult CheckoutForUser(Order order)
         {
@@ -61,7 +61,7 @@ namespace WebShop.WebUI.Controllers
                     context.Insert(order);
                     context.Commit();
                 }
-                //todo need to route to my pages
+                //checkout success complete page redirect
                 basketService.clearCookie(this.HttpContext);
                 return RedirectToAction("Complete", new { id = order.Id });
             }
@@ -76,7 +76,7 @@ namespace WebShop.WebUI.Controllers
         // GET: /Checkout/Complete
         public ActionResult Complete(String id)
         {
-            // Validate customer owns this order
+            // Validate customer owns this order, if order not stored in db throw error
             bool isValid = context.Collection().Any(
                 o => o.Id == id &&
                 o.Username == User.Identity.Name);

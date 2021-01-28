@@ -16,12 +16,14 @@ namespace WebShop.WebUI.Controllers
             this.basketService = BasketService;
         }
 
+        //Get: Basket
         public ActionResult Index()
         {
             var model = basketService.GetBasketItems(this.HttpContext);
             return View(model);
         }
 
+        //Add to basket from details page
         [HttpPost]
         public ActionResult AddToBasket(string productid, int qty)
         {
@@ -30,6 +32,7 @@ namespace WebShop.WebUI.Controllers
             return RedirectToAction("Index");
         }
 
+        //Add to basket from wishlist
         public ActionResult AddToBasket(string productid)
         {
             basketService.AddToBasket(this.HttpContext, productid, 1);
@@ -37,6 +40,7 @@ namespace WebShop.WebUI.Controllers
             return RedirectToAction("Index");
         }
 
+        //delete button on basket page 
         public ActionResult RemoveFromBasket(string Id)
         {
             basketService.RemoveFromBasket(this.HttpContext, Id);
@@ -44,6 +48,7 @@ namespace WebShop.WebUI.Controllers
             return RedirectToAction("Index");
         }
 
+        //minus button on quanity page basket
         public ActionResult ReduceQuantity(string Id)
         {
             basketService.ReduceQuantity(this.HttpContext, Id);
@@ -51,6 +56,7 @@ namespace WebShop.WebUI.Controllers
             return RedirectToAction("Index");
         }
 
+        //plus button on quanityt in basket page
         public ActionResult IncreaseQuantity(string Id)
         {
             basketService.IncreaseQuantity(this.HttpContext, Id);
@@ -58,6 +64,7 @@ namespace WebShop.WebUI.Controllers
             return RedirectToAction("Index");
         }
 
+        //coupon from basket page
         public ActionResult AddCoupon(string coupon)
         {
             basketService.AddCoupon(this.HttpContext, coupon);
@@ -65,6 +72,7 @@ namespace WebShop.WebUI.Controllers
             return RedirectToAction("Index");
         }
 
+        //delivery method from basket page
         public ActionResult SetDelivery(string Delivery)
         {
             basketService.SetDelivery(this.HttpContext, Delivery);
@@ -72,6 +80,7 @@ namespace WebShop.WebUI.Controllers
             return RedirectToAction("Index");
         }
         
+        //partial view used for showing the basket content in menu
         public PartialViewResult BasketSummary()
         {
             var basketSummary = basketService.GetBasketSummary(this.HttpContext);
@@ -79,6 +88,7 @@ namespace WebShop.WebUI.Controllers
             return PartialView(basketSummary);
         }
 
+        //partial view for showing basket content in Menu, MyOrders, Checkout pages
         public PartialViewResult BasketItemTable(BasketItemViewModel model)
         {
             if(model==null|| model.BasketItemDetail==null || model.BasketItemDetail.Count() == 0)

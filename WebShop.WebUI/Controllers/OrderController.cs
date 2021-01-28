@@ -9,7 +9,7 @@ using WebShop.Core.Contracts;
 
 namespace WebShop.WebUI.Controllers
 {
-    //todo redirect to login when not logged in automatically by identity
+    // redirect to login when not logged in automatically by identity
     [Authorize]
     public class OrderController : Controller
     {
@@ -22,6 +22,7 @@ namespace WebShop.WebUI.Controllers
             this.basketService = basketService;
         }
 
+        //get the username, get the orders, get the basket and show in a table (partial view for basket)
         public ActionResult MyOrders()
         {
             String userName = User.Identity.Name;
