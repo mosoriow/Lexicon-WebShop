@@ -1,9 +1,9 @@
-﻿namespace WebShop.WebUI.Migrations
+namespace WebShop.WebUI.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Merged : DbMigration
+    public partial class initialDataInsert : DbMigration
     {
         public override void Up()
         {

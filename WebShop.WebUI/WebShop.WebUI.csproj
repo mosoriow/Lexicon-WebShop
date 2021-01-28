@@ -240,9 +240,9 @@
     <Compile Include="Migrations\202101261756077_SeedMembershipTypeDatabase.designer.cs">
       <DependentUpon>202101261756077_SeedMembershipTypeDatabase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202101261828019_Merged.cs" />
-    <Compile Include="Migrations\202101261828019_Merged.designer.cs">
-      <DependentUpon>202101261828019_Merged.cs</DependentUpon>
+    <Compile Include="Migrations\202101281641585_initialDataInsert.cs" />
+    <Compile Include="Migrations\202101281641585_initialDataInsert.Designer.cs">
+      <DependentUpon>202101281641585_initialDataInsert.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -569,8 +569,8 @@
     <EmbeddedResource Include="Migrations\202101261756077_SeedMembershipTypeDatabase.resx">
       <DependentUpon>202101261756077_SeedMembershipTypeDatabase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101261828019_Merged.resx">
-      <DependentUpon>202101261828019_Merged.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202101281641585_initialDataInsert.resx">
+      <DependentUpon>202101281641585_initialDataInsert.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
