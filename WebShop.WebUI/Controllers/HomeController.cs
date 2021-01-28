@@ -30,6 +30,8 @@ namespace WebShop.WebUI.Controllers
 
         public ActionResult Index()
         {
+            createInitialDataIfNotExist();
+
             HomeProductListViewModel model = new HomeProductListViewModel();
 
             List<Product> suggestedList = suggestedProducts.Collection().ToList();
@@ -65,11 +67,6 @@ namespace WebShop.WebUI.Controllers
             return View();
         }
 
-
-
-      
-        
-    
 
 
         public static void SendEmail(string name,string email,string telephon,string usermessage)
@@ -115,6 +112,75 @@ namespace WebShop.WebUI.Controllers
         public ActionResult SuccessMessage()
         {
             return View();
+        }
+
+
+        /*  Initialize database with default product data */
+        private void createInitialDataIfNotExist()
+        {
+            if(suggestedProducts.Collection().Count() == 0)
+            {
+                createProducts();
+                createMatchingProducts();
+            }
+        }
+        private void createProducts()
+        {
+            Product product = new Product();
+            product.Id = "1";
+            product.Name = "Lång omlottklänning";
+            product.Description = "A calf-length dress in jacquard-woven quality. The dress has a collar and buttoning at the front and a long sleeve with a cuff that has a buttoning. Rounded at the bottom with a slit in the sides. Unlined. ";
+            product.Images.Add(new Image("/Content/productImages/ladies/1.jpg"));
+            product.Images.Add(new Image("/Content/productImages/ladies/2.jpg"));
+            product.Images.Add(new Image("/Content/productImages/ladies/3.jpg"));
+            product.Images.Add(new Image("/Content/productImages/ladies/4.jpg"));
+            product.Images.Add(new Image("/Content/productImages/ladies/5.jpg"));
+            product.Category = "Woman";
+            product.SubCategory = "Dresses";
+            product.Manufacture = "Kathmandu";
+            product.Price = 587.50m;
+            product.Availability = 10;
+            product.Colour = "Orange, Yellow";
+            product.Size = "Large, Medium, Small, X-Large";
+
+            //add user review
+            product.UserReviews.Add(new UserReview("Nikhil", "This was nice in buy, Excelent product, Delevered on time, and Long lasting ", 5));
+            product.UserReviews.Add(new UserReview("Hitha Hareendran", "This was nice in buy, Excelent product, Delevered on time, and Long lasting ", 4));
+            product.UserReviews.Add(new UserReview("Mosorio", "This was nice in buy, Excelent product, Delevered on time, and Long lasting ", 3));
+
+            suggestedProducts.Insert(product);
+            suggestedProducts.Commit();
+        }
+
+        private void createMatchingProducts()
+        {
+            createMatchingProducts("2", "/Content/productImages/ladies/2.jpg", "Woman", "Dresses", "HERMES", 341);
+            createMatchingProducts("3", "/Content/productImages/ladies/3.jpg", "Woman", "Dresses", "HERMES", 124);
+            createMatchingProducts("4", "/Content/productImages/ladies/4.jpg", "Woman", "Dresses", "PRADA", 200);
+            createMatchingProducts("5", "/Content/productImages/ladies/5.jpg", "Woman", "Dresses", "PRADA", 75);
+            createMatchingProducts("6", "/Content/productImages/ladies/6.jpg", "Woman", "Dresses", "CHANEL", 899);
+            createMatchingProducts("7", "/Content/productImages/ladies/7.jpg", "Woman", "Dresses", "CHANEL", 222);
+            createMatchingProducts("8", "/Content/productImages/ladies/8.jpg", "Woman", "Dresses", "BURBERRY", 456);
+            createMatchingProducts("9", "/Content/productImages/ladies/9.jpg", "Woman", "Dresses", "ARMANI", 333);
+        }
+
+        private void createMatchingProducts(String id, String image, String Category, String subCategory, String Manufacture, decimal price)
+        {
+            Product product = new Product();
+            product.Id = id;
+            product.Name = "A-linjeklänning";
+            product.Description = "A calf-length dress in jacquard-woven quality. The dress has a collar and buttoning at the front and a long sleeve with a cuff that has a buttoning. Rounded at the bottom with a slit in the sides. Unlined. ";
+            product.Images.Add(new Image(image));
+
+            product.Category = Category;
+            product.SubCategory = subCategory;
+            product.Manufacture = Manufacture;
+            product.Price = price;
+            product.Availability = 10;
+            product.Colour = "Orange, Yellow";
+            product.Size = "Large, Medium, Small, X-Large";
+            suggestedProducts.Insert(product);
+            suggestedProducts.Commit();
         }
 
     }

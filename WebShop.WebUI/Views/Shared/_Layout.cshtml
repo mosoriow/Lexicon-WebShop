@@ -65,22 +65,23 @@
                         @{
                             Html.RenderAction("BasketSummary", "Basket");
                         }
-
                     </ul>
-                    <nav id="menu" class="pull-right">
-                        <ul>
-                            
-                            <li>
-                                <a href="#">Admin</a>
-                                <ul>
-                                    <li><a href="/ProductManager">Product</a></li>
-                                    <li>@Html.ActionLink("Customer", "index", "User")</li>
+                    @if (User.IsInRole("SuperAdmin"))
+                    {
+                        <nav id="menu" class="pull-right">
+                            <ul>
+                                <li>
+                                    <a href="#">Admin</a>
+                                    <ul>
+                                        <li><a href="/ProductManager">Product</a></li>
+                                        <li>@Html.ActionLink("Customer", "index", "User")</li>
 
-                                </ul>
-                            </li>
+                                    </ul>
+                                </li>
 
-                        </ul>
-                    </nav>
+                            </ul>
+                        </nav>
+                    }
                 </div>
 			</div>
 		</div>
