@@ -34,8 +34,8 @@ namespace WebShop.WebUI.Controllers
 
             HomeProductListViewModel model = new HomeProductListViewModel();
 
-            List<Product> suggestedList = suggestedProducts.Collection().ToList();
-            List<Product> latestList = latestProducts.Collection().ToList();
+            List<Product> suggestedList = suggestedProducts.Include(p=>p.Images).ToList();
+            List<Product> latestList = latestProducts.Include(p => p.Images).ToList();
 
             model.SuggestedProducts = suggestedList;
             model.LatestProducts = latestList;
@@ -46,7 +46,7 @@ namespace WebShop.WebUI.Controllers
         public ActionResult ProductList()
         {
             HomeProductListViewModel model = new HomeProductListViewModel();
-            List<Product> productList = listOfProducts.Collection().ToList();
+            List<Product> productList = listOfProducts.Include(p => p.Images).ToList();
 
             model.ListOfProducts = productList;
 
