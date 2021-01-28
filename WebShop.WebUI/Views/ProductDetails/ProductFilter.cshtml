@@ -40,9 +40,9 @@
                             <li class="span3">
                                 <div class="product-box">
                                     <span class="sale_tag"></span>
-                                    <a href="/Home/ProductList"><img alt="" src="@item.Images.FirstOrDefault().Path" style="max-height:270px;max-width:270px"></a><br />
-                                    <a href="/Home/ProductList" class="title">@item.Name</a><br />
-                                    <a href="/Home/ProductList" class="category">@item.SubCategory</a>
+                                    <a href="/ProductDetails/index/@item.Id"><img alt="" src="@item.Images.FirstOrDefault().Path" style="max-height:270px;max-width:270px"></a><br />
+                                    <a href="/ProductDetails/index/@item.Id" class="title">@item.Name</a><br />
+                                    <a href="/ProductDetails/index/@item.Id" class="category">@item.SubCategory</a>
                                     <p class="price">@item.Price SEK</p>
                                 </div>
                             </li>
@@ -59,10 +59,10 @@
             @foreach (var item in @Model.products.OrderByDescending(p => p.UserReviews.Count()).Take(3))
             {
                 <li>
-                    <a href="/Home/ProductList" title="@item.Name">
+                    <a href="/ProductDetails/index/@item.Id" title="@item.Name">
                         <img src="@item.Images.FirstOrDefault().Path" alt="@item.Description">
                     </a>
-                    <a href="/Home/ProductList">@item.Name</a>
+                    <a href="/ProductDetails/index/@item.Id">@item.Name</a>
                 </li>
             }
         </ul>
