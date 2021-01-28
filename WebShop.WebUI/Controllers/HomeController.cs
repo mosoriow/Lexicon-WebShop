@@ -118,10 +118,11 @@ namespace WebShop.WebUI.Controllers
         /*  Initialize database with default product data */
         private void createInitialDataIfNotExist()
         {
-            if(suggestedProducts.Collection().Count() == 0)
+            if (suggestedProducts.Collection().Count() == 0)
             {
                 createProducts();
                 createMatchingProducts();
+                createAdditionalCategories();
             }
         }
         private void createProducts()
@@ -162,6 +163,25 @@ namespace WebShop.WebUI.Controllers
             createMatchingProducts("7", "/Content/productImages/ladies/7.jpg", "Woman", "Dresses", "CHANEL", 222);
             createMatchingProducts("8", "/Content/productImages/ladies/8.jpg", "Woman", "Dresses", "BURBERRY", 456);
             createMatchingProducts("9", "/Content/productImages/ladies/9.jpg", "Woman", "Dresses", "ARMANI", 333);
+        }
+
+        private void createAdditionalCategories()
+        {
+            createMatchingProducts("10", "/Content/productImages/accessories/10.jfif", "Woman", "Accessories", "HERMES", 341);
+            createMatchingProducts("11", "/Content/productImages/accessories/11.jfif", "Woman", "Accessories", "PRADA", 341);
+           
+            createMatchingProducts("20", "/Content/productImages/shirts/20.jfif", "Woman", "Shirts", "CHANEL", 341);
+            createMatchingProducts("21", "/Content/productImages/shirts/21.jfif", "Woman", "Shirts", "PRADA", 341);
+
+            createMatchingProducts("30", "/Content/productImages/pants/30.jfif", "Woman", "Pants", "BURBERRY", 341);
+            createMatchingProducts("31", "/Content/productImages/pants/31.jfif", "Woman", "Pants", "BURBERRY", 341);
+
+            createMatchingProducts("40", "/Content/productImages/Pijamas/40.jfif", "Woman", "Pijamas", "BURBERRY", 341);
+            createMatchingProducts("41", "/Content/productImages/Pijamas/41.jfif", "Woman", "Pijamas", "BURBERRY", 341);
+
+            createMatchingProducts("50", "/Content/productImages/shoes/50.jfif", "Woman", "Shoes", "BURBERRY", 341);
+            createMatchingProducts("51", "/Content/productImages/shoes/51.jfif", "Woman", "Shoes", "BURBERRY", 341);
+            
         }
 
         private void createMatchingProducts(String id, String image, String Category, String subCategory, String Manufacture, decimal price)

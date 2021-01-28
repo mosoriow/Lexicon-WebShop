@@ -287,6 +287,8 @@
     <Content Include="Content\images\discounts\75off.png" />
     <Content Include="Content\images\discounts\80off.png" />
     <Content Include="Content\images\discounts\90off.png" />
+    <Content Include="Content\productImages\accessories\10.jfif" />
+    <Content Include="Content\productImages\accessories\11.jfif" />
     <Content Include="Content\productImages\ladies\1.jpg" />
     <Content Include="Content\productImages\ladies\2.jpg" />
     <Content Include="Content\productImages\ladies\3.jpg" />
@@ -297,6 +299,14 @@
     <Content Include="Content\productImages\ladies\7.jpg" />
     <Content Include="Content\productImages\ladies\8.jpg" />
     <Content Include="Content\productImages\ladies\9.jpg" />
+    <Content Include="Content\productImages\Pijamas\40.jfif" />
+    <Content Include="Content\productImages\Pijamas\41.jfif" />
+    <Content Include="Content\productImages\pants\30.jfif" />
+    <Content Include="Content\productImages\pants\31.jfif" />
+    <Content Include="Content\productImages\shirts\20.jfif" />
+    <Content Include="Content\productImages\shirts\21.jfif" />
+    <Content Include="Content\productImages\shoes\50.jfif" />
+    <Content Include="Content\productImages\shoes\51.jfif" />
     <Content Include="Content\themes\css\bootstrappage.css" />
     <Content Include="Content\themes\css\flexslider.css" />
     <Content Include="Content\themes\css\jquery.fancybox.css" />
