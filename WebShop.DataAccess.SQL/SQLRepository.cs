@@ -54,18 +54,6 @@ namespace WebShop.DataAccess.SQL
             context.Entry(t).State = EntityState.Modified;
         }
 
-        //public IEnumerable<T> Include(params Expression<Func<T, object>>[] includes)
-        //{
-        //    IDbSet<T> dbSet = context.Set<T>();
-
-        //    IQueryable<T> query = null;
-        //    foreach (var include in includes)
-        //    {
-        //        query = dbSet.Include(include);
-        //    }
-
-        //    return query ?? dbSet;
-        //}
 
         public IEnumerable<T> Include(params Expression<Func<T, Object>>[] includes)
         {

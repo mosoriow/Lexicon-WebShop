@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Index";
 }
-
+@*checkout cart page*@
 <section class="header_text sub">
     <img class="pageBanner" src="~/Content/images/banner/banner-2.jpg" alt="">
     <h4><span>Check Out</span></h4>
@@ -98,7 +98,7 @@
                         </div>
                     </div>
 
-                    @*confirm order*@
+                    @*payment options*@
                     <div class="accordion-group">
                         <div class="accordion-heading">
                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#payment">Payment</a>
@@ -225,6 +225,7 @@
     </div>
 </section>
 
+@*for validating the checkout billing address*@
 @section Scripts {
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")

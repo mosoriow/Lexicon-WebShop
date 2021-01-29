@@ -317,6 +317,8 @@
     <Content Include="Content\productImages\ee6520d7-cc52-4e6e-991b-46e5d70a8303.jpg" />
     <Content Include="Content\productImages\ee6520d7-cc52-4e6e-991b-46e5d70a8303_2.jpg" />
     <Content Include="Content\productImages\ee6520d7-cc52-4e6e-991b-46e5d70a8303_3.jpg" />
+    <Content Include="Content\productImages\accessories\10.jfif" />
+    <Content Include="Content\productImages\accessories\11.jfif" />
     <Content Include="Content\productImages\ladies\1.jpg" />
     <Content Include="Content\productImages\ladies\2.jpg" />
     <Content Include="Content\productImages\ladies\3.jpg" />
@@ -327,6 +329,14 @@
     <Content Include="Content\productImages\ladies\7.jpg" />
     <Content Include="Content\productImages\ladies\8.jpg" />
     <Content Include="Content\productImages\ladies\9.jpg" />
+    <Content Include="Content\productImages\Pijamas\40.jfif" />
+    <Content Include="Content\productImages\Pijamas\41.jfif" />
+    <Content Include="Content\productImages\pants\30.jfif" />
+    <Content Include="Content\productImages\pants\31.jfif" />
+    <Content Include="Content\productImages\shirts\20.jfif" />
+    <Content Include="Content\productImages\shirts\21.jfif" />
+    <Content Include="Content\productImages\shoes\50.jfif" />
+    <Content Include="Content\productImages\shoes\51.jfif" />
     <Content Include="Content\themes\css\bootstrappage.css" />
     <Content Include="Content\themes\css\flexslider.css" />
     <Content Include="Content\themes\css\jquery.fancybox.css" />
@@ -551,7 +561,6 @@
     <Content Include="Views\UserViewModels\Index.cshtml" />
     <Content Include="Views\MembershipType\Index.cshtml" />
     <Content Include="Views\Order\MyOrders.cshtml" />
-    <Content Include="Views\CheckOut\Complete_old.cshtml" />
     <Content Include="Views\CheckOut\Error.cshtml" />
     <Content Include="Views\CheckOut\Complete.cshtml" />
     <Content Include="Views\WishList\Index.cshtml" />

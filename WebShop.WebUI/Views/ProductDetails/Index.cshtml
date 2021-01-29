@@ -33,25 +33,30 @@
                         </ul>
                     </div>
                     @*display product details*@
-                    <div class="span5">
-                        <address>
-                            @if (@Model.product.Manufacture != null)
-                            {
-                                <strong>Brand:</strong> <span>@Model.product.Manufacture</span><br>
-                            }
-                            <strong>Product Code:</strong> <span>@Model.product.Id</span><br>
-                            @if (@Model.product.Availability == 0)
-                            {
-                                <strong>Availability:</strong> <span>Out Of Stock</span><br>
-                            }
-                            else
-                            {
-                                <strong>Availability:</strong> <span>@Model.product.Availability in Stock</span><br>
-                            }
+                <div class="span5">
+                    <address>
+                        @if (@Model.product.Manufacture != null)
+                        {
+                            <strong>Brand:</strong> <span>@Model.product.Manufacture</span><br>
+                        }
+                        <strong>Product Code:</strong> <span>@Model.product.Id</span><br>
+                        @if (@Model.product.Availability == 0)
+                        {
+                            <strong>Availability:</strong> <span>Out Of Stock</span><br>
+                        }
+                        else
+                        {
+                            <strong>Availability:</strong> <span>@Model.product.Availability in Stock</span><br>
+                        }
 
-                        </address>
-                        <h4><strong>Price: @Model.product.Price SEK</strong></h4>
-                    </div>
+                    </address>
+                    <h4><strong>Price: @Model.product.Price SEK</strong></h4>
+                    @if (Model.product.Discount != 0)
+                    {
+                        <h4><strong>Discount: @(@Model.product.Price-((@Model.product.Price * Model.product.Discount)/100)) SEK</strong></h4>
+                    }
+
+                </div>
                     @*Add to cart the product*@
 
                 <div class="span5">
@@ -145,7 +150,7 @@
                                         }
                                         else if (number == 1)
                                         {
-                                            progressBarStyle = "background-color:#f44336; width:" + @width.ToString() + "%";
+                                            progressBarStyle = "background-color:#f44336;width:" + @width.ToString() + "%";
                                         }
                                         <div class="pull-left">
                                             <div class="pull-left" style="width:35px; line-height:1;">
@@ -305,7 +310,7 @@
                                                 <li class="span3">
                                                     <div class="product-box">
                                                         <span class="sale_tag"></span>
-                                                        <a href="/ProductDetails/index/@item.Id"><img alt="" src="@item.Images.FirstOrDefault().Path"></a><br />
+                                                        <a href="/ProductDetails/index/@item.Id"><img alt="" src="@item.Images.FirstOrDefault().Path" style="max-height:270px;max-width:270px"></a><br />
                                                         <a href="/ProductDetails/index/@item.Id" class="title">@item.Name</a><br />
                                                         <a href="#" class="category">@item.SubCategory</a>
                                                         <p class="price">@item.Price SEK</p>

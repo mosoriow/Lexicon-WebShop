@@ -34,8 +34,8 @@ namespace WebShop.WebUI.Controllers
 
             HomeProductListViewModel model = new HomeProductListViewModel();
 
-            List<Product> suggestedList = suggestedProducts.Collection().ToList();
-            List<Product> latestList = latestProducts.Collection().ToList();
+            List<Product> suggestedList = suggestedProducts.Include(p=>p.Images).ToList();
+            List<Product> latestList = latestProducts.Include(p => p.Images).ToList();
 
             model.SuggestedProducts = suggestedList;
             model.LatestProducts = latestList;
@@ -46,7 +46,7 @@ namespace WebShop.WebUI.Controllers
         public ActionResult ProductList()
         {
             HomeProductListViewModel model = new HomeProductListViewModel();
-            List<Product> productList = listOfProducts.Collection().ToList();
+            List<Product> productList = listOfProducts.Include(p => p.Images).ToList();
 
             model.ListOfProducts = productList;
 
@@ -118,10 +118,11 @@ namespace WebShop.WebUI.Controllers
         /*  Initialize database with default product data */
         private void createInitialDataIfNotExist()
         {
-            if(suggestedProducts.Collection().Count() == 0)
+            if (suggestedProducts.Collection().Count() == 0)
             {
                 createProducts();
                 createMatchingProducts();
+                createAdditionalCategories();
             }
         }
         private void createProducts()
@@ -142,6 +143,7 @@ namespace WebShop.WebUI.Controllers
             product.Availability = 10;
             product.Colour = "Orange, Yellow";
             product.Size = "Large, Medium, Small, X-Large";
+            product.Discount = 10;
 
             //add user review
             product.UserReviews.Add(new UserReview("Nikhil", "This was nice in buy, Excelent product, Delevered on time, and Long lasting ", 5));
@@ -154,17 +156,36 @@ namespace WebShop.WebUI.Controllers
 
         private void createMatchingProducts()
         {
-            createMatchingProducts("2", "/Content/productImages/ladies/2.jpg", "Woman", "Dresses", "HERMES", 341);
-            createMatchingProducts("3", "/Content/productImages/ladies/3.jpg", "Woman", "Dresses", "HERMES", 124);
-            createMatchingProducts("4", "/Content/productImages/ladies/4.jpg", "Woman", "Dresses", "PRADA", 200);
-            createMatchingProducts("5", "/Content/productImages/ladies/5.jpg", "Woman", "Dresses", "PRADA", 75);
-            createMatchingProducts("6", "/Content/productImages/ladies/6.jpg", "Woman", "Dresses", "CHANEL", 899);
-            createMatchingProducts("7", "/Content/productImages/ladies/7.jpg", "Woman", "Dresses", "CHANEL", 222);
-            createMatchingProducts("8", "/Content/productImages/ladies/8.jpg", "Woman", "Dresses", "BURBERRY", 456);
-            createMatchingProducts("9", "/Content/productImages/ladies/9.jpg", "Woman", "Dresses", "ARMANI", 333);
+            createMatchingProducts("2", "/Content/productImages/ladies/2.jpg", "Woman", "Dresses", "HERMES", 341,0);
+            createMatchingProducts("3", "/Content/productImages/ladies/3.jpg", "Woman", "Dresses", "HERMES", 124,5);
+            createMatchingProducts("4", "/Content/productImages/ladies/4.jpg", "Woman", "Dresses", "PRADA", 200,5);
+            createMatchingProducts("5", "/Content/productImages/ladies/5.jpg", "Woman", "Dresses", "PRADA", 75,0);
+            createMatchingProducts("6", "/Content/productImages/ladies/6.jpg", "Woman", "Dresses", "CHANEL", 899,0);
+            createMatchingProducts("7", "/Content/productImages/ladies/7.jpg", "Woman", "Dresses", "CHANEL", 222,10);
+            createMatchingProducts("8", "/Content/productImages/ladies/8.jpg", "Woman", "Dresses", "BURBERRY", 456,15);
+            createMatchingProducts("9", "/Content/productImages/ladies/9.jpg", "Woman", "Dresses", "ARMANI", 333,20);
         }
 
-        private void createMatchingProducts(String id, String image, String Category, String subCategory, String Manufacture, decimal price)
+        private void createAdditionalCategories()
+        {
+            createMatchingProducts("10", "/Content/productImages/accessories/10.jfif", "Woman", "Accessories", "HERMES", 341,0);
+            createMatchingProducts("11", "/Content/productImages/accessories/11.jfif", "Woman", "Accessories", "PRADA", 341,0);
+           
+            createMatchingProducts("20", "/Content/productImages/shirts/20.jfif", "Woman", "Shirts", "CHANEL", 341,0);
+            createMatchingProducts("21", "/Content/productImages/shirts/21.jfif", "Woman", "Shirts", "PRADA", 341,0);
+
+            createMatchingProducts("30", "/Content/productImages/pants/30.jfif", "Woman", "Pants", "BURBERRY", 341,0);
+            createMatchingProducts("31", "/Content/productImages/pants/31.jfif", "Woman", "Pants", "BURBERRY", 341,5);
+
+            createMatchingProducts("40", "/Content/productImages/Pijamas/40.jfif", "Woman", "Pijamas", "BURBERRY", 341,5);
+            createMatchingProducts("41", "/Content/productImages/Pijamas/41.jfif", "Woman", "Pijamas", "BURBERRY", 341,5);
+
+            createMatchingProducts("50", "/Content/productImages/shoes/50.jfif", "Woman", "Shoes", "BURBERRY", 341,5);
+            createMatchingProducts("51", "/Content/productImages/shoes/51.jfif", "Woman", "Shoes", "BURBERRY", 341,5);
+            
+        }
+
+        private void createMatchingProducts(String id, String image, String Category, String subCategory, String Manufacture, decimal price, int discount)
         {
             Product product = new Product();
             product.Id = id;
@@ -179,6 +200,7 @@ namespace WebShop.WebUI.Controllers
             product.Availability = 10;
             product.Colour = "Orange, Yellow";
             product.Size = "Large, Medium, Small, X-Large";
+            product.Discount = discount;
             suggestedProducts.Insert(product);
             suggestedProducts.Commit();
         }

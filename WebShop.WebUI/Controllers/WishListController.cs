@@ -39,7 +39,7 @@ namespace WebShop.WebUI.Controllers
             return View(wishlistItems);
         }
 
-
+        //delete button on wishlist
         public ActionResult RemoveFromWishList(String Id)
         {
             /* fill the data from previous order if any */
@@ -52,6 +52,7 @@ namespace WebShop.WebUI.Controllers
             return RedirectToAction("Index");
         }
 
+        //add to cart from wishlist
         public ActionResult AddToCartFromWishList(String Id)
         {
             /* fill the data from previous order if any */
@@ -69,6 +70,7 @@ namespace WebShop.WebUI.Controllers
 
 
         [HttpPost]
+        //add to wishlist
         public ActionResult AddToWishList(String productId)
         {
             String userName = User.Identity.Name;

@@ -197,7 +197,7 @@ namespace WebShop.Services
                                    ProdctName = p.Name,
                                    ProdctId = p.Id,
                                    Image = p.Images.FirstOrDefault().Path,
-                                   Price = p.Price
+                                   Price = (p.Discount==0)? p.Price : p.Price - ((p.Price * p.Discount)/100)
                                }
                               ).ToList();
 
@@ -236,7 +236,7 @@ namespace WebShop.Services
 
                 decimal? basketTotal = (from item in basket.BasketItems
                                         join p in productContext.Collection() on item.ProductId equals p.Id
-                                        select item.Quantity * p.Price).Sum();
+                                        select item.Quantity * ((p.Discount==0)? p.Price : (p.Price - (p.Price*p.Discount)/100))).Sum();
 
                 model.BasketCount = basketCount ?? 0;
                 model.BasketTotal = basketTotal ?? decimal.Zero;
