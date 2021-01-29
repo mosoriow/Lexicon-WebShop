@@ -23,11 +23,13 @@ namespace WebShop.Services
             this.productContext = ProductContext;
         }
 
-        private Basket GetBasket(HttpContextBase httpContext, bool createIfNull)
+        public Basket GetBasket(HttpContextBase httpContext, bool createIfNull)
         {
             HttpCookie cookie = httpContext.Request.Cookies.Get(BasketSessionName);
 
-            Basket basket = new Basket();
+           // HttpCookie cookie = null;
+
+           Basket basket = new Basket();
 
             if (cookie != null)
             {
@@ -35,6 +37,8 @@ namespace WebShop.Services
                 if (!string.IsNullOrEmpty(basketId))
                 {
                     basket = basketContext.Find(basketId);
+                    if(basket == null)
+                        basket = CreateNewBasket(httpContext);
                 }
                 else
                 {
@@ -54,6 +58,11 @@ namespace WebShop.Services
 
             return basket;
 
+        }
+
+        public void clearCookie(HttpContextBase httpContext)
+        {
+            httpContext.Response.Cookies.Set(new HttpCookie(BasketSessionName) { Value = string.Empty });
         }
 
         private Basket CreateNewBasket(HttpContextBase httpContext)
@@ -158,18 +167,29 @@ namespace WebShop.Services
             basketContext.Update(basket);
             basketContext.Commit();
         }
-        
+
+        public BasketItemViewModel GetBasketItems(String BasketId)
+        {
+            var basket = basketContext.Find(BasketId);
+            return GetBasketItems(basket);
+        }
 
 
         public BasketItemViewModel GetBasketItems(HttpContextBase httpContext)
         {
             Basket basket = GetBasket(httpContext, false);
+            return GetBasketItems(basket);
+           
+        }
+
+        private BasketItemViewModel GetBasketItems(Basket basket)
+        {
             BasketItemViewModel basketItemViewModel = new BasketItemViewModel();
 
             if (basket != null)
             {
                 var results = (from b in basket.BasketItems
-                               join p in productContext.Include(p=>p.Images) on b.ProductId equals p.Id
+                               join p in productContext.Include(p => p.Images) on b.ProductId equals p.Id
                                select new BasketItemDetail()
                                {
                                    Id = b.Id,
@@ -183,11 +203,11 @@ namespace WebShop.Services
 
                 basketItemViewModel.BasketItemDetail = results;
 
-                if(basket.CouponName != null)
+                if (basket.CouponName != null)
                 {
                     basketItemViewModel.DiscountItem = new DiscountItem();
                     basketItemViewModel.DiscountItem.CouponName = basket.CouponName;
-                    basketItemViewModel.DiscountItem.Price = basket.CouponName=="FREE100"? 100: 200;
+                    basketItemViewModel.DiscountItem.Price = basket.CouponName == "FREE100" ? 100 : 200;
                 }
 
                 basketItemViewModel.DeliveryMethod = new DeliveryMethod();

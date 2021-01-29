@@ -1,0 +1,43 @@
+﻿@model IEnumerable<WebShop.Core.Models.Product>
+
+@{
+    ViewBag.Title = "Wish List";
+}
+
+<section class="main-content">
+    <div class="row">
+        <div class="span12">
+            <h4 class="title"><span class="text"><strong>Your</strong> WishList</span></h4>
+            @if (Model.Any())
+            {
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Remove</th>
+                            <th>Image</th>
+                            <th>Product Name</th>
+                            <th>Unit Price</th>
+                            <th>Add To Cart</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><a href="@Url.Action("RemoveFromWishList", "WishList", new { Id=item.Id })" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></td>
+                                <td><a href="/ProductDetails/index/@item.Id"><img class="img-thumbnail" alt="" width="100px" src="@item.Images.FirstOrDefault().Path"></a></td>
+                                <td>@item.Name</td>
+                                <td>@item.Price Kr</td>
+                                <td><a href="@Url.Action("AddToCartFromWishList", "WishList", new { Id=item.Id })" class="btn btn-inverse"> Add To Cart</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div> No items in favourite !!</div>
+            }
+
+        </div>
+</section>

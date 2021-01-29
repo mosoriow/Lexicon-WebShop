@@ -1,4 +1,4 @@
-namespace WebShop.WebUI.Migrations
+﻿namespace WebShop.WebUI.Migrations
 {
     using System;
     using System.Data.Entity;
@@ -9,7 +9,7 @@ namespace WebShop.WebUI.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(WebShop.WebUI.Models.ApplicationDbContext context)

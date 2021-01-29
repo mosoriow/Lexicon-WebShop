@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Azure.Documents;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -19,5 +20,8 @@ namespace WebShop.DataAccess.SQL
         public DbSet<Image> Images { get; set; }
         public DbSet<BasketItem> BasketItems { get; set; }
         public DbSet<Basket> Baskets { get; set; }
+        public DbSet<UserAccount> Users { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<WishList> WishList { get; set; }
     }
 }

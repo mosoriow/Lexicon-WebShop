@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebShop.Core.Contracts;
+using WebShop.Core.ViewModels;
 
 namespace WebShop.WebUI.Controllers
 {
@@ -25,6 +26,13 @@ namespace WebShop.WebUI.Controllers
         public ActionResult AddToBasket(string productid, int qty)
         {
             basketService.AddToBasket(this.HttpContext, productid, qty);
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult AddToBasket(string productid)
+        {
+            basketService.AddToBasket(this.HttpContext, productid, 1);
 
             return RedirectToAction("Index");
         }
@@ -71,9 +79,10 @@ namespace WebShop.WebUI.Controllers
             return PartialView(basketSummary);
         }
 
-        public PartialViewResult BasketItemTable()
+        public PartialViewResult BasketItemTable(BasketItemViewModel model)
         {
-            var model = basketService.GetBasketItems(this.HttpContext);
+            if(model==null|| model.BasketItemDetail==null || model.BasketItemDetail.Count() == 0)
+                model = basketService.GetBasketItems(this.HttpContext);
             return PartialView(model);
         }
 
