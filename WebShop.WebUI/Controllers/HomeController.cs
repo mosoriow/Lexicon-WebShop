@@ -118,12 +118,14 @@ namespace WebShop.WebUI.Controllers
         /*  Initialize database with default product data */
         private void createInitialDataIfNotExist()
         {
+            
             if (suggestedProducts.Collection().Count() == 0)
             {
                 createProducts();
                 createMatchingProducts();
                 createAdditionalCategories();
                 createAdditionalCategories1();
+                additionalImages();
             }
         }
         private void createProducts()
@@ -169,8 +171,6 @@ namespace WebShop.WebUI.Controllers
 
         private void createAdditionalCategories()
         {
-            createMatchingProducts("10", "/Content/productImages/accessories/10.jfif", "Woman", "Accessories", "HERMES", 341,0);
-            createMatchingProducts("11", "/Content/productImages/accessories/11.jfif", "Woman", "Accessories", "PRADA", 341,0);
            
             createMatchingProducts("20", "/Content/productImages/shirts/20.jfif", "Woman", "Shirts", "CHANEL", 341,0);
             createMatchingProducts("21", "/Content/productImages/shirts/21.jfif", "Woman", "Shirts", "PRADA", 341,0);
@@ -203,6 +203,26 @@ namespace WebShop.WebUI.Controllers
             createMatchingProducts("22", "/Content/productImages/ec3fb52f-ec5f-436a-959c-0b25ad3e0286.jpg", "Woman", "Accessories", "BURBERRY", 341, 5);
             createMatchingProducts("23", "/Content/productImages/ee6520d7-cc52-4e6e-991b-46e5d70a8303.jpg", "Woman", "Accessories", "BURBERRY", 341, 5);
 
+        }
+
+
+
+
+        private void additionalImages()
+        {
+            List<Product> products = suggestedProducts.Include(p => p.Images).ToList();
+            foreach(var product in products)
+            {
+                if(product.Images.Count()<2)
+                {
+                    product.Images.Add(new Image(product.Images.FirstOrDefault().Path));
+                    product.Images.Add(new Image(product.Images.FirstOrDefault().Path));
+                    product.Images.Add(new Image(product.Images.FirstOrDefault().Path));
+                    suggestedProducts.Update(product);
+                    suggestedProducts.Commit();
+                }
+            }
+            
         }
 
         private void createMatchingProducts(String id, String image, String Category, String subCategory, String Manufacture, decimal price, int discount)
