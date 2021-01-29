@@ -38,9 +38,9 @@
                                     <img src="~/Content/images/discounts/@String.Concat(Model.ListOfProducts.ElementAt(i).Discount,"off.png")" />
                                 }
                             </span>
-                            <p><a href="#"><img src="~/Content/productImages/@Model.ListOfProducts.ElementAt(i).Id" alt="" /></a></p>
-                            <a href="#" class="title">@Model.ListOfProducts.ElementAt(i).Name</a><br />
-                            <a href="#" class="category">@Model.ListOfProducts.ElementAt(i).Manufacture</a>
+                            <p><a href="/ProductDetails/Index/@Model.ListOfProducts.ElementAt(i).Id"><img src="@Model.ListOfProducts.ElementAt(i).Images.FirstOrDefault().Path" style="max-height:270px;max-width:270px" /></a></p>
+                            <a href="/ProductDetails/Index/@Model.ListOfProducts.ElementAt(i).Id" class="title">@Model.ListOfProducts.ElementAt(i).Name</a><br />
+                            <a href="/ProductDetails/Index/@Model.ListOfProducts.ElementAt(i).Id" class="category">@Model.ListOfProducts.ElementAt(i).Manufacture</a>
                             <p class="price">$ @Model.ListOfProducts.ElementAt(i).Price</p>
                         </div>
 					</li>
