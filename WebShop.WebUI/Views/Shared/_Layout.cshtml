@@ -66,8 +66,6 @@
                             Html.RenderAction("BasketSummary", "Basket");
                         }
                     </ul>
-                    @if (User.IsInRole("SuperAdmin"))
-                    {
                         <nav id="menu" class="pull-right">
                             <ul>
                                 <li>
@@ -81,7 +79,6 @@
 
                             </ul>
                         </nav>
-                    }
                 </div>
 			</div>
 		</div>
