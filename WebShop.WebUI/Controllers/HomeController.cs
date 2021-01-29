@@ -123,6 +123,7 @@ namespace WebShop.WebUI.Controllers
                 createProducts();
                 createMatchingProducts();
                 createAdditionalCategories();
+                createAdditionalCategories1();
             }
         }
         private void createProducts()
@@ -183,6 +184,25 @@ namespace WebShop.WebUI.Controllers
             createMatchingProducts("50", "/Content/productImages/shoes/50.jfif", "Woman", "Shoes", "BURBERRY", 341,5);
             createMatchingProducts("51", "/Content/productImages/shoes/51.jfif", "Woman", "Shoes", "BURBERRY", 341,5);
             
+        }
+
+        private void createAdditionalCategories1()
+        {
+            createMatchingProducts("12", "/Content/productImages/24c77441-273b-4f80-b309-f237bb730e84.jpg", "Woman", "Accessories", "HERMES", 341, 10);
+            createMatchingProducts("13", "/Content/productImages/58b95153-74e3-4b99-9bb5-bf8e66696b9a.jpg", "Woman", "Accessories", "PRADA", 341, 10);
+
+            createMatchingProducts("14", "/Content/productImages/5fa30349-7fa0-4e72-98ed-6aedc07dcbe5.jpg", "Woman", "Accessories", "CHANEL", 341, 10);
+            createMatchingProducts("15", "/Content/productImages/6c5cde4d-b857-41f6-8520-0463339baabc.jpg", "Woman", "Accessories", "PRADA", 341, 10);
+
+            createMatchingProducts("16", "/Content/productImages/8a85af5b-5670-4af3-983b-26677e55a36a.jpg", "Woman", "Accessories", "BURBERRY", 341, 10);
+            createMatchingProducts("17", "/Content/productImages/9a21021a-e5d9-46db-a801-bc6fd9eb3d5d.jpg", "Woman", "Accessories", "BURBERRY", 341, 5);
+
+            createMatchingProducts("18", "/Content/productImages/9da87f20-dd3a-4bb5-9678-759518deccec.jpg", "Woman", "Accessories", "BURBERRY", 341, 5);
+            createMatchingProducts("19", "/Content/productImages/e478dd5d-7289-4f0d-9d03-e79a91989556.jpg", "Woman", "Accessories", "BURBERRY", 341, 5);
+
+            createMatchingProducts("22", "/Content/productImages/ec3fb52f-ec5f-436a-959c-0b25ad3e0286.jpg", "Woman", "Accessories", "BURBERRY", 341, 5);
+            createMatchingProducts("23", "/Content/productImages/ee6520d7-cc52-4e6e-991b-46e5d70a8303.jpg", "Woman", "Accessories", "BURBERRY", 341, 5);
+
         }
 
         private void createMatchingProducts(String id, String image, String Category, String subCategory, String Manufacture, decimal price, int discount)
